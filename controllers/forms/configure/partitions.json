@@ -1,71 +1,68 @@
 {
-	"name": "Configure Partitions",
-	"title": "Partitions",
-	"name_singular": "Partition",
-	"add_text": "Add a new Partition",
-	"base_url": "partition",
-	"new_url": "partition/new",
-	"edit_url": "partition/edit",
-	"form_spec": [
-        {
-            "type": "field",
-            "label": "Partition ID",
-            "placeholder": "Enter an ID for the Partition here",
-            "name": "id",
-            "value": "P1"
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "root",
+    "required":true,
+    "properties":{
+        "id": {
+            "type":"string",
+            "title": "Partition ID",
+            "name": "Partition ID",
+            "description": "ID for partition",
+            "id": "root/id",
+            "default": "P1",
+            "required":true
         },
-        {
-            "type": "field",
-            "label": "Provider",
-            "placeholder": "Enter provider name here",
-            "name": "provider",
-            "value": "ec2"
+        "provider": {
+            "type":"string",
+            "id": "root/provider",
+            "default": "ec2",
+            "required":true
         },
-        {
-            "type": "name_array",
-            "label": "property",
-            "name": "property",
-            "value": [
+        "property": {
+            "type":"array",
+            "id": "root/property",
+            "required":true,
+            "items":[
                 {
-                    "type": "object",
-                    "value": [
-                        {
-                            "type": "field",
-                            "label": "name",
-                            "placeholder": "Enter name here",
-                            "name": "name",
-                            "value": "region"
+                    "type":"object",
+                    "id": "root/property/0",
+                    "required":true,
+                    "properties":{
+                        "name": {
+                            "type":"string",
+                            "id": "root/property/0/name",
+                            "default": "region",
+                            "required":true
                         },
-                        {
-                            "type": "field",
-                            "label": "value",
-                            "placeholder": "Enter value here",
-                            "name": "value",
-                            "value": "ap-southeast-1"
+                        "value": {
+                            "type":"string",
+                            "id": "root/property/0/value",
+                            "default": "ap-southeast-1",
+                            "required":true
                         }
-                    ]
+                    }
                 },
                 {
-                    "type": "object",
-                    "value": [
-                        {
-                            "type": "field",
-                            "label": "name",
-                            "placeholder": "Enter name here",
-                            "name": "name",
-                            "value": "zone"
+                    "type":"object",
+                    "id": "root/property/1",
+                    "required":true,
+                    "properties":{
+                        "name": {
+                            "type":"string",
+                            "id": "root/property/1/name",
+                            "default": "zone",
+                            "required":true
                         },
-                        {
-                            "type": "field",
-                            "label": "value",
-                            "placeholder": "Enter value here",
-                            "name": "value",
-                            "value": "ap-southeast-1a"
+                        "value": {
+                            "type":"string",
+                            "id": "root/property/1/value",
+                            "default": "ap-southeast-1a",
+                            "required":true
                         }
-                    ]
+                    }
                 }
-
             ]
         }
-	]
+    }
 }
