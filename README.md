@@ -1,4 +1,14 @@
-stratos-4.1.0-ui
-================
+# Apache Stratos UI
 
-New UI for stratos 4.1.0 including new form options
+## Running the site
+
+Clone the repository, install Node.js dependencies and run the application.
+```bash
+$ git clone git://github.com/rukmal/Stratos-UI.git
+$ npm install
+$ node app.js
+```
+
+## Known Limitations
+
+- Form generation only supports one level of depth (in terms of subforms)
