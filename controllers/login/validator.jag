@@ -1,0 +1,5 @@
+<%
+if(session.get("USER_NAME")==null || session.get("USER_NAME") === undefined){
+    response.sendRedirect(request.getContextPath()+'/login/');
+}
+%>

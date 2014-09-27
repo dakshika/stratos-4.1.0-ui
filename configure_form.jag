@@ -1,0 +1,74 @@
+<%
+/*
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+
+var log = new Log("apachestratos.configure_form");
+var error=[];
+var caramel = require('caramel');
+
+include('/controllers/login/validator.jag');
+include('controllers/forms/form_generator.jag');
+
+var uriMatcher = new URIMatcher(request.getRequestURI());
+
+var elements = uriMatcher.match('/{context}/configure/{formtype}/');
+
+var isForm = false;
+
+if(!elements){
+    elements = uriMatcher.match('/{context}/configure/{formtype}/{action}/');
+    isForm = true;
+}
+
+var formData = require('controllers/forms/configure/' + elements.formtype + '.json');
+var genjson =  "{" + generateJSON(formData.form_spec) + "}";
+var genjsonparsed = JSON.parse(genjson);
+
+var finalHtml = "<div class='container' id='content'><div class='form' action='#' id='textform'>";
+
+finalHtml += traverse(formData.form_spec, '');
+// closing form div
+finalHtml += "</div>";
+// HTML for the JSON editor view
+finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' action='#'><textarea placeholder='JSON Editor' id='jsoneditor' class='form-control'>" + JSON.stringify(genjsonparsed, null, 4) +"</textarea></div></div></div>";
+// HTML for the cancel, json editor and deploy buttons
+finalHtml += "<div class='row'><div class='container text-center'><div class='col-md-4'><a class='formbutton formbutton-danger' href='..''> Cancel</a></div><div class='col-md-4'><a class='formbutton formbutton-caution' href='#'' id='editortoggle'>JSON Editor</a></div><div class='col-md-4'><a class='formbutton formbutton-success' href='#submit'>Deploy</a></div></div></div>";
+// closing outer border div
+finalHtml += "</div>";
+
+
+
+
+
+log.info(JSON.parse(genjson));
+
+var caramelData = {
+	config_path_l2: elements.formtype,
+	isForm: isForm,
+	formHtml: finalHtml,
+	formData: formData,
+	error: error
+}
+
+
+caramel.render(caramelData);
+
+%>

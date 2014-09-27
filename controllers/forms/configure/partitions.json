@@ -1,0 +1,71 @@
+{
+	"name": "Configure Partitions",
+	"title": "Partitions",
+	"name_singular": "Partition",
+	"add_text": "Add a new Partition",
+	"base_url": "partition",
+	"new_url": "partition/new",
+	"edit_url": "partition/edit",
+	"form_spec": [
+        {
+            "type": "field",
+            "label": "Partition ID",
+            "placeholder": "Enter an ID for the Partition here",
+            "name": "id",
+            "value": "P1"
+        },
+        {
+            "type": "field",
+            "label": "Provider",
+            "placeholder": "Enter provider name here",
+            "name": "provider",
+            "value": "ec2"
+        },
+        {
+            "type": "name_array",
+            "label": "property",
+            "name": "property",
+            "value": [
+                {
+                    "type": "object",
+                    "value": [
+                        {
+                            "type": "field",
+                            "label": "name",
+                            "placeholder": "Enter name here",
+                            "name": "name",
+                            "value": "region"
+                        },
+                        {
+                            "type": "field",
+                            "label": "value",
+                            "placeholder": "Enter value here",
+                            "name": "value",
+                            "value": "ap-southeast-1"
+                        }
+                    ]
+                },
+                {
+                    "type": "object",
+                    "value": [
+                        {
+                            "type": "field",
+                            "label": "name",
+                            "placeholder": "Enter name here",
+                            "name": "name",
+                            "value": "zone"
+                        },
+                        {
+                            "type": "field",
+                            "label": "value",
+                            "placeholder": "Enter value here",
+                            "name": "value",
+                            "value": "ap-southeast-1a"
+                        }
+                    ]
+                }
+
+            ]
+        }
+	]
+}

@@ -1,0 +1,175 @@
+{
+    "name": "Configure Load Balancer",
+    "title": "Load Balancers",
+    "name_singular": "Load Balancer",
+    "add_text": "Add a new Load Balancer",
+    "base_url": "loadbalancer",
+    "new_url": "loadbalancer/new",
+    "edit_url": "loadbalancer/edit",
+    "form_spec": [
+        {
+            "type": "field",
+            "label": "Cartridge Type",
+            "placeholder": "Cartridge Type",
+            "name": "type",
+            "value": "lb"
+        },
+        {
+            "type": "field",
+            "label": "provider",
+            "placeholder": "provider",
+            "name": "provider",
+            "value": "lb"
+        },
+        {
+            "type": "field",
+            "label": "host",
+            "placeholder": "host",
+            "name": "host",
+            "value": "stratos.org"
+        },
+        {
+            "type": "field",
+            "label": "displayName",
+            "placeholder": "provider",
+            "name": "displayName",
+            "value": "load balancer"
+        },
+        {
+            "type": "field",
+            "label": "displayName",
+            "placeholder": "provider",
+            "name": "displayName",
+            "value": "description"
+        },
+        {
+            "type": "field",
+            "label": "version",
+            "placeholder": "provider",
+            "name": "version",
+            "value": "version"
+        },
+        {
+            "type": "field",
+            "label": "defaultAutoscalingPolicy",
+            "placeholder": "provider",
+            "name": "defaultAutoscalingPolicy",
+            "value": "defaultAutoscalingPolicy"
+        },
+        {
+            "type": "field",
+            "label": "multiTenant",
+            "placeholder": "multiTenant",
+            "name": "multiTenant",
+            "value": "false"
+        },
+        {
+            "type": "name_array",
+            "label": "portMapping",
+            "name": "portMapping",
+            "value": [
+                {
+                    "type": "object",
+                    "value": [
+                        {
+                            "type": "field",
+                            "label": "protocol",
+                            "placeholder": "protocol",
+                            "name": "protocol",
+                            "value": "http"
+                        },
+                        {
+                            "type": "field",
+                            "label": "port",
+                            "placeholder": "port",
+                            "name": "port",
+                            "value": "8280"
+                        },
+                        {
+                            "type": "field",
+                            "label": "proxyPort",
+                            "placeholder": "proxyPort",
+                            "name": "proxyPort",
+                            "value": "8280"
+                        }
+                    ]
+                },
+                {
+                    "type": "object",
+                    "value": [
+                        {
+                            "type": "field",
+                            "label": "protocol",
+                            "placeholder": "protocol",
+                            "name": "protocol",
+                            "value": "https"
+                        },
+                        {
+                            "type": "field",
+                            "label": "port",
+                            "placeholder": "port",
+                            "name": "port",
+                            "value": "8280"
+                        },
+                        {
+                            "type": "field",
+                            "label": "proxyPort",
+                            "placeholder": "proxyPort",
+                            "name": "proxyPort",
+                            "value": "8280"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "name_array",
+            "label": "iaasProvider",
+            "name": "iaasProvider",
+            "value": [
+                {
+                    "type": "object",
+                    "value": [
+                        {
+                            "type": "field",
+                            "label": "proxyPort",
+                            "placeholder": "proxyPort",
+                            "name": "proxyPort",
+                            "value": "8280"
+                        },
+                        {
+                            "type": "name_array",
+                            "label": "property",
+                            "name": "property",
+                            "value": [
+                                {
+                                    "type": "object",
+                                    "value": [
+                                        {
+                                            "type": "field",
+                                            "label": "name",
+                                            "placeholder": "name",
+                                            "name": "name",
+                                            "value": "8280"
+                                        },
+                                        {
+                                            "type": "field",
+                                            "label": "value",
+                                            "placeholder": "value",
+                                            "name": "value",
+                                            "value": "m1.medium"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+
+                    ]
+                }
+
+            ]
+        }
+
+
+    ]
+}

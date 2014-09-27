@@ -1,0 +1,75 @@
+{{#if isForm}}
+    <div id="centered">
+        <div class="row title">
+            <div class="title-main text-center">
+                {{#if isForm}}
+                    <h1>{{formData.add_text}}</h1>
+                {{else}}
+                    <h1>{{formData.name}}</h1>
+                {{/if}}
+            </div>
+        </div>
+        {{#if isForm}}
+            {{{formHtml}}}
+        {{/if}}
+    </div>
+
+{{else}}
+    <div class="row title">
+        <div class="title-main text-center">
+            <h1>{{formData.name}}</h1>
+        </div>
+    </div>
+    <div class="container content">
+        <div class="row text-center">
+            <div class="row form-toolbar ">
+                <div class="col-md-5 col-sm-3 text-left">
+                    <!--<input type="text" class="form-control" placeholder="Search">-->
+                    <div class="btn-group">
+                        <a href="#" id="list" class="btn btn-default">
+                            <i class="fa fa-list-ul"></i> List
+                        </a>
+                        <a href="#" id="grid" class="btn btn-default">
+                            <i class="fa fa-th"></i> Grid
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-3 text-right">
+                    <a type="button" class="btn btn-primary" href="new/">New</a>
+                </div>
+
+
+            </div>
+            <div class="row general-table row-overide">
+
+<!--                    <a href="{{link}}" class="block">
+                        <div class="col-md-4  content-menu-block border-right" >
+                            <div class="content-menu-icon">
+                                <i class="fa {{icon}} block"></i>
+                            </div>
+                            <div class="content-menu-title">
+                                <h2>{{title}}</h2>
+                            </div>
+                            <div class="content-menu-description">{{description}} </div>
+
+                        </div>
+                    </a>-->
+    {{#each content_body.sections}}
+                <div class="block col-md-4 grid-group-item border-right">
+
+                   <div class="toggle-menu-icon">
+                       <i class="fa fa-gears "></i>
+                   </div>
+                   <h2>test </h2>
+                   <div class="toggle-menu-description">Define partitions/partition groups to be used in autoscaling and deployment policies. </div>
+                    <div class="toggle-menu-button">
+                        <button type="button" class="btn btn-primary" >Remove</button>
+                    </div>
+                </div>
+
+        {{/each}}
+            </div>
+
+        </div>
+    </div>
+{{/if}}

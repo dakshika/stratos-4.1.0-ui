@@ -1,0 +1,73 @@
+{
+    "name": "Configure Deployment Policies",
+    "title": "IaaS",
+    "name_singular": "Deployment Policy",
+    "add_text": "Add a new Deployment Policy",
+    "base_url": "deployments",
+    "new_url": "deployments/new",
+    "edit_url": "deployments/edit",
+    "form_spec":[
+        {
+            "type": "field",
+            "label": "Deployment Policy ID",
+            "placeholder": "Enter an ID for the Deployment Policy here",
+            "name": "id",
+            "value": "dakshika-ec2"
+        },
+        {
+            "type": "name_object",
+            "label": "Partition Group",
+            "name": "partitionGroup",
+            "value":[
+                {
+                    "type": "field",
+                    "label": "Partition Group ID",
+                    "placeholder": "Partition Group ID",
+                    "name": "id",
+                    "value": ""
+                },
+                {
+                    "type": "field",
+                    "label": "Partition Algo",
+                    "placeholder": "Partition Algo",
+                    "name": "partitionAlgo",
+                    "value": ""
+                },
+                {
+                    "type": "name_array",
+                    "label": "partition",
+                    "name": "partition",
+                    "value": [
+                        {
+                            "type": "object",
+                            "value":[
+                                {
+                                    "type": "field",
+                                    "label": "ID",
+                                    "placeholder": "ID",
+                                    "name": "id",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "field",
+                                    "label": "partitionMax",
+                                    "placeholder": "partitionMax",
+                                    "name": "partitionMax",
+                                    "value": ""
+                                },
+                                {
+                                    "type": "field",
+                                    "label": "partitionMin",
+                                    "placeholder": "partitionMin",
+                                    "name": "partitionMin",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+
+            ]
+        }
+    ]
+}
