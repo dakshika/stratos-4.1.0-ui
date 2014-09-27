@@ -1,14 +1,11 @@
-# Apache Stratos UI
+##Stratos 4.1.0 New UI Implemantation##
+====================================
 
-## Running the site
+this will include initial design by Rukmal Weerawarana and modified
+, improved by Dakshika Jayathilaka.
 
-Clone the repository, install Node.js dependencies and run the application.
-```bash
-$ git clone git://github.com/rukmal/Stratos-UI.git
-$ npm install
-$ node app.js
-```
+### New Features ###
 
-## Known Limitations
-
-- Form generation only supports one level of depth (in terms of subforms)
+1. json-schema support for all form definitions (www.json-schema.org)
+2. JSON Hyper-Schema based UI form implementation
+3. Carbon based user Management
