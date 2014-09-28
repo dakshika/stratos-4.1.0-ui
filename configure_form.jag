@@ -38,33 +38,34 @@ if(!elements){
     isForm = true;
 }
 
-var formData = require('controllers/forms/configure/' + elements.formtype + '.json');
-var genjson =  "{" + generateJSON(formData.form_spec) + "}";
-var genjsonparsed = JSON.parse(genjson);
+var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json');
+var formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json');
+var formTitle = formData.title;
 
-var finalHtml = "<div class='container' id='content'><div class='form' action='#' id='textform'>";
-
-finalHtml += traverse(formData.form_spec, '');
-// closing form div
-finalHtml += "</div>";
-// HTML for the JSON editor view
-finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' action='#'><textarea placeholder='JSON Editor' id='jsoneditor' class='form-control'>" + JSON.stringify(genjsonparsed, null, 4) +"</textarea></div></div></div>";
+var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
-finalHtml += "<div class='row'><div class='container text-center'><div class='col-md-4'><a class='formbutton formbutton-danger' href='..''> Cancel</a></div><div class='col-md-4'><a class='formbutton formbutton-caution' href='#'' id='editortoggle'>JSON Editor</a></div><div class='col-md-4'><a class='formbutton formbutton-success' href='#submit'>Deploy</a></div></div></div>";
+finalHtml += "<div class='row'>" +
+        "<div class='container text-center'>" +
+        "<div class='col-md-4'><a class='formbutton formbutton-danger' href='..''> Cancel</a></div>" +
+        "<div class='col-md-4'><a class='formbutton formbutton-caution' href='#'' id='editortoggle'>JSON Editor</a></div>" +
+        "<div class='col-md-4'><a class='formbutton formbutton-success' href='#submit'>Deploy</a></div>" +
+        "</div>" +
+        "</div>";
+finalHtml +=     "<div class='form' action='#' id='textform'></div>";
+// HTML for the JSON editor view
+finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' action='#'><textarea placeholder='JSON Editor' id='jsoneditor' class='form-control'></textarea></div></div></div>";
+
 // closing outer border div
 finalHtml += "</div>";
 
-
-
-
-
-log.info(JSON.parse(genjson));
 
 var caramelData = {
 	config_path_l2: elements.formtype,
 	isForm: isForm,
 	formHtml: finalHtml,
-	formData: formData,
+    formTitle:  formTitle,
+    formDataRaw: JSON.stringify(formDataRaw),
+	formData: JSON.stringify(formData),
 	error: error
 }
 

@@ -1,8 +1,13 @@
 {
     "type":"object",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
+    "title": "Partition Definition",
+    "name": "Partition Definition",
     "required":true,
+    "options": {
+        "disable_properties": true
+    },
     "properties":{
         "id": {
             "type":"string",
@@ -20,49 +25,55 @@
             "required":true
         },
         "property": {
+            "readonly":true,
             "type":"array",
             "id": "root/property",
-            "required":true,
+            "options":{
+                "no_additional_properties":true
+            },
+            "properties":{"name":{}, "value":{}},
+            "default":[{"name":"yets", "value":"dsfd"}],
             "items":[
                 {
                     "type":"object",
                     "id": "root/property/0",
-                    "required":true,
+                    "format": "grid",
+                    "options":{
+                        "no_additional_properties":true
+                    },
                     "properties":{
                         "name": {
                             "type":"string",
                             "id": "root/property/0/name",
-                            "default": "region",
-                            "required":true
+                            "default": "region"
                         },
                         "value": {
                             "type":"string",
                             "id": "root/property/0/value",
-                            "default": "ap-southeast-1",
-                            "required":true
+                            "default": "ap-southeast-1"
                         }
                     }
                 },
                 {
                     "type":"object",
                     "id": "root/property/1",
-                    "required":true,
+                    "format": "grid",
                     "properties":{
                         "name": {
                             "type":"string",
                             "id": "root/property/1/name",
-                            "default": "zone",
-                            "required":true
+                            "default": "zone"
                         },
                         "value": {
                             "type":"string",
                             "id": "root/property/1/value",
-                            "default": "ap-southeast-1a",
-                            "required":true
+                            "default": "ap-southeast-1a"
+
                         }
                     }
                 }
             ]
+
         }
     }
 }
