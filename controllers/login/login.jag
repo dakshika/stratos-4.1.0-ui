@@ -21,6 +21,7 @@
  */
 var log = new Log("controller.login"),
     carbon = require('carbon'),
+    restCalls = require('/controllers/rest/rest_calls.jag'),
     server = new carbon.server.Server();
 
 var username = request.getParameter('username').trim(),
@@ -50,11 +51,18 @@ try{
         try{
             log.info(user.isAuthorized("/permission/admin/manage/add/deploymentPolicy", "ui.execute"));
             log.info(um.getAllowedUIResourcesForUser(userObject.username, '/'));
+            //call the authentication rest-endpoint and get the JSESSION_ID
+            var result =  restCalls.RESTCalls.getSessionCookie(username,password);
         }catch(e){
             log.info(e);
         }
 
 
+        //TODO: handle the error scenario
+        //save the JSESSION_ID in current console.session.
+        var jSessionId = result.data.Success.sessionId;
+        session.put("JSESSIONID",jSessionId);
+        log.info(jSessionId);
         require('console').server.current(session,username);
         print({status:1});
     }

@@ -11,11 +11,13 @@
         "id": {
             "type":"string",
             "id": "root/id",
+            "title":"Auto Scale policy ID",
             "default": "economy",
             "required":false
         },
         "loadThresholds": {
             "type":"object",
+            "title":"Load Thresholds",
             "id": "root/loadThresholds",
             "required":["loadAverage","memoryConsumption","requestsInFlight"],
             "options": {
@@ -24,6 +26,7 @@
             "properties":{
                 "loadAverage": {
                     "type":"object",
+                    "title":"Load Average",
                     "id": "root/loadThresholds/loadAverage",
                     "required":["lowerLimit", "upperLimit"],
                     "format": "grid",

@@ -1,0 +1,14 @@
+{
+    "id":"dakshika-ec2",
+    "partitionGroup":{
+        "id":"ec2",
+        "partitionAlgo":"one-after-another",
+        "partition":[
+            {
+                "id":"P1",
+                "partitionMax":"3",
+                "partitionMin":"1"
+            }
+        ]
+    }
+}
