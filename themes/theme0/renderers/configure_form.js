@@ -50,6 +50,8 @@ var render = function (theme, data, meta, require) {
                         form_action: data.form_action,
                         formHtml: data.formHtml,
                         formData: data.formData,
+                        formDataRaw: data.formDataRaw,
+                        formTitle: data.formTitle,
                         isForm: data.isForm,
                         content_body: {sections:
                                         [,,,,,,,,,,,,,,,,,,,,,,,,,,,,]

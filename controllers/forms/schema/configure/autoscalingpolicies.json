@@ -1,0 +1,108 @@
+{
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "root",
+    "required":false,
+    "title":"Auto Scaling Policy Definition",
+    "options": {
+        "disable_properties": true
+    },
+    "properties":{
+        "id": {
+            "type":"string",
+            "id": "root/id",
+            "title":"Auto Scale policy ID",
+            "default": "economy",
+            "required":false
+        },
+        "loadThresholds": {
+            "type":"object",
+            "title":"Load Thresholds",
+            "id": "root/loadThresholds",
+            "required":["loadAverage","memoryConsumption","requestsInFlight"],
+            "options": {
+                "disable_properties": true
+            },
+            "properties":{
+                "loadAverage": {
+                    "type":"object",
+                    "title":"Load Average",
+                    "id": "root/loadThresholds/loadAverage",
+                    "required":["lowerLimit", "upperLimit"],
+                    "format": "grid",
+                    "options": {
+                        "disable_properties": true,
+                        "collapsed": true
+                    },
+                    "properties":{
+                        "lowerLimit": {
+                            "type":"number",
+                            "id": "root/loadThresholds/loadAverage/lowerLimit",
+                            "default":20,
+                            "format": "number"
+                        },
+                        "upperLimit": {
+                            "type":"number",
+                            "id": "root/loadThresholds/loadAverage/upperLimit",
+                            "default":100,
+                            "format": "number",
+                            "required":false
+                        }
+                    }
+                },
+                "memoryConsumption": {
+                    "type":"object",
+                    "id": "root/loadThresholds/memoryConsumption",
+                    "format": "grid",
+                    "options": {
+                        "disable_properties": true,
+                        "collapsed": true
+                    },
+                    "required":["lowerLimit", "upperLimit"],
+                    "properties":{
+                        "lowerLimit": {
+                            "type":"number",
+                            "id": "root/loadThresholds/memoryConsumption/lowerLimit",
+                            "default":50,
+                            "format": "number",
+                            "required":false
+                        },
+                        "upperLimit": {
+                            "type":"number",
+                            "id": "root/loadThresholds/memoryConsumption/upperLimit",
+                            "default":80,
+                            "format": "number",
+                            "required":false
+                        }
+                    }
+                },
+                "requestsInFlight": {
+                    "type":"object",
+                    "id": "root/loadThresholds/requestsInFlight",
+                    "required":["lowerLimit", "upperLimit"],
+                    "format": "grid",
+                    "options": {
+                        "disable_properties": true,
+                        "collapsed": true
+                    },
+                    "properties":{
+                        "lowerLimit": {
+                            "type":"number",
+                            "id": "root/loadThresholds/requestsInFlight/lowerLimit",
+                            "default":5,
+                            "format": "number",
+                            "required":false
+                        },
+                        "upperLimit": {
+                            "type":"number",
+                            "id": "root/loadThresholds/requestsInFlight/upperLimit",
+                            "default":30,
+                            "format": "number",
+                            "required":false
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

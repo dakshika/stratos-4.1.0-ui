@@ -3,9 +3,9 @@
         <div class="row title">
             <div class="title-main text-center">
                 {{#if isForm}}
-                    <h1>{{formData.add_text}}</h1>
+                    <h1>Add new {{formTitle}}</h1>
                 {{else}}
-                    <h1>{{formData.name}}</h1>
+                    <h1>{{formTitle}}</h1>
                 {{/if}}
             </div>
         </div>
@@ -73,3 +73,104 @@
         </div>
     </div>
 {{/if}}
+<script>
+
+    $(document).ready(function() {
+{{#if isForm}}
+        // Set the default CSS theme and icon library globally
+        JSONEditor.defaults.theme = 'bootstrap3';
+        JSONEditor.defaults.iconlib = 'fontawesome4';
+        JSONEditor.defaults.show_errors = "always";
+
+        // This is the starting value for the editor
+        // We will use this to seed the initial editor
+        // and to provide a "Restore to Default" button.
+        var starting_value = {{{formDataRaw}}};
+
+        // Initialize the editor
+        var editor = new JSONEditor(document.getElementById('textform'), {
+            // Enable fetching schemas via ajax
+            ajax: false,
+            disable_edit_json: true,
+            //  disable_properties:true,
+            // The schema for the editor
+            schema: {{{formData}}},
+            format: "grid",
+
+            // Seed the form with a starting value
+          startval: starting_value
+        });
+
+        // Hook up the submit button to log to the console
+        document.getElementById('editortoggle').addEventListener('click', function () {
+            // Get the value from the editor
+            console.log(editor.getValue());
+        });
+
+        // Hook up the Restore to Default button
+        //    document.getElementById('restore').addEventListener('click',function() {
+        //        editor.setValue(starting_value);
+        //    });
+
+        //    Hook up the validation indicator to update its
+        //    status whenever the editor changes
+        editor.on('change', function () {
+            // Get an array of errors from the validator
+            var errors = editor.validate();
+            console.log(errors);
+            //       var indicator = document.getElementById('valid_indicator');
+
+//        // Not valid
+//        if(errors.length) {
+//            indicator.className = 'label alert';
+//            indicator.textContent = 'not valid';
+//        }
+//        // Valid
+//        else {
+//            indicator.className = 'label success';
+//            indicator.textContent = 'valid';
+//        }
+        });
+
+        /**
+         * Function to handle hiding and showing the JSON form
+         */
+        $('#editortoggle').click(function () {
+            if (isForm) {
+
+                changeDisplayMode('#textform', '#jsonform');
+                $('#editortoggle').text('Form View');
+                isForm = false;
+                changeBoxHeight();
+                $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(),null,'\t' ));
+                console.log('click once')
+            } else {
+
+                changeDisplayMode('#jsonform', '#textform');
+                $('#editortoggle').text('JSON Editor');
+                editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
+                isForm = true;
+                changeBoxHeight();
+                // Fire a change event to force revalidation
+                editor.onChange();
+                console.log($('textarea#jsoneditor').val())
+            }
+        });
+
+
+        // Finding the height of the rendered form, and setting the JSON
+        // editor to the same height
+        var formHeight = $('#textform').height();
+        $('#jsoneditor').css('height', formHeight);
+
+        //track json editor text view changes
+        $('#jsoneditor').bind('input propertychange', function() {
+            editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
+            // Fire a change event to force revalidation
+            editor.onChange();
+
+        });
+{{/if}}
+        });
+
+</script>
