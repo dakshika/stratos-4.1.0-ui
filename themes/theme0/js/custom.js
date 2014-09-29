@@ -1,56 +1,57 @@
-// menu variables
-var rightHelpMenuIsShown = false;
-var leftmenuIsShown = false;
+// window variables
+var slideWindow = '.slidewindow',
+    slideWindowButton = '.slidewindow_handle',
+    slideWindowContent = '.slidewindow_content';
+    
+var getSlideWindowPosition = function(thisWindow) {
+    if ($(thisWindow).hasClass('right')){return 'right';}
+    else {return 'left';}
+}; // default window position 'left'
 
-$(document).ready(function(){
+var getSlideWindowPositionObj = {},
+    slideWindowPosition;
 
+// menu veriables
+var slideWindowMenu = slideWindow+' '+'.menu',
+    slideWindowMenuOptions = slideWindowMenu+' '+'.options',
+    slideWindowMenuButton = slideWindowMenuOptions+' '+'.fa-sort-down';
 
-    /**
-     * Function to handle bringing the side menu out
-     */
-    $('.menutoggle').click(function () {
-        if (leftmenuIsShown) {
-            // take menu in
-            $('.menucontent').animate({
-                'left': '-10em'
-            }, 500);
-            $('.menutoggle').animate({
-                'left': '-=7.3em'
-            }, 500);
-            leftmenuIsShown = false;
-        } else {
-            // bring menu out
-            $('.menucontent').animate({
-                'left': '0em'
-            }, 500);
-            $('.menutoggle').animate({
-                'left': '+=7.3em'
-            }, 500);
-            leftmenuIsShown = true;
+$(window).load(function(){
+    
+    //********************************************// 
+    // Slide Window Function
+    //********************************************// 
+    
+    // hidding slide windows on page laod
+    $(slideWindow).each(function(){
+        $(this).css(getSlideWindowPosition(this), ('-'+$(slideWindowContent, this).width()+'px'));
+    });
+    
+    // function to handle window slide
+    $(slideWindowButton).click(function(){
+        
+        slideWindowPosition = getSlideWindowPosition($(this).closest(slideWindow));
+        
+        if ($(this).closest(slideWindow).css(slideWindowPosition) !== '0px'){
+            getSlideWindowPositionObj[slideWindowPosition] = 0;
+            $(this).closest(slideWindow).animate(getSlideWindowPositionObj, 500);
+            getSlideWindowPositionObj = {};
+        }
+        else {
+            getSlideWindowPositionObj[slideWindowPosition] = ('-'+$($(this).siblings(slideWindowContent)).width()+'px');
+            $(this).closest(slideWindow).animate(getSlideWindowPositionObj, 500);
+            getSlideWindowPositionObj = {};
         }
     });
-
-    $('.menutoggle-right-help').click(function () {
-        if (rightHelpMenuIsShown) {
-            // take menu in
-            $('.menucontent-right-help').animate({
-                'right': '-10em'
-            }, 500);
-            $('.menutoggle-right-help').animate({
-                'right': '-=7.3em'
-            }, 500);
-            rightHelpMenuIsShown = false;
-        } else {
-            // bring menu out
-            $('.menucontent-right-help').animate({
-                'right': '0em'
-            }, 500);
-            $('.menutoggle-right-help').animate({
-                'right': '+=7.3em'
-            }, 500);
-            rightHelpMenuIsShown = true;
-        }
+    
+    
+    //********************************************// 
+    // Slide Window Menu Function
+    //********************************************//  
+    
+    // function to toggle hide/show menu options
+    $(slideWindowMenuButton).click(function(){
+        $(slideWindowMenuOptions+' ul').slideToggle();
     });
-
 
 });
