@@ -21,7 +21,7 @@
  */
 
 RESTCalls = new function(){
-    var log = new Log('utility.consoleAppUtil');
+    var log = new Log('RESTCalls');
 
     this.getAvailableSingleTenantCartridges = function(){
         return this.sendReceive("GET","/cartridge/list",{});
@@ -225,7 +225,7 @@ RESTCalls = new function(){
         var config = require('/config/console.js').config();
         var backendServerURL = config.backendServerConfiguration.url;
         // getting the access token from the session.
-        var endpoint = 'https://localhost:9443/stratos/admin' + urlPostFix;
+        var endpoint = backendServerURL + urlPostFix;
         var headers = this.getRequestHeaders(false);
         var response;
         switch (httpMethod){
@@ -327,9 +327,8 @@ RESTCalls = new function(){
 
     this.getSessionCookie = function(userName, password){
         var config = require('/config/console.js').config();
-        log.info(config);
         var backendServerURL = config.backendServerConfiguration.url;
-        var endpoint = 'https://localhost:9443/stratos/admin' + "/cookie";
+        var endpoint = backendServerURL + "/cookie";
         var sso = require("sso"); //TODO: get rid of this...
         var basicAuthToken = sso.client.b64encode(userName + ":" + password);
         var headers = {
@@ -337,7 +336,6 @@ RESTCalls = new function(){
             "Content-Type": "application/json"
         };
         var response = get(endpoint,{},headers,"json");
-        log.debug(stringify(response));
         return response;
     };
 

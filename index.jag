@@ -26,6 +26,7 @@ var caramel = require('caramel');
 
 include('/controllers/login/validator.jag');
 
+log.info(session.get('PERMISSIONS'))
 caramel.render({
     error: error
 });

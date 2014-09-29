@@ -31,8 +31,6 @@
             "options":{
                 "no_additional_properties":true
             },
-            "properties":{"name":{}, "value":{}},
-            "default":[{"name":"yets", "value":"dsfd"}],
             "items":[
                 {
                     "type":"object",
