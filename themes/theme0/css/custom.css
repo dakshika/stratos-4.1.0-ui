@@ -1,14 +1,14 @@
-body{background: url('../images/stratos_background.png')  no-repeat; background-color:#4872fd; height: 100%;width: 100%; font-family: 'Open Sans', san-serif; }
-h1{font-family: 'Open Sans', san-serif;color: rgb(255,255,255);
-    text-shadow: 0 0 5px rgb(75,75,75); margin: 2em 0px; font-weight: 600}
+body{ background: url('../images/stratos_background.png')  no-repeat; background-position:fixed; background-size:100% auto; background-color:#4872fd; height: 100%;width: 100%; font-family: 'Open Sans', san-serif; }h1{font-family: 'Open Sans', san-serif; color: rgb(255,255,255); text-shadow: 0 0 5px rgb(75,75,75); margin: 2em 0px; font-weight: 600 }
+
 /* index_header partial related styles */
-.user-image img{width: 50px;}
-.navbar{border-radius: 0px; box-shadow:0 0 5px -1px rgb(100,100,100); margin-bottom: 0px; z-index: 99999; position: fixed;width: 100%}
-.navbar-default{background: #fff; }
-.logo img{width: 140px}
-.navbar-nav>li>a{padding: 5px;}
-.navbar-brand {float: left;height: 50px;padding: 6px 15px;font-size: 18px;line-height: 20px;}
-.navbar-nav{margin: 0px}
+.logo img { width: 140px; }
+.user-image img { width: 50px; }
+
+.navbar { border-radius: 0px; box-shadow:0 0 5px -1px rgb(100,100,100); margin-bottom: 0px; z-index: 99999; position: fixed; width: 100%; }
+.navbar-default { background: #fff; }
+.navbar-nav>li>a { padding: 5px; }
+.navbar-brand { float: left; height: 50px; padding: 6px 15px; font-size: 18px; line-height: 20px; }
+.navbar-nav{ margin: 0px }
 
 /* index_sub_header partial related styles */
 .sub-header {
@@ -22,7 +22,6 @@ h1{font-family: 'Open Sans', san-serif;color: rgb(255,255,255);
     width: 100%;
     margin-top: 4.429em;
 }
-
 .sub-header h2 {
     font-size: 18px;
     color: #595858;
@@ -30,63 +29,50 @@ h1{font-family: 'Open Sans', san-serif;color: rgb(255,255,255);
     margin: 0;
 }
 
-/*index_left_menu partial styles */
-.menu-left {
+/*index_side_menu partial styles */
+.slidewindow {
     position: fixed;
     float: left;
     z-index: 99;
     margin-top: 10em;
+    left: -3000px;
 }
-.menucontent {
-    position: fixed;
-    width: 10em;
-    background-color: white;
-    left: -10em;
-    box-shadow: 0 0 20px 1px rgb(100,100,100);
+.slidewindow:after { clear: both; display: block; }
+.slidewindow .row { margin:0;  }
+
+.slidewindow_content {
+    background-color: white; 
+	font-size:16px;
+    position: relative;
+    float: left;
     z-index: 1;
-    padding-top: 0.5em;
+    min-height: 38px;
 }
-.menutoggle {
+.slidewindow_content ul li { margin: 0 2px; padding: 0 15px; }
+.slidewindow_content ul li a { display:block; }
+.slidewindow_content ul li i.fa { line-height:40px; padding: 0 8px; }
+.slidewindow_content ul.menu, .slidewindow_content ul.menu ul { margin: 0; padding: 0; }
+.slidewindow_content ul.menu li { border-bottom: 1px solid #e4e7ea; list-style: none; }
+.slidewindow_content ul.menu li:last-child { border-bottom: none; }
+.slidewindow_content ul.menu li.options ul { display: none; }
+.slidewindow_content ul.menu li a:hover { text-decoration:none; }
+.slidewindow_content .text { padding: 15px; max-width: 300px; word-break: break-all; }
+
+.slidewindow_handle {
     background-color: white;
-    font-size: 1.5em;
+    font-size: 1.6em;
     color: rgb(60,60,60);
-    width: 2.7em;
-    box-shadow: 0 0 20px 1px rgb(100,100,100);
-    height: 2em;
-    padding-top: 0.35em;
-    padding-left: 1.3em;
-    left: 0;
+    min-height: 38px;
+    padding: 5px 12px;
+    position: relative;
+    float: left;
     z-index: 0;
+	cursor:pointer;
 }
 
+.slidewindow.right { left: inherit; right: -3000px; }
+.slidewindow.right, .slidewindow.right .slidewindow_content, .slidewindow.right .slidewindow_handle { float: right; }
 
-.menu-right-help {
-    position: fixed;
-    right: 0;
-    z-index: 99;
-    margin-top: 10em;
-}
-.menucontent-right-help {
-    position: fixed;
-    width: 10em;
-    background-color: white;
-    right: -10em;
-    box-shadow: 0 0 20px 1px rgb(100,100,100);
-    z-index: 1;
-    padding-top: 0.5em;
-}
-.menutoggle-right-help {
-    background-color: white;
-    font-size: 1.5em;
-    color: rgb(60,60,60);
-    width: 2.7em;
-    box-shadow: 0 0 20px 1px rgb(100,100,100);
-    height: 2em;
-    padding-top: 0.35em;
-    padding-left: 0.55em;
-    right: 0;
-    z-index: 0;
-}
 
 /* menu box realted styles */
 .title{
