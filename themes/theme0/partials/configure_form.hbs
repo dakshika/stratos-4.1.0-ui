@@ -16,7 +16,7 @@
 {{else}}
     <div class="row title">
         <div class="title-main text-center">
-            <h1>{{formData.name}}</h1>
+            <h1>{{formTitle}}s</h1>
         </div>
     </div>
     <div class="container content">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row general-table row-overide">
-                {{#each content_body.sections}}
+                {{#each content_body.sections.autoscalePolicy}}
                 <div class="block col-md-4 grid-group-item border-right">
                    <div class="toggle-menu-icon">
                        <i class="fa fa-gears "></i>
@@ -49,6 +49,18 @@
                         <button type="button" class="btn btn-primary" >Remove</button>
                    </div>
                 </div>
+                {{/each}}
+                {{#each content_body.sections.partition}}
+                    <div class="block col-md-4 grid-group-item border-right">
+                        <div class="toggle-menu-icon">
+                            <i class="fa fa-gears "></i>
+                        </div>
+                        <h2>{{id}} </h2>
+                        <div class="toggle-menu-description">Define partitions/partition groups to be used in autoscaling and deployment policies. </div>
+                        <div class="toggle-menu-button">
+                            <button type="button" class="btn btn-primary" >Remove</button>
+                        </div>
+                    </div>
                 {{/each}}
             </div>
         </div>

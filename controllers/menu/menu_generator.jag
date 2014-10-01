@@ -23,10 +23,9 @@ var log = new Log("controller.menu_generator");
 
 /**
  * This will use to generate menu with permissions
- * @param context: side_menu or metro view based on url context
  * @param jsonobject: menu json
  * @param permissions: user permissions
- * @returns {*}
+ * @returns menu html content for partial
  */
 function menu_generator(jsonobject, permissions){
      var menupermission,
@@ -83,5 +82,10 @@ function intersection(x, y) {
         }
     }
     return ret;
+}
+
+
+function metro_generator(context , jsonobject, permissions){
+
 }
 %>

@@ -19,30 +19,34 @@
  * under the License.
  *
  */
-
-var log = new Log("apachestratos.configure_form"),
-    error=[],
-    caramel = require('caramel'),
-    util = require('/controllers/rest/rest_calls.jag');
-
 include('/controllers/login/validator.jag');
 include('/controllers/forms/form_generator.jag');
 
-var uriMatcher = new URIMatcher(request.getRequestURI());
-
-var elements = uriMatcher.match('/{context}/configure/{formtype}/');
-
-var isForm = false;
+var log = new Log("apachestratos.configure_form"),
+    error=[],
+    list_data,
+    caramel = require('caramel'),
+    util = require('/controllers/rest/rest_calls.jag'),
+    uriMatcher = new URIMatcher(request.getRequestURI()),
+    elements = uriMatcher.match('/{context}/configure/{formtype}/'),
+    isForm = false;
 
 if(!elements){
     elements = uriMatcher.match('/{context}/configure/{formtype}/{action}/');
     isForm = true;
 }
 
-var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json');
-var formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json');
-var formTitle = formData.title;
+var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
+    formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
+    formTitle = formData.title;
 
+if(elements.formtype == 'partitions'){
+    list_data =  util.RESTCalls.getPartitions();
+}else if(elements.formtype == 'autoscalingpolicies'){
+    list_data =  util.RESTCalls.getAutoScalePolicies();
+}
+
+log.info(list_data)
 var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
 finalHtml += "<div class='row'>" +
@@ -52,6 +56,7 @@ finalHtml += "<div class='row'>" +
         "<div class='col-md-4'><a class='formbutton formbutton-success' href='#submit'>Deploy</a></div>" +
         "</div>" +
         "</div>";
+
 finalHtml +=     "<div class='form' action='#' id='textform'></div>";
 // HTML for the JSON editor view
 finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' action='#'><textarea placeholder='JSON Editor' id='jsoneditor' class='form-control'></textarea></div></div></div>";
@@ -60,9 +65,7 @@ finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' actio
 finalHtml += "</div>";
 
 
-var partition_data =  util.RESTCalls.getPartitions();
 
-//log.info(step_data);
 
 var caramelData = {
 	config_path_l2: elements.formtype,
@@ -72,7 +75,7 @@ var caramelData = {
     formDataRaw: JSON.stringify(formDataRaw),
     //formDataRaw: JSON.stringify(partition_data.partition[0]),
 	formData: JSON.stringify(formData),
-    partition_data: partition_data,
+    list_data: list_data,
 	error: error
 }
 
