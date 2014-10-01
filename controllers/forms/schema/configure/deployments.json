@@ -1,73 +1,68 @@
 {
-    "name": "Configure Deployment Policies",
-    "title": "IaaS",
-    "name_singular": "Deployment Policy",
-    "add_text": "Add a new Deployment Policy",
-    "base_url": "deployments",
-    "new_url": "deployments/new",
-    "edit_url": "deployments/edit",
-    "form_spec":[
-        {
-            "type": "field",
-            "label": "Deployment Policy ID",
-            "placeholder": "Enter an ID for the Deployment Policy here",
-            "name": "id",
-            "value": "dakshika-ec2"
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "id": "root",
+    "title": "Deployment Definition",
+    "name": "Deployment Definition",
+    "required":false,
+    "properties":{
+        "id": {
+            "type":"string",
+            "id": "root/id",
+            "default": "isuruh-ec2",
+            "required":false
         },
-        {
-            "type": "name_object",
-            "label": "Partition Group",
-            "name": "partitionGroup",
-            "value":[
-                {
-                    "type": "field",
-                    "label": "Partition Group ID",
-                    "placeholder": "Partition Group ID",
-                    "name": "id",
-                    "value": ""
+        "partitionGroup": {
+            "type":"object",
+            "id": "root/partitionGroup",
+            "required":false,
+            "properties":{
+                "id": {
+                    "type":"string",
+                    "id": "root/partitionGroup/id",
+                    "default": "ec2",
+                    "required":false
                 },
-                {
-                    "type": "field",
-                    "label": "Partition Algo",
-                    "placeholder": "Partition Algo",
-                    "name": "partitionAlgo",
-                    "value": ""
+                "partitionAlgo": {
+                    "type":"string",
+                    "id": "root/partitionGroup/partitionAlgo",
+                    "default": "one-after-another",
+                    "required":false
                 },
-                {
-                    "type": "name_array",
-                    "label": "partition",
-                    "name": "partition",
-                    "value": [
-                        {
-                            "type": "object",
-                            "value":[
-                                {
-                                    "type": "field",
-                                    "label": "ID",
-                                    "placeholder": "ID",
-                                    "name": "id",
-                                    "value": ""
-                                },
-                                {
-                                    "type": "field",
-                                    "label": "partitionMax",
-                                    "placeholder": "partitionMax",
-                                    "name": "partitionMax",
-                                    "value": ""
-                                },
-                                {
-                                    "type": "field",
-                                    "label": "partitionMin",
-                                    "placeholder": "partitionMin",
-                                    "name": "partitionMin",
-                                    "value": ""
-                                }
-                            ]
+                "partition": {
+                    "type":"array",
+                    "id": "root/partitionGroup/partition",
+                    "required":false,
+                    "items":
+                    {
+                        "type":"object",
+                        "id": "root/partitionGroup/partition/0",
+                        "required":false,
+                        "properties":{
+                            "id": {
+                                "type":"string",
+                                "id": "root/partitionGroup/partition/0/id",
+                                "default": "P1",
+                                "required":false
+                            },
+                            "partitionMax": {
+                                "type":"string",
+                                "id": "root/partitionGroup/partition/0/partitionMax",
+                                "default": "3",
+                                "required":false
+                            },
+                            "partitionMin": {
+                                "type":"string",
+                                "id": "root/partitionGroup/partition/0/partitionMin",
+                                "default": "1",
+                                "required":false
+                            }
                         }
-                    ]
-                }
+                    }
 
-            ]
+
+                }
+            }
         }
-    ]
+    }
 }

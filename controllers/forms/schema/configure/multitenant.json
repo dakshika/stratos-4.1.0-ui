@@ -1,0 +1,58 @@
+{
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "id": "root",
+    "title": "Multi-Tenant Service Definition",
+    "name": "Multi-Tenant Service Definition",
+    "required":false,
+    "properties":{
+        "autoscalingPolicyName": {
+            "type":"string",
+            "id": "root/autoscalingPolicyName",
+            "default": "AS1",
+            "required":false
+        },
+        "cartridgeType": {
+            "type":"string",
+            "id": "root/cartridgeType",
+            "default": "appserver",
+            "required":false
+        },
+        "clusterDomain": {
+            "type":"string",
+            "id": "root/clusterDomain",
+            "default": "appserverdev.dev.domain",
+            "required":false
+        },
+        "clusterSubDomain": {
+            "type":"string",
+            "id": "root/clusterSubDomain",
+            "default": "subdomain2",
+            "required":false
+        },
+        "deploymentPolicyName": {
+            "type":"string",
+            "id": "root/deploymentPolicyName",
+            "default": "D1",
+            "required":false
+        },
+        "isPublic": {
+            "type":"string",
+            "id": "root/isPublic",
+            "default": "true",
+            "required":false
+        },
+        "serviceName": {
+            "type":"string",
+            "id": "root/serviceName",
+            "default": "appserver",
+            "required":false
+        },
+        "tenantRange": {
+            "type":"string",
+            "id": "root/tenantRange",
+            "default": "*",
+            "required":false
+        }
+    }
+}

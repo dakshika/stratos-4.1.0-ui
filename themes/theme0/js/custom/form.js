@@ -18,8 +18,8 @@ function changeBoxHeight () {
 }
 
 // Binding functions to collapsed box opening and closing
-$('.subform').on('hidden.bs.collapse', changeBoxHeight);
-$('.subform').on('shown.bs.collapse', changeBoxHeight);
+//$('.subform').on('hidden.bs.collapse', changeBoxHeight);
+//$('.subform').on('shown.bs.collapse', changeBoxHeight);
 
 
 
@@ -58,4 +58,4 @@ $(document).ready(function() {
 
 
 
-changeBoxHeight();
+//changeBoxHeight();

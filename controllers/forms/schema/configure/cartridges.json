@@ -1,0 +1,310 @@
+{
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "root",
+    "title": "Cartridge Definition",
+    "name": "Cartridge Definition",
+    "required":false,
+    "properties":{
+        "defaultAutoscalingPolicy": {
+            "type":"string",
+            "id": "root/defaultAutoscalingPolicy",
+            "default": "economyPolicy",
+            "required":false
+        },
+        "description": {
+            "type":"string",
+            "id": "root/description",
+            "default": "PHP Cartridge",
+            "required":false
+        },
+        "displayName": {
+            "type":"string",
+            "id": "root/displayName",
+            "default": "PHP",
+            "required":false
+        },
+        "host": {
+            "type":"string",
+            "id": "root/host",
+            "default": "stratos.org",
+            "required":false
+        },
+        "iaasProvider": {
+            "type":"array",
+            "id": "root/iaasProvider",
+            "required":false,
+            "items":
+            {
+                "type":"object",
+                "id": "root/iaasProvider/0",
+                "required":false,
+                "properties":{
+                    "imageId": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/imageId",
+                        "default": "ap-southeast-1/ami-2e0d5a7c",
+                        "required":false
+                    },
+                    "maxInstanceLimit": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/maxInstanceLimit",
+                        "default": "4",
+                        "required":false
+                    },
+                    "networkInterfaces": {
+                        "type":"array",
+                        "id": "root/iaasProvider/0/networkInterfaces",
+                        "required":false,
+                        "items":[
+                            {
+                                "type":"object",
+                                "id": "root/iaasProvider/0/networkInterfaces/0",
+                                "required":false,
+                                "properties":{
+                                    "networkUuid": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/networkInterfaces/0/networkUuid",
+                                        "default": "fb9c21f4-0672-48b2-8279-77334bb63a53",
+                                        "required":false
+                                    }
+                                }
+                            },
+                            {
+                                "type":"object",
+                                "id": "root/iaasProvider/0/networkInterfaces/1",
+                                "required":false,
+                                "properties":{
+                                    "networkUuid": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/networkInterfaces/1/networkUuid",
+                                        "default": "1e43f86f-4165-4f2e-8017-dd4cfb5548b0",
+                                        "required":false
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "property": {
+                        "type":"array",
+                        "id": "root/iaasProvider/0/property",
+                        "required":false,
+                        "items":[
+                            {
+                                "type":"object",
+                                "id": "root/iaasProvider/0/property/0",
+                                "required":false,
+                                "properties":{
+                                    "name": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/0/name",
+                                        "default": "instanceType",
+                                        "required":false
+                                    },
+                                    "value": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/0/value",
+                                        "default": "m1.medium",
+                                        "required":false
+                                    }
+                                }
+                            },
+                            {
+                                "type":"object",
+                                "id": "root/iaasProvider/0/property/1",
+                                "required":false,
+                                "properties":{
+                                    "name": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/1/name",
+                                        "default": "keyPair",
+                                        "required":false
+                                    },
+                                    "value": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/1/value",
+                                        "default": "xxxxxxxx",
+                                        "required":false
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "type": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/type",
+                        "default": "ec2",
+                        "required":false
+                    }
+                }
+            }
+
+
+        },
+        "loadBalancer": {
+            "type":"object",
+            "id": "root/loadBalancer",
+            "required":false,
+            "properties":{
+                "property": {
+                    "type":"object",
+                    "id": "root/loadBalancer/property",
+                    "required":false,
+                    "properties":{
+                        "name": {
+                            "type":"string",
+                            "id": "root/loadBalancer/property/name",
+                            "default": "default.load.balancer",
+                            "required":false
+                        },
+                        "value": {
+                            "type":"string",
+                            "id": "root/loadBalancer/property/value",
+                            "default": "true",
+                            "required":false
+                        }
+                    }
+                },
+                "type": {
+                    "type":"string",
+                    "id": "root/loadBalancer/type",
+                    "default": "lb",
+                    "required":false
+                }
+            }
+        },
+        "multiTenant": {
+            "type":"string",
+            "id": "root/multiTenant",
+            "default": "false",
+            "required":false
+        },
+        "persistence": {
+            "type":"object",
+            "id": "root/persistence",
+            "required":false,
+            "properties":{
+                "isRequired": {
+                    "type":"string",
+                    "id": "root/persistence/isRequired",
+                    "default": "true",
+                    "required":false
+                },
+                "volume": {
+                    "type":"array",
+                    "id": "root/persistence/volume",
+                    "required":false,
+                    "items":
+                    {
+                        "type":"object",
+                        "id": "root/persistence/volume/0",
+                        "required":false,
+                        "properties":{
+                            "device": {
+                                "type":"string",
+                                "id": "root/persistence/volume/0/device",
+                                "default": "/dev/sdc",
+                                "required":false
+                            },
+                            "mappingPath": {
+                                "type":"string",
+                                "id": "root/persistence/volume/0/mappingPath",
+                                "default": "/home/ubuntu/sdc",
+                                "required":false
+                            },
+                            "removeOnTermination": {
+                                "type":"string",
+                                "id": "root/persistence/volume/0/removeOnTermination",
+                                "default": "false",
+                                "required":false
+                            },
+                            "size": {
+                                "type":"string",
+                                "id": "root/persistence/volume/0/size",
+                                "default": "11",
+                                "required":false
+                            }
+                        }
+                    }
+
+
+                }
+            }
+        },
+        "portMapping": {
+            "type":"array",
+            "id": "root/portMapping",
+            "required":false,
+            "items":[
+                {
+                    "type":"object",
+                    "id": "root/portMapping/0",
+                    "required":false,
+                    "properties":{
+                        "port": {
+                            "type":"string",
+                            "id": "root/portMapping/0/port",
+                            "default": "80",
+                            "required":false
+                        },
+                        "protocol": {
+                            "type":"string",
+                            "id": "root/portMapping/0/protocol",
+                            "default": "http",
+                            "required":false
+                        },
+                        "proxyPort": {
+                            "type":"string",
+                            "id": "root/portMapping/0/proxyPort",
+                            "default": "8280",
+                            "required":false
+                        }
+                    }
+                },
+                {
+                    "type":"object",
+                    "id": "root/portMapping/1",
+                    "required":false,
+                    "properties":{
+                        "port": {
+                            "type":"string",
+                            "id": "root/portMapping/1/port",
+                            "default": "443",
+                            "required":false
+                        },
+                        "protocol": {
+                            "type":"string",
+                            "id": "root/portMapping/1/protocol",
+                            "default": "https",
+                            "required":false
+                        },
+                        "proxyPort": {
+                            "type":"string",
+                            "id": "root/portMapping/1/proxyPort",
+                            "default": "8243",
+                            "required":false
+                        }
+                    }
+                }
+            ]
+        },
+        "provider": {
+            "type":"string",
+            "id": "root/provider",
+            "default": "apache",
+            "required":false
+        },
+        "type": {
+            "type":"string",
+            "id": "root/type",
+            "default": "php",
+            "required":false
+        },
+        "version": {
+            "type":"string",
+            "id": "root/version",
+            "default": "7",
+            "required":false
+        }
+    }
+}

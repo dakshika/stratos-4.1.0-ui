@@ -52,19 +52,13 @@ var render = function (theme, data, meta, require) {
                         content_title:'Configure Apache Stratos',
                         content_body:{sections:[
                             {
-                                link:'iaas/',
-                                title:'IaaS',
-                                icon:"fa-gears",
-                                description:"Configure partitions, deployment and scaling policies, cartridges and manage IaaS"
-                            },
-                            {
                                 link:'partitions/',
                                 title:'Partitions',
                                 icon:"fa-th-large",
                                 description:"Define partitions/partition groups to be used in autoscaling and deployment policies."
                             },
                             {
-                                link:'deployment/',
+                                link:'deployments/',
                                 title:'Deployment Policies',
                                 icon:"fa-road",
                                 description:"Define specific policies for cartridge deployment."
@@ -76,13 +70,19 @@ var render = function (theme, data, meta, require) {
                                 description:"Define policies which specify inbound requests, memory usage and CPU usage etc."
                             },
                             {
+                                link:'loadbalancer/',
+                                title:'LB Definitions',
+                                icon:"fa-inbox",
+                                description:"Define and manage single/multi tenant Load balancers."
+                            },
+                            {
                                 link:'cartridges/',
                                 title:'Cartridge/LB Definitions',
                                 icon:"fa-inbox",
                                 description:"Define and manage single/multi tenant cartridges."
                             },
                             {
-                                link:'multitenent/',
+                                link:'multitenant/',
                                 title:'Multitenant Services',
                                 icon:"fa-sitemap",
                                 description:"Define and manage multitenant services."
