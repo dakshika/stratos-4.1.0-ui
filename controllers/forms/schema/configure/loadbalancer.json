@@ -1,175 +1,220 @@
 {
-    "name": "Configure Load Balancer",
-    "title": "Load Balancers",
-    "name_singular": "Load Balancer",
-    "add_text": "Add a new Load Balancer",
-    "base_url": "loadbalancer",
-    "new_url": "loadbalancer/new",
-    "edit_url": "loadbalancer/edit",
-    "form_spec": [
-        {
-            "type": "field",
-            "label": "Cartridge Type",
-            "placeholder": "Cartridge Type",
-            "name": "type",
-            "value": "lb"
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "id": "root",
+    "title": "Load Balancer Definition",
+    "name": "Load Balancer Definition",
+    "required":false,
+    "properties":{
+        "defaultAutoscalingPolicy": {
+            "type":"string",
+            "id": "root/defaultAutoscalingPolicy",
+            "default": "economyPolicy",
+            "required":false
         },
-        {
-            "type": "field",
-            "label": "provider",
-            "placeholder": "provider",
-            "name": "provider",
-            "value": "lb"
+        "description": {
+            "type":"string",
+            "id": "root/description",
+            "default": "LB Cartridge",
+            "required":false
         },
-        {
-            "type": "field",
-            "label": "host",
-            "placeholder": "host",
-            "name": "host",
-            "value": "stratos.org"
+        "displayName": {
+            "type":"string",
+            "id": "root/displayName",
+            "default": "load balancer",
+            "required":false
         },
-        {
-            "type": "field",
-            "label": "displayName",
-            "placeholder": "provider",
-            "name": "displayName",
-            "value": "load balancer"
+        "host": {
+            "type":"string",
+            "id": "root/host",
+            "default": "stratos.org",
+            "required":false
         },
-        {
-            "type": "field",
-            "label": "displayName",
-            "placeholder": "provider",
-            "name": "displayName",
-            "value": "description"
+        "iaasProvider": {
+            "type":"array",
+            "id": "root/iaasProvider",
+            "required":false,
+            "items":
+            {
+                "type":"object",
+                "id": "root/iaasProvider/0",
+                "required":false,
+                "properties":{
+                    "imageId": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/imageId",
+                        "default": "ap-southeast-1/ami­-70326522",
+                        "required":false
+                    },
+                    "maxInstanceLimit": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/maxInstanceLimit",
+                        "default": "5",
+                        "required":false
+                    },
+                    "property": {
+                        "type":"array",
+                        "id": "root/iaasProvider/0/property",
+                        "required":false,
+                        "items":[
+                            {
+                                "type":"object",
+                                "id": "root/iaasProvider/0/property/0",
+                                "required":false,
+                                "properties":{
+                                    "name": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/0/name",
+                                        "default": "instanceType",
+                                        "required":false
+                                    },
+                                    "value": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/0/value",
+                                        "default": "m1.medium",
+                                        "required":false
+                                    }
+                                }
+                            },
+                            {
+                                "type":"object",
+                                "id": "root/iaasProvider/0/property/1",
+                                "required":false,
+                                "properties":{
+                                    "name": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/1/name",
+                                        "default": "keyPair",
+                                        "required":false
+                                    },
+                                    "value": {
+                                        "type":"string",
+                                        "id": "root/iaasProvider/0/property/1/value",
+                                        "default": "xxxxxx",
+                                        "required":false
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "type": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/type",
+                        "default": "ec2",
+                        "required":false
+                    }
+                }
+            }
+
+
         },
-        {
-            "type": "field",
-            "label": "version",
-            "placeholder": "provider",
-            "name": "version",
-            "value": "version"
+        "multiTenant": {
+            "type":"string",
+            "id": "root/multiTenant",
+            "default": "false",
+            "required":false
         },
-        {
-            "type": "field",
-            "label": "defaultAutoscalingPolicy",
-            "placeholder": "provider",
-            "name": "defaultAutoscalingPolicy",
-            "value": "defaultAutoscalingPolicy"
-        },
-        {
-            "type": "field",
-            "label": "multiTenant",
-            "placeholder": "multiTenant",
-            "name": "multiTenant",
-            "value": "false"
-        },
-        {
-            "type": "name_array",
-            "label": "portMapping",
-            "name": "portMapping",
-            "value": [
+        "portMapping": {
+            "type":"array",
+            "id": "root/portMapping",
+            "required":false,
+            "items":[
                 {
-                    "type": "object",
-                    "value": [
-                        {
-                            "type": "field",
-                            "label": "protocol",
-                            "placeholder": "protocol",
-                            "name": "protocol",
-                            "value": "http"
+                    "type":"object",
+                    "id": "root/portMapping/0",
+                    "required":false,
+                    "properties":{
+                        "port": {
+                            "type":"string",
+                            "id": "root/portMapping/0/port",
+                            "default": "8280",
+                            "required":false
                         },
-                        {
-                            "type": "field",
-                            "label": "port",
-                            "placeholder": "port",
-                            "name": "port",
-                            "value": "8280"
+                        "protocol": {
+                            "type":"string",
+                            "id": "root/portMapping/0/protocol",
+                            "default": "http",
+                            "required":false
                         },
-                        {
-                            "type": "field",
-                            "label": "proxyPort",
-                            "placeholder": "proxyPort",
-                            "name": "proxyPort",
-                            "value": "8280"
+                        "proxyPort": {
+                            "type":"string",
+                            "id": "root/portMapping/0/proxyPort",
+                            "default": "8280",
+                            "required":false
                         }
-                    ]
+                    }
                 },
                 {
-                    "type": "object",
-                    "value": [
-                        {
-                            "type": "field",
-                            "label": "protocol",
-                            "placeholder": "protocol",
-                            "name": "protocol",
-                            "value": "https"
+                    "type":"object",
+                    "id": "root/portMapping/1",
+                    "required":false,
+                    "properties":{
+                        "port": {
+                            "type":"string",
+                            "id": "root/portMapping/1/port",
+                            "default": "8243",
+                            "required":false
                         },
-                        {
-                            "type": "field",
-                            "label": "port",
-                            "placeholder": "port",
-                            "name": "port",
-                            "value": "8280"
+                        "protocol": {
+                            "type":"string",
+                            "id": "root/portMapping/1/protocol",
+                            "default": "https",
+                            "required":false
                         },
-                        {
-                            "type": "field",
-                            "label": "proxyPort",
-                            "placeholder": "proxyPort",
-                            "name": "proxyPort",
-                            "value": "8280"
+                        "proxyPort": {
+                            "type":"string",
+                            "id": "root/portMapping/1/proxyPort",
+                            "default": "8243",
+                            "required":false
                         }
-                    ]
+                    }
                 }
             ]
         },
-        {
-            "type": "name_array",
-            "label": "iaasProvider",
-            "name": "iaasProvider",
-            "value": [
-                {
-                    "type": "object",
-                    "value": [
-                        {
-                            "type": "field",
-                            "label": "proxyPort",
-                            "placeholder": "proxyPort",
-                            "name": "proxyPort",
-                            "value": "8280"
-                        },
-                        {
-                            "type": "name_array",
-                            "label": "property",
-                            "name": "property",
-                            "value": [
-                                {
-                                    "type": "object",
-                                    "value": [
-                                        {
-                                            "type": "field",
-                                            "label": "name",
-                                            "placeholder": "name",
-                                            "name": "name",
-                                            "value": "8280"
-                                        },
-                                        {
-                                            "type": "field",
-                                            "label": "value",
-                                            "placeholder": "value",
-                                            "name": "value",
-                                            "value": "m1.medium"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-
-                    ]
+        "property": {
+            "type":"array",
+            "id": "root/property",
+            "required":false,
+            "items":
+            {
+                "type":"object",
+                "id": "root/property/0",
+                "required":false,
+                "properties":{
+                    "name": {
+                        "type":"string",
+                        "id": "root/property/0/name",
+                        "default": "load.balancer",
+                        "required":false
+                    },
+                    "value": {
+                        "type":"string",
+                        "id": "root/property/0/value",
+                        "default": "true",
+                        "required":false
+                    }
                 }
+            }
 
-            ]
+
+        },
+        "provider": {
+            "type":"string",
+            "id": "root/provider",
+            "default": "lb",
+            "required":false
+        },
+        "type": {
+            "type":"string",
+            "id": "root/type",
+            "default": "lb",
+            "required":false
+        },
+        "version": {
+            "type":"string",
+            "id": "root/version",
+            "default": "4",
+            "required":false
         }
-
-
-    ]
+    }
 }

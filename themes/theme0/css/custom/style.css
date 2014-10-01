@@ -81,7 +81,7 @@
 
 /*Note: For this to work, the height of the element must be specified*/
 .vertical-center {
-    margin: auto;
+   /* margin: auto;*/
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 }
