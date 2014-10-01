@@ -16,7 +16,7 @@ var slideWindowMenu = slideWindow+' '+'.menu',
     slideWindowMenuOptions = slideWindowMenu+' '+'.options',
     slideWindowMenuButton = slideWindowMenuOptions+' '+'.fa-sort-down';
 
-$(window).load(function(){
+$(document).ready(function(){
     
     //********************************************// 
     // Slide Window Function

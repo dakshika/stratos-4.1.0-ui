@@ -19,6 +19,56 @@
  * under the License.
  *
  */
+var log = new Log("controller.menu_generator");
+
+/**
+ * This will use to generate menu with permissions
+ * @param context: side_menu or metro view based on url context
+ * @param jsonobject: menu json
+ * @param permissions: user permissions
+ * @returns {*}
+ */
+function menu_generator(context, jsonobject, permissions){
+     var menu_context = context || 'side_menu',
+         menupermission,
+         menu_html ='';
+
+    if (permissions instanceof Array) {
+        for (menupermission in jsonobject) {
+            var jsonPermission = jsonobject[menupermission];
+            for (var i = 0; i < permissions.length; i++) {
+                if (permissions[i].toString() == jsonPermission.permissionPaths.toString()) {
+                    menu_html += '<li class="options"><a href="'+jsonPermission.link +
+                                    '"><i class="fa '+ jsonPermission.icon +'"></i>'+ jsonPermission.title +
+                                    '</a>';
+                    if (jsonPermission.hasOwnProperty('sub-menu')){
+                        menu_html += '<i class="fa fa-sort-down"></i>';
+                        menu_html += '<ul>';
+                        for(submenupermission in jsonPermission['sub-menu']){
+                            var jsonSubmenuPermission = jsonPermission['sub-menu'][submenupermission];
+                            for (var i = 0; i < permissions.length; i++) {
+                                if (permissions[i].toString() == jsonSubmenuPermission.permissionPaths.toString()) {
+                                    //output_json.push(jsonPermission['sub-menu'][submenupermission]);
+                                    menu_html += '<li><a href="'+jsonSubmenuPermission.link+
+                                            '"><i class="fa '+jsonSubmenuPermission.icon +'"></i>'+jsonSubmenuPermission.title+'</a></li>';
+                                }
+                            }
+                        }
+                        menu_html += '</ul></li>';
+                    }else{
+                        menu_html += '</li>';
+                    }
+                }
+            }
+
+        }
+    }else{
+            return 'Need to send permissions as an array';
+    }
+
+    return menu_html;
+
+}
 
 
 %>
