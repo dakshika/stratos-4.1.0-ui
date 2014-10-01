@@ -22,11 +22,17 @@
 
 var log = new Log("apachestratos.index");
 var error=[];
-var caramel = require('caramel');
+var caramel = require('caramel'),
+    menu_json = require('/controllers/menu/menu.json'),
+    user_permissions = session.get('PERMISSIONS');
 
 include('/controllers/login/validator.jag');
+include('/controllers/menu/menu_generator.jag');
+
+var left_menu = menu_generator(menu_json.menu, user_permissions );
 
 caramel.render({
+    left_menu: left_menu,
     error: error
 });
 

@@ -23,6 +23,8 @@
 var log = new Log("apachestratos.configure");
 var error=[];
 var caramel = require('caramel');
+
+//add login validator for pages
 include('/controllers/login/validator.jag');
 
 caramel.render({

@@ -19,8 +19,6 @@
  *
  */
 
-//var engine = require('caramel').engine('handlebars');
-
 var engine = require('caramel').engine('handlebars', (function () {
     return {
         partials: function (Handlebars) {

@@ -23,7 +23,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-
+                        left_menu:data.left_menu
                     }
                 }
             ],
@@ -54,6 +54,12 @@ var render = function (theme, data, meta, require) {
                                                     title:'Users',
                                                     icon:"fa-users",
                                                     description:"Add, remove and modify users in the tenant."
+                                                },
+                                                {
+                                                    link:'cartridges/',
+                                                    title:'Cartridges',
+                                                    icon:"fa-inbox",
+                                                    description:"Subscribe to Cartridges."
                                                 }
                                                 ]
 
