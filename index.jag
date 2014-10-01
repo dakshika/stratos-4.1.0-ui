@@ -29,7 +29,7 @@ var caramel = require('caramel'),
 include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
 
-var left_menu = menu_generator("side_menu", menu_json.menu, user_permissions );
+var left_menu = menu_generator(menu_json.menu, user_permissions );
 
 caramel.render({
     left_menu: left_menu,

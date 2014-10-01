@@ -4,7 +4,7 @@
             "link": "configure/",
             "title": "Configure",
             "icon": "fa-gears",
-            "permissionPaths": ["/permission"],
+            "permissionPaths": ["/permission/admin/manage/view/autoscalingpolicy", "/permission"],
             "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS",
             "sub-menu": [
                 {
@@ -18,14 +18,14 @@
                     "link": "partitions/",
                     "title": "Partitions",
                     "icon": "fa-th-large",
-                    "permissionPaths": ["/permission"],
+                    "permissionPaths": ["/permission" ],
                     "description": "Define partitions/partition groups to be used in autoscaling and deployment policies."
                 },
                 {
                     "link": "deployment/",
                     "title": "Deployment Policies",
                     "icon": "fa-road",
-                    "permissionPaths": ["/permission"],
+                    "permissionPaths": ["/permission", "/permission/admin/manage/view/deploymentpolicy"],
                     "description": "Define specific policies for cartridge deployment."
                 },
                 {
@@ -55,14 +55,14 @@
                 "link":"users/",
                 "title":"Users",
                 "icon":"fa-users",
-                "permissionPaths":["/permission"],
+                "permissionPaths":["/permission" ],
                 "description":"Define partitions/partition groups to be used in auto scaling and deployment policies."
         },
         {
                 "link":"cartridges/",
-                "title":"cartridges",
-                "icon":"fa-users",
-                "permissionPaths":["/permission"],
+                "title":"Cartridges",
+                "icon":"fa-inbox",
+                "permissionPaths":["/permission","/permission/admin/manage/view/cartridge"],
                 "description":"Subscribe to cartridge."
         }
     ]
