@@ -56,7 +56,16 @@
                 "title":"Users",
                 "icon":"fa-users",
                 "permissionPaths":["/permission" ],
-                "description":"Define partitions/partition groups to be used in auto scaling and deployment policies."
+                "description":"Define partitions/partition groups to be used in auto scaling and deployment policies.",
+                "sub-menu": [
+                    {
+                        "link": "configure/multitenent/",
+                        "title": "Multitenant Services",
+                        "icon": "fa-sitemap",
+                        "permissionPaths": ["/permission"],
+                        "description": "Define and manage multitenant services."
+                    }
+                ]
         },
         {
                 "link":"cartridges/",

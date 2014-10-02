@@ -27,7 +27,7 @@ var log = new Log("controller.menu_generator");
  * @param permissions: user permissions
  * @returns menu html content for partial
  */
-function menu_generator(jsonobject, permissions){
+function menuGenerator(jsonobject, permissions){
      var menupermission,
          menu_html ='';
 

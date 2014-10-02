@@ -21,15 +21,16 @@
  */
 
 var log = new Log("apachestratos.index");
-var error=[];
+var error = [];
 var caramel = require('caramel'),
-    menu_json = require('/controllers/menu/menu.json'),
-    user_permissions = session.get('PERMISSIONS');
+    menuJson = require('/controllers/menu/menu.json'),
+    userPermissions = session.get('PERMISSIONS');
 
 include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
 
-var left_menu = menu_generator(menu_json.menu, user_permissions );
+//create left menu
+var left_menu = menuGenerator(menuJson.menu , userPermissions );
 
 caramel.render({
     left_menu: left_menu,
