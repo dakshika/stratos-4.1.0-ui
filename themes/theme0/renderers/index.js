@@ -34,6 +34,14 @@ var render = function (theme, data, meta, require) {
                     }
                 }
             ],
+            right_menu_log:[
+                {
+                    partial:'index_right_menu_log',
+                    context:{
+
+                    }
+                }
+            ],
             content: [
 
                 {

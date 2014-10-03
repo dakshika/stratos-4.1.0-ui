@@ -37,11 +37,9 @@ function menuGenerator(jsonobject, permissions){
                 hasPermission = intersection(jsonPermission.permissionPaths, permissions);
 
             if(hasPermission.length>0){
-                    menu_html += '<li class="options"><a href="'+jsonPermission.link +
-                                    '"><i class="fa '+ jsonPermission.icon +'"></i>'+ jsonPermission.title +
-                                    '</a>';
+                    menu_html += '<li><a href="'+jsonPermission.link +'"><i class="fa '+ jsonPermission.icon +'"></i>'+ jsonPermission.title +'</a>';
                     if (jsonPermission.hasOwnProperty('sub-menu')){
-                        menu_html += '<i class="fa fa-sort-down"></i>';
+                        menu_html += '<i class="fa fa-angle-down"></i>';
                         menu_html += '<ul>';
                         for(submenupermission in jsonPermission['sub-menu']){
                             var jsonSubmenuPermission = jsonPermission['sub-menu'][submenupermission],

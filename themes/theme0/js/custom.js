@@ -8,15 +8,17 @@ var getSlideWindowPosition = function(thisWindow) {
     else {return 'left';}
 }; // default window position 'left'
 
+var leftOffset = 0,
+    rightOffset = 0;
+
 var getSlideWindowPositionObj = {},
     slideWindowPosition;
 
 // menu veriables
 var slideWindowMenu = slideWindow+' '+'.menu',
-    slideWindowMenuOptions = slideWindowMenu+' '+'.options',
-    slideWindowMenuButton = slideWindowMenuOptions+' '+'.fa-sort-down';
+    slideWindowMenuButton = slideWindowMenu+' '+'.fa-angle-down';
 
-$(document).ready(function(){
+$(window).load(function(){
     
     //********************************************// 
     // Slide Window Function
@@ -24,7 +26,15 @@ $(document).ready(function(){
     
     // hidding slide windows on page laod
     $(slideWindow).each(function(){
-        $(this).css(getSlideWindowPosition(this), ('-'+$(slideWindowContent, this).width()+'px'));
+        if (getSlideWindowPosition(this) == 'left'){
+            $(this).css('top', leftOffset);
+            leftOffset = leftOffset + 55;
+        }
+        else if (getSlideWindowPosition(this) == 'right'){
+            $(this).css('top', rightOffset);
+            rightOffset = rightOffset + 55;
+        }
+        $(this).css(getSlideWindowPosition(this), ('-'+($(slideWindowContent, this).width())+'px'));
     });
     
     // function to handle window slide
@@ -33,15 +43,22 @@ $(document).ready(function(){
         slideWindowPosition = getSlideWindowPosition($(this).closest(slideWindow));
         
         if ($(this).closest(slideWindow).css(slideWindowPosition) !== '0px'){
+            
+            //$(this).closest(slideWindow).siblings(slideWindow+'.'+slideWindowPosition).fadeOut('fast');
+            
             getSlideWindowPositionObj[slideWindowPosition] = 0;
             $(this).closest(slideWindow).animate(getSlideWindowPositionObj, 500);
             getSlideWindowPositionObj = {};
         }
         else {
+            
+            //$(this).closest(slideWindow).siblings(slideWindow).fadeIn('fast');
+            
             getSlideWindowPositionObj[slideWindowPosition] = ('-'+$($(this).siblings(slideWindowContent)).width()+'px');
             $(this).closest(slideWindow).animate(getSlideWindowPositionObj, 500);
             getSlideWindowPositionObj = {};
         }
+   
     });
     
     
@@ -51,7 +68,7 @@ $(document).ready(function(){
     
     // function to toggle hide/show menu options
     $(slideWindowMenuButton).click(function(){
-        $(slideWindowMenuOptions+' ul').slideToggle();
+        $(this).toggleClass('fa-angle-up fa-angle-down').siblings('ul').slideToggle();
     });
 
 });
