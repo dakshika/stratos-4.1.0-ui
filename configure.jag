@@ -20,7 +20,7 @@
  *
  */
 
-var log = new Log("apachestratos.configure");
+var log = new Log("apacheStratos.configure");
 var error=[];
 var caramel = require('caramel');
 

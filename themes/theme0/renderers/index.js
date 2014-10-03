@@ -49,7 +49,7 @@ var render = function (theme, data, meta, require) {
                                                     description:"Configure partitions, deployment and scaling policies, cartridges and manage IaaS"
                                                 },
                                                 {
-                                                    link:'user/',
+                                                    link:'users/',
                                                     title:'Users',
                                                     icon:"fa-users",
                                                     description:"Add, remove and modify users in the tenant."
