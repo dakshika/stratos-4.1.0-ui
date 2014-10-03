@@ -51,9 +51,9 @@ var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
 finalHtml += "<div class='row'>" +
         "<div class='container text-center'>" +
-        "<div class='col-md-4'><a class='formbutton formbutton-danger' href='..''> Cancel</a></div>" +
-        "<div class='col-md-4'><a class='formbutton formbutton-caution' href='#'' id='editortoggle'>JSON Editor</a></div>" +
-        "<div class='col-md-4'><a class='formbutton formbutton-success' href='#submit'>Deploy</a></div>" +
+        "<div class='col-md-4'><button class='btn btn-default' type='button' onclick='history.back(-1)''> Cancel</button></div>" +
+        "<div class='col-md-4'><button class='btn btn-warning' type='button'' id='editortoggle'>JSON Editor</button></div>" +
+        "<div class='col-md-4'><button class='btn btn-info' type='button'>Deploy</button></div>" +
         "</div>" +
         "</div>";
 

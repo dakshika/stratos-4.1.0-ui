@@ -15,6 +15,15 @@ var render = function (theme, data, meta, require) {
                 {
                     partial: 'index_header',
                     context:{
+                        user_name:'admin@wso2.com'
+                    }
+                }
+            ],
+            sub_header:[
+                {
+                    partial:'index_sub_header',
+                    context:{
+
                     }
                 }
             ],
@@ -22,7 +31,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-                        left_menu:data.left_menu
+
                     }
                 }
             ],
@@ -34,43 +43,29 @@ var render = function (theme, data, meta, require) {
                     }
                 }
             ],
-            right_menu_log:[
-                {
-                    partial:'index_right_menu_log',
-                    context:{
-
-                    }
-                }
-            ],
             content: [
 
                 {
                     partial: 'metro_menu',
                     context:{
                         content_menu:'links',
-                        content_title:'Welcome to Apache Stratos',
+                        content_title:'User Management',
                         content_body:{sections:[
-                                                {
-                                                    link:'configure/',
-                                                    title:'Configure',
-                                                    icon:"fa-gears",
-                                                    description:"Configure partitions, deployment and scaling policies, cartridges and manage IaaS"
-                                                },
-                                                {
-                                                    link:'users/',
-                                                    title:'Users',
-                                                    icon:"fa-users",
-                                                    description:"Add, remove and modify users in the tenant."
-                                                },
-                                                {
-                                                    link:'cartridges/',
-                                                    title:'Cartridges',
-                                                    icon:"fa-inbox",
-                                                    description:"Subscribe to Cartridges."
-                                                }
-                                                ]
+                            {
+                                link:'users/',
+                                title:'Users',
+                                icon:"fa-th-large",
+                                description:"Define partitions/partition groups to be used in autoscaling and deployment policies."
+                            },
+                            {
+                                link:'tenants/',
+                                title:'Tenant',
+                                icon:"fa-road",
+                                description:"Define specific policies for cartridge deployment."
+                            }
+                        ]
 
-                                    }
+                        }
 
                     }
                 }
@@ -78,7 +73,6 @@ var render = function (theme, data, meta, require) {
         });
 
     }else{
-
         theme('index', {
             page_meta: [
                 {
