@@ -164,6 +164,33 @@
 
         });
 {{/if}}
+
+        $('#deploy').click(function(){
+
+            var payload =  editor.getValue();
+            var btn = $(this);
+            console.log(btn),
+            btn.html("<i class='fa fa-spinner fa-spin'></i> Deploying...");
+            $.ajax({
+                type: "POST",
+                url: caramel.context + "/controllers/configure/configure_requests.jag",
+                dataType: 'json',
+                data: { "formPayload": JSON.stringify(payload) , "formtype": 'partition' },
+                success:function(data){
+                    console.log(data);
+                    if(data.Error){
+                        var n = noty({text: data.Error.errorMessage, layout:'bottomRight',type: 'error'});
+                    }else{
+                        var n = noty({text: data.status , layout:'bottomRight',type: 'success'});
+                    }
+                }
+            })
+            .always(function () {
+                btn.html('Deploy');
+            });
+            console.log(payload);
+        });//end of deploy button trigger
+
         });
 
 </script>

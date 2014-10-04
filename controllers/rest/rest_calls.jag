@@ -226,7 +226,7 @@ RESTCalls = new function(){
         var backendServerURL = config.backendServerConfiguration.url;
         // getting the access token from the session.
         var endpoint = backendServerURL + urlPostFix;
-        var headers = this.getRequestHeaders(false);
+        var headers = this.getRequestHeaders(false); //NEED TO FIX THIS
         var response;
         switch (httpMethod){
             case  "GET":
@@ -278,7 +278,7 @@ RESTCalls = new function(){
         var backendServerURL = config.backendServerConfiguration.url;
         // getting the access token from the session.
         var endpoint = backendServerURL + urlPostFix;
-        var headers = this.getRequestHeaders(config.ssoConfiguration.enabled);
+        var headers = this.getRequestHeaders(false); //NEED TO FIX THIS
         var response;
         switch (httpMethod){
             case  "GET":
@@ -298,6 +298,7 @@ RESTCalls = new function(){
         }
 
         if (response.xhr.status >= 200 && response.xhr.status < 300) { //if success
+            log.info(response.xhr)
             session.put("deploy-status", "succeeded");
         } else if (response.xhr.status >= 300 && response.xhr.status < 400) { //if redirects
             if(response.data != null && response.data != undefined) {
