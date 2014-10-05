@@ -31,8 +31,11 @@ include('/controllers/menu/menu_generator.jag');
 
 //create left menu
 var left_menu = menuGenerator(menuJson.menu , userPermissions );
+//create metro block
+var metro_menu =metroGenerator('/', menuJson.menu , userPermissions );
 
 caramel.render({
+    metro_menu:metro_menu,
     left_menu: left_menu,
     error: error
 });

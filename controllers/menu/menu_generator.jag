@@ -83,7 +83,35 @@ function intersection(x, y) {
 }
 
 
-function metro_generator(context , jsonobject, permissions){
+function metroGenerator(context , jsonobject, permissions){
+    var metroPermission,
+            metroJSON =[];
 
+    if (permissions instanceof Array) {
+        for (metroPermission in jsonobject) {
+            var jsonPermission = jsonobject[metroPermission],
+                    hasPermission = intersection(jsonPermission.permissionPaths, permissions);
+
+            if (hasPermission.length > 0 && jsonPermission.context == context) {
+                metroJSON.push(jsonPermission);
+            }
+
+            if (jsonPermission.hasOwnProperty('sub-menu')){
+                for(submenupermission in jsonPermission['sub-menu']){
+                    var jsonSubmenuPermission = jsonPermission['sub-menu'][submenupermission],
+                            hasSubmenuPermission = intersection(jsonSubmenuPermission.permissionPaths, permissions);
+
+                    if (hasSubmenuPermission.length > 0 && jsonSubmenuPermission.context == context) {
+                        metroJSON.push(jsonSubmenuPermission);
+                    }
+                }
+            }
+
+        }
+    }else{
+        return 'Need to send permissions as an array';
+    }
+
+    return metroJSON;
 }
 %>

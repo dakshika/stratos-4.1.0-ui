@@ -2,48 +2,55 @@
     "menu":[
         {
             "link": "configure/",
+            "context":"/",
             "title": "Configure",
             "icon": "fa-gears",
-            "permissionPaths": ["/permission/admin/manage/view/autoscalingpolicy", "/permission"],
+            "permissionPaths": ["/permission"],
             "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS",
             "sub-menu": [
                 {
-                    "link": "configure/iaas/",
+                    "link": "iaas/",
+                    "context":"/configure",
                     "title": "IaaS",
                     "icon": "fa-gears",
                     "permissionPaths": ["/permission"],
                     "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS"
                 },
                 {
-                    "link": "configure/partitions/",
+                    "link": "partitions/",
+                    "context":"/configure",
                     "title": "Partitions",
                     "icon": "fa-th-large",
                     "permissionPaths": ["/permission" ],
                     "description": "Define partitions/partition groups to be used in autoscaling and deployment policies."
                 },
                 {
-                    "link": "configure/deployment/",
+                    "link": "deployment/",
+                    "context":"/configure",
                     "title": "Deployment Policies",
                     "icon": "fa-road",
                     "permissionPaths": ["/permission", "/permission/admin/manage/view/deploymentpolicy"],
                     "description": "Define specific policies for cartridge deployment."
                 },
                 {
-                    "link": "configure/autoscalingpolicies/",
+                    "link": "autoscalingpolicies/",
+                    "context":"/configure",
                     "title": "Autoscaling Policies",
                     "icon": "fa-expand",
                     "permissionPaths": ["/permission/admin/manage/view/autoscalingpolicy"],
                     "description": "Define policies which specify inbound requests, memory usage and CPU usage etc."
                 },
                 {
-                    "link": "configure/cartridges/",
+                    "link": "cartridges/",
+                    "context":"/configure",
                     "title": "Cartridge/LB Definitions",
                     "icon": "fa-inbox",
                     "permissionPaths": ["/permission"],
                     "description": "Define and manage single/multi tenant cartridges."
                 },
                 {
-                    "link": "configure/multitenent/",
+                    "link": "multitenent/",
+                    "context":"/configure",
                     "title": "Multitenant Services",
                     "icon": "fa-sitemap",
                     "permissionPaths": ["/permission"],
@@ -52,12 +59,13 @@
             ]
         },
         {
-                "link":"users/",
-                "title":"Users",
-                "icon":"fa-users",
-                "permissionPaths":["/permission" ],
-                "description":"Define partitions/partition groups to be used in auto scaling and deployment policies.",
-                "sub-menu": [
+            "link":"users/",
+            "context":"/",
+            "title":"Users",
+            "icon":"fa-users",
+            "permissionPaths":["/permission" ],
+            "description":"Define partitions/partition groups to be used in auto scaling and deployment policies.",
+            "sub-menu": [
                     {
                         "link": "configure/multitenent/",
                         "title": "Multitenant Services",
@@ -68,11 +76,20 @@
                 ]
         },
         {
-                "link":"cartridges/",
-                "title":"Cartridges",
-                "icon":"fa-inbox",
-                "permissionPaths":["/permission","/permission/admin/manage/view/cartridge"],
-                "description":"Subscribe to cartridge."
+            "link":"mycartridges/",
+            "context":"/",
+            "title":"My Cartridges",
+            "icon":"fa-inbox",
+            "permissionPaths":["/permission","/permission/admin/manage/view/cartridge"],
+            "description":"Subscribed cartridges"
+        },
+        {
+            "link":"cartridges/",
+            "context":"/",
+            "title":"Cartridges",
+            "icon":"fa-inbox",
+            "permissionPaths":["/permission","/permission/admin/manage/view/cartridge"],
+            "description":"Subscribe to cartridge."
         }
     ]
 }
