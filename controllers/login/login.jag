@@ -76,7 +76,6 @@ try{
         }catch(e){
             log.warn(e);
         }
-        log.info(userPermissions );
 
        // require('console').server.current(session,username);
         print({status:1});

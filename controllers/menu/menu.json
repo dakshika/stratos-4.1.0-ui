@@ -9,28 +9,12 @@
             "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS",
             "sub-menu": [
                 {
-                    "link": "iaas/",
-                    "context":"/configure",
-                    "title": "IaaS",
-                    "icon": "fa-gears",
-                    "permissionPaths": ["/permission"],
-                    "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS"
-                },
-                {
                     "link": "partitions/",
                     "context":"/configure",
                     "title": "Partitions",
                     "icon": "fa-th-large",
                     "permissionPaths": ["/permission" ],
                     "description": "Define partitions/partition groups to be used in autoscaling and deployment policies."
-                },
-                {
-                    "link": "deployment/",
-                    "context":"/configure",
-                    "title": "Deployment Policies",
-                    "icon": "fa-road",
-                    "permissionPaths": ["/permission", "/permission/admin/manage/view/deploymentpolicy"],
-                    "description": "Define specific policies for cartridge deployment."
                 },
                 {
                     "link": "autoscalingpolicies/",
@@ -41,15 +25,31 @@
                     "description": "Define policies which specify inbound requests, memory usage and CPU usage etc."
                 },
                 {
+                    "link": "deployments/",
+                    "context":"/configure",
+                    "title": "Deployment Policies",
+                    "icon": "fa-road",
+                    "permissionPaths": ["/permission", "/permission/admin/manage/view/deploymentpolicy"],
+                    "description": "Define specific policies for cartridge deployment."
+                },
+                {
+                    "link": "loadbalancer/",
+                    "context":"/configure",
+                    "title": "Load Balancers",
+                    "icon": "fa-inbox",
+                    "permissionPaths": ["/permission"],
+                    "description": "Define load balancer for cartridges."
+                },
+                {
                     "link": "cartridges/",
                     "context":"/configure",
-                    "title": "Cartridge/LB Definitions",
+                    "title": "Cartridges",
                     "icon": "fa-inbox",
                     "permissionPaths": ["/permission"],
                     "description": "Define and manage single/multi tenant cartridges."
                 },
                 {
-                    "link": "multitenent/",
+                    "link": "multitenant/",
                     "context":"/configure",
                     "title": "Multitenant Services",
                     "icon": "fa-sitemap",

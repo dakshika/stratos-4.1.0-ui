@@ -45,6 +45,14 @@ if(elements.formtype == 'partitions'){
     list_data =  util.RESTCalls.getPartitions();
 }else if(elements.formtype == 'autoscalingpolicies'){
     list_data =  util.RESTCalls.getAutoScalePolicies();
+}else if(elements.formtype == 'deployment'){
+    list_data =  util.RESTCalls.getPolicyDeployment();
+}else if(elements.formtype == 'loadbalancer'){
+    list_data =  util.RESTCalls.getLbCartridges();
+}else if(elements.formtype == 'cartridges'){
+    list_data =  util.RESTCalls.getCartridges();
+}else if(elements.formtype == 'multitenent'){
+    list_data =  util.RESTCalls.getServices();
 }
 
 
