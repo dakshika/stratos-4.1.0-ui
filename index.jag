@@ -20,7 +20,7 @@
  *
  */
 
-var log = new Log("apachestratos.index");
+var log = new Log("apacheStratos.index");
 var error = [];
 var caramel = require('caramel'),
     menuJson = require('/controllers/menu/menu.json'),
@@ -30,13 +30,13 @@ include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
 
 //create left menu
-var left_menu = menuGenerator(menuJson.menu , userPermissions );
+var leftMenu = menuGenerator(menuJson.menu , userPermissions );
 //create metro block
-var metro_menu =metroGenerator('/', menuJson.menu , userPermissions );
+var metroMenu =metroGenerator('/', menuJson.menu , userPermissions );
 
 caramel.render({
-    metro_menu:metro_menu,
-    left_menu: left_menu,
+    metro_menu:metroMenu,
+    left_menu: leftMenu,
     error: error
 });
 

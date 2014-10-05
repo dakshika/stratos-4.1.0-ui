@@ -36,6 +36,7 @@ var left_menu = menuGenerator(menuJson.menu , userPermissions );
 var metro_menu = metroGenerator('/configure', menuJson.menu , userPermissions );
 
 caramel.render({
+    breadcrumbPathLevelOne:'configure',
     metro_menu:metro_menu,
     left_menu: left_menu,
     error: error
