@@ -75,7 +75,7 @@ finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' actio
 finalHtml += "</div>";
 
 
-
+log.info(list_data)
 
 var caramelData = {
     breadcrumbPathLevelOne:breadcrumbPathLevelOne,

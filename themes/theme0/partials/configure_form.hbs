@@ -21,22 +21,33 @@
     </div>
     <div class="container content">
         <div class="row text-center">
-            <div class="row form-toolbar ">
-                <div class="col-md-5 col-sm-3 text-left">
-                    <!--<input type="text" class="form-control" placeholder="Search">-->
-                    <div class="btn-group">
-                        <a href="#" id="list" class="btn btn-default">
-                            <i class="fa fa-list-ul"></i> List
-                        </a>
-                        <a href="#" id="grid" class="btn btn-default">
-                            <i class="fa fa-th"></i> Grid
-                        </a>
+
+            {{#if content_body.sections}}
+                <div class="row form-toolbar ">
+                    <div class="col-md-5 col-sm-3 text-left">
+                        <!--<input type="text" class="form-control" placeholder="Search">-->
+                        <div class="btn-group">
+                            <a href="#" id="list" class="btn btn-default">
+                                <i class="fa fa-list-ul"></i> List
+                            </a>
+                            <a href="#" id="grid" class="btn btn-default">
+                                <i class="fa fa-th"></i> Grid
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-3 text-right">
+                        <a type="button" class="btn btn-primary" href="new/">Add New</a>
                     </div>
                 </div>
-                <div class="col-md-7 col-sm-3 text-right">
-                    <a type="button" class="btn btn-primary" href="new/">New</a>
+            {{else}}
+            <div class="row no-item row-overide">
+                <div class="row title">
+                    <h2>No {{formTitle}} found..</h2>
+                    <a type="button" class="btn btn-primary btn-lg" href="new/">Add New {{formTitle}}</a>
                 </div>
             </div>
+            {{/if}}
+
             <div class="row general-table row-overide">
                 {{#each content_body.sections.autoscalePolicy}}
                 <div class="block col-md-4 grid-group-item border-right">
