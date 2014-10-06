@@ -164,6 +164,9 @@ RESTCalls = new function(){
     this.undeployCartridge = function(cartridgeType){
         return this.sendReceive("DELETE","/cartridge/definition/"+cartridgeType,{});
     };
+    this.getUserList = function(){
+        return this.sendReceive("GET", "/user/list", {});
+    }
     this.getConfigStatus = function(){
         var configStatus = {};
         var error;
@@ -249,7 +252,7 @@ RESTCalls = new function(){
             session.put("get-status", "succeeded");
         } else if (response.xhr.status >= 300 && response.xhr.status < 400) { //if redirects
             if(response.data != null && response.data != undefined) {
-                session.put("get-status", parse(response.data).Error.errorMessage);
+                session.put("get-status", {"status": parse(response.data).Error.errorMessage , "statusCode": response.xhr.status});
             }
         } else if (response.xhr.status >= 400 && response.xhr.status < 500) { //if client error
             if(response.data != null && response.data != undefined) {
@@ -298,19 +301,18 @@ RESTCalls = new function(){
         }
 
         if (response.xhr.status >= 200 && response.xhr.status < 300) { //if success
-            log.info(response.xhr)
-            session.put("deploy-status", "succeeded");
+            session.put("deploy-status", { "message": "success" , "status": "success" });
         } else if (response.xhr.status >= 300 && response.xhr.status < 400) { //if redirects
             if(response.data != null && response.data != undefined) {
-                session.put("deploy-status", parse(response.data).Error.errorMessage);
+                session.put("deploy-status",{ "message": parse(response.data).Error.errorMessage, "status": "warning" } );
             }
         } else if (response.xhr.status >= 400 && response.xhr.status < 500) { //if client error
             if(response.data != null && response.data != undefined) {
-                session.put("deploy-status", parse(response.data).Error.errorMessage);
+                session.put("deploy-status", { "message":  parse(response.data).Error.errorMessage, "status": "error"});
             }
         } else if (response.xhr.status >= 500 && response.xhr.status < 600) { //if server error
             if(response.data != null && response.data != undefined) {
-                session.put("deploy-status", parse(response.data).Error.errorMessage);
+                session.put("deploy-status", { "message": parse(response.data).Error.errorMessage, "status": "error"});
             }
         } else {
             session.put("deploy-status", "Unknown response!");
