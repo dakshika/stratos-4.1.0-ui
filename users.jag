@@ -20,23 +20,14 @@
  *
  */
 
-var log = new Log("apacheStratos.index");
-var error = [];
-var caramel = require('caramel'),
-    menuJson = require('/controllers/menu/menu.json'),
-    userPermissions = session.get('PERMISSIONS');
+var log = new Log("apacheStratos.users");
+var error=[];
+var caramel = require('caramel');
 
+//add login validator for pages
 include('/controllers/login/validator.jag');
-include('/controllers/menu/menu_generator.jag');
-
-//create left menu
-var leftMenu = menuGenerator(menuJson.menu , userPermissions );
-//create metro block
-var metroMenu =metroGenerator('/', menuJson.menu , userPermissions );
 
 caramel.render({
-    metro_menu:metroMenu,
-    left_menu: leftMenu,
     error: error
 });
 

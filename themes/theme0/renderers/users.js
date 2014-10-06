@@ -1,13 +1,13 @@
 var render = function (theme, data, meta, require) {
 
-    if(data.error.length === 0 ){
+    if(data.error.length == 0 ){
         theme('index', {
             page_meta: [
                 {
-                    partial: 'index_title',
-                    context: {
-                        page_title: 'Apache Stratos Home',
-                        page_description: 'Apache Stratos Home'
+                    partial:'index_title',
+                    context:{
+                        page_title:'Apache Stratos Home',
+                        page_description:'Apache Stratos Home'
                     }
                 }
             ],
@@ -15,7 +15,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial: 'index_header',
                     context:{
-                        user_name: 'admin@wso2.com'
+                        user_name:'admin@wso2.com'
                     }
                 }
             ],
@@ -23,8 +23,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_sub_header',
                     context:{
-                        breadcrumbPathLevelOne:data.breadcrumbPathLevelOne,
-                        breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
+
                     }
                 }
             ],
@@ -45,26 +44,35 @@ var render = function (theme, data, meta, require) {
                 }
             ],
             content: [
+
                 {
-                    partial:'configure_form',
+                    partial: 'metro_menu',
                     context:{
-                        form_action: data.form_action,
-                        formHtml: data.formHtml,
-                        formData: data.formData,
-                        formDataRaw: data.formDataRaw,
-                        formTitle: data.formTitle,
-                        isForm: data.isForm,
-                        content_body: {sections:
-                                        data.list_data
+                        content_menu:'links',
+                        content_title:'User Management',
+                        content_body:{sections:[
+                            {
+                                link:'users/',
+                                title:'Users',
+                                icon:"fa-th-large",
+                                description:"Define partitions/partition groups to be used in autoscaling and deployment policies."
+                            },
+                            {
+                                link:'tenants/',
+                                title:'Tenant',
+                                icon:"fa-road",
+                                description:"Define specific policies for cartridge deployment."
+                            }
+                        ]
+
                         }
+
                     }
                 }
-
             ]
         });
 
     }else{
-
         theme('index', {
             page_meta: [
                 {
@@ -97,5 +105,6 @@ var render = function (theme, data, meta, require) {
                 }
             ]
         });
+
     }
 };

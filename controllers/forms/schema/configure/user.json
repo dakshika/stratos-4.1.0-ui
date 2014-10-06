@@ -1,0 +1,50 @@
+{
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "root",
+    "required":false,
+    "properties":{
+        "credential": {
+            "type":"string",
+            "id": "root/credential",
+            "default": "lasindu",
+            "required":false
+        },
+        "email": {
+            "type":"string",
+            "id": "root/email",
+            "default": "lasindu@wso2.com",
+            "required":false
+        },
+        "firstName": {
+            "type":"string",
+            "id": "root/firstName",
+            "default": "First Name",
+            "required":false
+        },
+        "lastName": {
+            "type":"string",
+            "id": "root/lastName",
+            "default": "Last Name",
+            "required":false
+        },
+        "profileName": {
+            "type":"string",
+            "id": "root/profileName",
+            "default": "null",
+            "required":false
+        },
+        "role": {
+            "type":"string",
+            "id": "root/role",
+            "default": "Internal/user",
+            "required":false
+        },
+        "userName": {
+            "type":"string",
+            "id": "root/userName",
+            "default": "lasindu",
+            "required":false
+        }
+    }
+}

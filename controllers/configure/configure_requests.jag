@@ -19,25 +19,22 @@
  * under the License.
  *
  */
+var log = new Log("apachestratos.configure_request"),
+    util = require('/controllers/rest/rest_calls.jag'),
+        formPayload = request.getParameter('formPayload'),
+    formtype = request.getParameter('formtype');
+log.info(formPayload);
 
-var log = new Log("apacheStratos.index");
-var error = [];
-var caramel = require('caramel'),
-    menuJson = require('/controllers/menu/menu.json'),
-    userPermissions = session.get('PERMISSIONS');
-
+//add login validator for pages
 include('/controllers/login/validator.jag');
-include('/controllers/menu/menu_generator.jag');
 
-//create left menu
-var leftMenu = menuGenerator(menuJson.menu , userPermissions );
-//create metro block
-var metroMenu =metroGenerator('/', menuJson.menu , userPermissions );
+try {
+    var formSubmit = util.RESTCalls.deployPartitionDefinition(formPayload);
+    //print(session.get("deploy-status"));
+}catch(e){
+    log.info(e);
+}
 
-caramel.render({
-    metro_menu:metroMenu,
-    left_menu: leftMenu,
-    error: error
-});
 
+print({"status":session.get("deploy-status")});
 %>

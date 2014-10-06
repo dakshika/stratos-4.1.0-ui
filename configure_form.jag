@@ -29,6 +29,7 @@ var log = new Log("apachestratos.configure_form"),
     util = require('/controllers/rest/rest_calls.jag'),
     uriMatcher = new URIMatcher(request.getRequestURI()),
     elements = uriMatcher.match('/{context}/configure/{formtype}/'),
+    breadcrumbPathLevelOne = 'configure',
     isForm = false;
 
 if(!elements){
@@ -44,16 +45,25 @@ if(elements.formtype == 'partitions'){
     list_data =  util.RESTCalls.getPartitions();
 }else if(elements.formtype == 'autoscalingpolicies'){
     list_data =  util.RESTCalls.getAutoScalePolicies();
+}else if(elements.formtype == 'deployment'){
+    list_data =  util.RESTCalls.getPolicyDeployment();
+}else if(elements.formtype == 'loadbalancer'){
+    list_data =  util.RESTCalls.getLbCartridges();
+}else if(elements.formtype == 'cartridges'){
+    list_data =  util.RESTCalls.getCartridges();
+}else if(elements.formtype == 'multitenent'){
+    list_data =  util.RESTCalls.getServices();
 }
 
-log.info(list_data)
+
 var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
 finalHtml += "<div class='row'>" +
         "<div class='container text-center'>" +
-        "<div class='col-md-4'><a class='formbutton formbutton-danger' href='..''> Cancel</a></div>" +
-        "<div class='col-md-4'><a class='formbutton formbutton-caution' href='#'' id='editortoggle'>JSON Editor</a></div>" +
-        "<div class='col-md-4'><a class='formbutton formbutton-success' href='#submit'>Deploy</a></div>" +
+        "<div class='col-md-4'><button class='btn btn-default' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
+        "<div class='col-md-4'><button class='btn btn-warning' type='button' id='editortoggle'>JSON Editor</button></div>" +
+        "<div class='col-md-4'><button class='btn btn-info' type='button' id='deploy' data-form='"+ elements.formtype +
+        "'> Deploy</button></div>" +
         "</div>" +
         "</div>";
 
@@ -65,10 +75,11 @@ finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' actio
 finalHtml += "</div>";
 
 
-
+log.info(list_data)
 
 var caramelData = {
-	config_path_l2: elements.formtype,
+    breadcrumbPathLevelOne:breadcrumbPathLevelOne,
+    breadcrumbPathLevelTwo: elements.formtype,
 	isForm: isForm,
 	formHtml: finalHtml,
     formTitle:  formTitle,
