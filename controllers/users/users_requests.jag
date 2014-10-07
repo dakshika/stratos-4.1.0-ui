@@ -31,12 +31,11 @@ include('/controllers/login/validator.jag');
 try {
     if(formtype == 'users'){
         formSubmit = util.RESTCalls.addUser(JSON.parse(formPayload));
-        log.info('add user hits'+ formPayload)
+
     }else if(formtype == 'autoscalingpolicies'){
         formSubmit = util.RESTCalls.deployAutoscalePolicyDefinition(formPayload);
     }
-    //print(session.get("deploy-status"));
-    log.info(formSubmit)
+
 }catch(e){
     log.info(e);
 }
