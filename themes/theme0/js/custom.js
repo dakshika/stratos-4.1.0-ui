@@ -1,25 +1,26 @@
 // window variables
 var slideWindow = '.slidewindow',
-    slideWindowButton = '.slidewindow_handle',
-    slideWindowContent = '.slidewindow_content';
-    
-var getSlideWindowPosition = function(thisWindow) {
-    if ($(thisWindow).hasClass('right')){return 'right';}
-    else {return 'left';}
-}; // default window position 'left'
-
-var leftOffset = 0,
-    rightOffset = 0;
-
-var getSlideWindowPositionObj = {},
+    slideWindowButton = '.slidewindow-handle',
+    slideWindowContent = '.slidewindow-content',  
+    leftOffset = 0,
+    rightOffset = 0,
+    getSlideWindowPositionObj = {},
     slideWindowPosition,
-    slideWindowContentWidth;
+    slideWindowContentWidth,
+    getSlideWindowPosition = function(thisWindow) {
+        if ($(thisWindow).hasClass('right')){return 'right';}
+        else {return 'left';}// default window position 'left' 
+    };
 
 // menu veriables
 var slideWindowMenu = slideWindow+' '+'.menu',
     slideWindowMenuButton = slideWindowMenu+' '+'.fa-angle-down';
 
-var tabButtonAction,
+// tab specific veriables
+var tabContainer = '.tab-container',
+    tab = '.tab',
+    tabHandles = '.tab-handles',
+    tabButtonAction,
     tabContent,
     tabClosed = true;
     
@@ -50,20 +51,23 @@ $(window).load(function(){
         
         slideWindowPosition = getSlideWindowPosition($(this).closest(slideWindow));
         
+        $(this).css('z-index', 100);
+        $(this).siblings().css('z-index', 0);
+        
         if ($(this).closest(slideWindow).hasClass('tabs')){
-            
+
             // function to handle window slide with tabs
             tabButtonAction = $(this).attr('data-action');
             
             $(this).toggleClass('active');
-            $(this).siblings('.slidewindow_handle').removeClass('active');
+            $(this).siblings(slideWindowButton).removeClass('active');
             
             if($(this).hasClass('active')){
                 
-                $(this).closest('.tab-handles').siblings('.tab-container').find('.tab[data-content="'+tabButtonAction+'"]').css('visibility', 'visible');
-                $(this).closest('.tab-handles').siblings('.tab-container').find('.tab[data-content="'+tabButtonAction+'"] .slidewindow_content').show();
-                $(this).closest('.tab-handles').siblings('.tab-container').find('.tab[data-content!="'+tabButtonAction+'"]').css('visibility', 'hidden');
-                $(this).closest('.tab-handles').siblings('.tab-container').find('.tab[data-content!="'+tabButtonAction+'"] .slidewindow_content').hide();
+                $(this).closest(tabHandles).siblings(tabContainer).find(tab+'[data-content="'+tabButtonAction+'"]').css('visibility', 'visible');
+                $(this).closest(tabHandles).siblings(tabContainer).find(tab+'[data-content="'+tabButtonAction+'"] '+slideWindowContent).show();
+                $(this).closest(tabHandles).siblings(tabContainer).find(tab+'[data-content!="'+tabButtonAction+'"]').css('visibility', 'hidden');
+                $(this).closest(tabHandles).siblings(tabContainer).find(tab+'[data-content!="'+tabButtonAction+'"] '+slideWindowContent).hide();
                 
                 if (tabClosed == true){
                     slideWindowContentWidth = 0;
@@ -74,19 +78,19 @@ $(window).load(function(){
                     getSlideWindowPositionObj = {};
                 }
             }
-            else if ((!$(this).closest('.tab-handles .slidewindow_handle').hasClass('active')) && (tabClosed == false)){
+            else if ((!$(this).closest(tabHandles+' '+slideWindowButton).hasClass('active')) && (tabClosed == false)){
                 
-                slideWindowContentWidth = ('-'+$(this).closest('.tab-handles').siblings('.tab-container').width()+'px');
+                slideWindowContentWidth = ('-'+$(this).closest(tabHandles).siblings(tabContainer).width()+'px');
                 getSlideWindowPositionObj[slideWindowPosition] = slideWindowContentWidth;
                 $(this).closest(slideWindow).animate(getSlideWindowPositionObj, 500, function(){
-                    $('.tab-container .tab', this).css('visibility', 'hidden');
+                    $(tabContainer+' '+tab, this).css('visibility', 'hidden');
                     tabClosed = true;
                 });
                 getSlideWindowPositionObj = {};
                 
             }
             else {
-                $(this).closest('.tab-handles').siblings('.tab-container').find('.tab[data-content="'+tabButtonAction+'"]').css('visibility', 'hidden');
+                $(this).closest(tabHandles).siblings(tabContainer).find(tab+'[data-content="'+tabButtonAction+'"]').css('visibility', 'hidden');
             }    
    
         }
