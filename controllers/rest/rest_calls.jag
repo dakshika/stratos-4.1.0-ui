@@ -92,6 +92,11 @@ RESTCalls = new function(){
         return this.sendReceive("POST","/tenant",tenantInfoBean);
     };
 
+
+    this.addUser = function(userInfoBean){
+        return this.sendReceive("POST","/user", userInfoBean);
+    };
+
     this.syncRepo = function(alias){
         return this.send("POST","/cartridge/sync",alias);
     };
@@ -247,20 +252,21 @@ RESTCalls = new function(){
             default :
                 log.error("Error in the programme flow.");
         }
-
+        log.info(response);
         if (response.xhr.status >= 200 && response.xhr.status < 300) { //if success
-            session.put("get-status", "succeeded");
+
+            session.put("get-status", { "message": "success" , "status": "success" });
         } else if (response.xhr.status >= 300 && response.xhr.status < 400) { //if redirects
             if(response.data != null && response.data != undefined) {
-                session.put("get-status", {"status": parse(response.data).Error.errorMessage , "statusCode": response.xhr.status});
+                session.put("get-status", { "message": parse(response.data).Error.errorMessage , "status": "warning" } );
             }
         } else if (response.xhr.status >= 400 && response.xhr.status < 500) { //if client error
             if(response.data != null && response.data != undefined) {
-                session.put("get-status", parse(response.data).Error.errorMessage);
+                session.put("get-status",{ "message":  parse(response.data).Error.errorMessage, "status": "warning" } );
             }
         } else if (response.xhr.status >= 500 && response.xhr.status < 600) { //if server error
             if(response.data != null && response.data != undefined) {
-                session.put("get-status", parse(response.data).Error.errorMessage);
+                session.put("get-status", { "message": parse(response.data).Error.errorMessage, "status": "warning" } );
             }
         } else {
             session.put("get-status", "Unknown response!");

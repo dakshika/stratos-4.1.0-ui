@@ -20,7 +20,6 @@
  *
  */
 include('/controllers/login/validator.jag');
-include('/controllers/forms/form_generator.jag');
 
 var log = new Log("apachestratos.configure_form"),
     error=[],
