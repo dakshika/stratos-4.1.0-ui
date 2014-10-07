@@ -37,8 +37,15 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     margin-top: 10em;
     left: -3000px;
 }
+.slidewindow.right { left: inherit; right: -3000px; }
 .slidewindow:after { clear: both; display: block; }
-.slidewindow .row { margin:0;  }
+.slidewindow .row { margin:0; }
+
+.slidewindow .tab-container, .slidewindow .tab-handles { float: left; }
+.slidewindow .tab-handles .slidewindow_handle { margin-bottom: 10px; }
+.slidewindow.right .tab-container, .slidewindow.right .tab-handles { float: right; }
+.slidewindow .tab-container .tab { visibility: hidden; top: 0; }
+.slidewindow .tab-handles .slidewindow_handle, .slidewindow.right .tab-handles .slidewindow_handle { display: block; float: none; }
 
 .slidewindow_content {
     background-color: white; 
@@ -48,6 +55,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     z-index: 1;
     min-height: 45px;
 }
+.slidewindow.right, .slidewindow.right .slidewindow_content, .slidewindow.right .slidewindow_handle { float: right; }
 .slidewindow_content ul li { margin: 0 10px; padding: 0; }
 .slidewindow_content ul li ul li { margin: 0 0 0 15px; padding: 0 10px 0 0; }
 .slidewindow_content ul li a { display:inline-block; }
@@ -74,9 +82,6 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     z-index: 0;
 	cursor:pointer;
 }
-
-.slidewindow.right { left: inherit; right: -3000px; }
-.slidewindow.right, .slidewindow.right .slidewindow_content, .slidewindow.right .slidewindow_handle { float: right; }
 
 
 /* menu box realted styles */
