@@ -36,7 +36,7 @@
                     "link": "loadbalancer/",
                     "context":"/configure",
                     "title": "Load Balancers",
-                    "icon": "fa-inbox",
+                    "icon": "fa-tasks",
                     "permissionPaths": ["/permission"],
                     "description": "Define load balancer for cartridges."
                 },
