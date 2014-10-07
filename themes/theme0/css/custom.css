@@ -71,7 +71,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
 .slidewindow-content ul.menu li:last-child { border-bottom: none; }
 .slidewindow-content ul.menu li ul { display: none; }
 .slidewindow-content ul.menu li a:hover { text-decoration:none; }
-.slidewindow-content .text { padding: 15px; max-width: 300px; word-break: break-all; }
+.slidewindow-content .text { padding: 15px; max-width: 300px; font-size: 13px; }
 
 .slidewindow-handle {
     background-color: white;

@@ -42,7 +42,13 @@ $(window).load(function(){
             $(this).css('top', rightOffset);
             rightOffset = rightOffset + 55;
         }
+        
         $(this).css(getSlideWindowPosition(this), ('-'+($(slideWindowContent, this).width())+'px'));
+        
+        if ($(this).hasClass('tabs')){
+            $(slideWindowContent, this).css('min-height', $(tabHandles, this).height());
+            $(slideWindowContent, this).css('min-width', $(slideWindowContent, this).width());
+        }
          
     });
     

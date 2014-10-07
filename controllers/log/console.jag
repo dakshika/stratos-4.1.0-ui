@@ -18,4 +18,13 @@
  * specific language governing permissions and limitations
  * under the License.
  *
- */
+*/
+ 
+<%
+
+function printLog() {
+    var log = new Log("apacheStratos");
+    return stringify(log);
+}
+
+%>
