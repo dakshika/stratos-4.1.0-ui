@@ -46,17 +46,16 @@ var render = function (theme, data, meta, require) {
             ],
             content: [
                 {
-                    partial:'configure_form',
+                    partial:'users_form',
                     context:{
                         formContext: data.breadcrumbPathLevelTwo,
-                        form_action: data.form_action,
                         formHtml: data.formHtml,
                         formData: data.formData,
                         formDataRaw: data.formDataRaw,
                         formTitle: data.formTitle,
                         isForm: data.isForm,
                         content_body: {sections:
-                                        data.list_data
+                            data.list_data
                         }
                     }
                 }

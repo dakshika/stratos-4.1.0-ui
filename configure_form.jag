@@ -20,7 +20,6 @@
  *
  */
 include('/controllers/login/validator.jag');
-include('/controllers/forms/form_generator.jag');
 
 var log = new Log("apachestratos.configure_form"),
     error=[],
@@ -43,18 +42,45 @@ var formData = require('controllers/forms/schema/configure/' + elements.formtype
 
 if(elements.formtype == 'partitions'){
     list_data =  util.RESTCalls.getPartitions();
+    if(list_data.partition.length === 0){
+        list_data = null;
+    }
 }else if(elements.formtype == 'autoscalingpolicies'){
-    list_data =  util.RESTCalls.getAutoScalePolicies();
-}else if(elements.formtype == 'deployment'){
+    list_data =  util.RESTCalls.getPolicyAutoScale();
+    if(list_data.autoscalePolicy.length === 0){
+        list_data = null;
+    }
+}else if(elements.formtype == 'deployments'){
     list_data =  util.RESTCalls.getPolicyDeployment();
+
 }else if(elements.formtype == 'loadbalancer'){
     list_data =  util.RESTCalls.getLbCartridges();
+    if(list_data.cartridge.length === 0){
+        list_data = null;
+    }
 }else if(elements.formtype == 'cartridges'){
     list_data =  util.RESTCalls.getCartridges();
+    //remove LB from current object
+    for(var i=0;i<list_data.cartridge.length;i++) {
+        if(list_data.cartridge[i].loadBalancer === true ) {
+            list_data.cartridge.splice(i,1);
+            i = i - 1;
+        }
+    }
+    if(list_data.cartridge.length === 0){
+        list_data = null;
+    }else{
+
+        log.info(list_data)
+    }
 }else if(elements.formtype == 'multitenent'){
     list_data =  util.RESTCalls.getServices();
+    if(list_data.cartridge.length === 0){
+        list_data = null;
+    }
 }
 
+//log.info( list_data);
 
 var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
