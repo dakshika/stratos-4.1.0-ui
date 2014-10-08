@@ -30,15 +30,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_right_menu_help',
                     context:{
-
-                    }
-                }
-            ],
-            right_menu_log:[
-                {
-                    partial:'index_right_menu_log',
-                    context:{
-
+                        stratos_log:data.stratos_log
                     }
                 }
             ],
