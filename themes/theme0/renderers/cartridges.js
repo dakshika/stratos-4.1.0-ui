@@ -1,6 +1,38 @@
 var render = function (theme, data, meta, require) {
 
     if(data.error.length == 0 ){
+        var log = new Log();
+        session.remove("get-status");
+        session.remove("deploy-status");
+        var cartridges = data.cartridges.cartridge,cartridges_new =[];
+
+
+        for (var i = 0; i < cartridges.length; i++) {
+            if(cartridges[i].serviceGroup != undefined){
+                if(!cartridges[i].done){
+
+                    cartridges[i].done = true;
+                    var newObj = {};
+                    var serviceGroup = cartridges[i].serviceGroup;
+                    newObj.serviceGroup = serviceGroup;
+                    newObj.cartridgeType = cartridges[i].cartridgeType;
+                    newObj.items = [];
+                    newObj.items.push(parse(stringify(cartridges[i])));
+                    newObj.version = cartridges[i].version;
+                    for (var j = 0; j < cartridges.length; j++) {
+                        if(cartridges[j].serviceGroup == serviceGroup && !cartridges[j].done){
+                            cartridges[j].done =true;
+                            newObj.items.push(parse(stringify(cartridges[j])));
+                        }
+                    }
+
+                    cartridges_new.push(newObj);
+                }
+            }else {
+                cartridges_new.push(cartridges[i]);
+            }
+        }
+
         theme('index', {
             page_meta: [
                 {
@@ -47,11 +79,11 @@ var render = function (theme, data, meta, require) {
             content: [
 
                 {
-                    partial: '',
+                    partial: 'cartridges_form',
                     context:{
                         content_menu:'links',
                         content_title:'Configure Apache Stratos',
-                        content_body:{sections:data.metro_menu}
+                        content_body:{sections:cartridges_new}
 
                     }
                 }

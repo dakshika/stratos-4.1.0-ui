@@ -252,7 +252,6 @@ RESTCalls = new function(){
             default :
                 log.error("Error in the programme flow.");
         }
-        log.info(response);
         if (response.xhr.status >= 200 && response.xhr.status < 300) { //if success
 
             session.put("get-status", { "message": "success" , "status": "success" });
@@ -323,8 +322,6 @@ RESTCalls = new function(){
         } else {
             session.put("deploy-status", "Unknown response!");
         }
-
-        log.debug("sent is: " + stringify(response));
 
         if (response.data != null && response.data != undefined) {
             return parse(response.data);
