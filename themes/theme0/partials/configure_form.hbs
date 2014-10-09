@@ -49,10 +49,20 @@
             {{/if}}
 
             <div class="row general-table row-overide">
+                {{#each content_body.sections.serviceDefinitionBean}}
+                    <div class="block col-md-4 grid-group-item border-right">
+                        <div class="toggle-menu-icon">
+                            <i class="fa fa-gears "></i>
+                        </div>
+                        <h2>{{autoscalingPolicyName}} </h2>
+                        <div class="toggle-menu-description">{{cartridgeType}}</div>
+
+                    </div>
+                {{/each}}
                 {{#each content_body.sections.cartridge}}
                     <div class="block col-md-4 grid-group-item border-right">
                         <div class="toggle-menu-icon">
-                            <i class="fa fa-tasks "></i>
+                            <i class="fa fa-gears "></i>
                         </div>
                         <h2>{{displayName}} </h2>
                         <div class="toggle-menu-description">{{description}}</div>
@@ -62,10 +72,13 @@
                 {{#each content_body.sections.deploymentPolicy}}
                     <div class="block col-md-4 grid-group-item border-right">
                         <div class="toggle-menu-icon">
-                            <i class="fa fa-road "></i>
+                            <i class="fa fa-gears "></i>
                         </div>
                         <h2>{{id}} </h2>
                         <div class="toggle-menu-description">Define partitions/partition groups to be used in autoscaling and deployment policies. </div>
+                        <div class="toggle-menu-button">
+                            <button type="button" class="btn btn-primary" >Remove</button>
+                        </div>
                     </div>
                 {{/each}}
                 {{#each content_body.sections.autoscalePolicy}}

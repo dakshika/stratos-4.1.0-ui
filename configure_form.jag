@@ -73,14 +73,15 @@ if (elements.formtype == 'partitions') {
 
         log.info(list_data)
     }
-} else if (elements.formtype == 'multitenent') {
+} else if (elements.formtype == 'multitenant') {
     list_data = util.RESTCalls.getServices();
-    if (list_data.cartridge.length === 0) {
+    if (list_data.serviceDefinitionBean.length === 0) {
         list_data = null;
     }
+    log.info('hit me')
 }
 
-//log.info( list_data);
+log.info( list_data);
 
 var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
