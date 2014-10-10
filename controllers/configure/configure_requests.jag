@@ -29,21 +29,32 @@ var log = new Log("apachestratos.configure_request"),
 include('/controllers/login/validator.jag');
 
 try {
-    if(formtype == 'partitions'){
-        formSubmit = util.RESTCalls.deployPartitionDefinition(formPayload);
-    }else if(formtype == 'autoscalingpolicies'){
-        formSubmit = util.RESTCalls.deployAutoscalePolicyDefinition(formPayload);
-    }else if(formtype == 'deployments'){
-        formSubmit = util.RESTCalls.deployDeploymentPolicyDefinition(formPayload);
-    }else if(formtype == 'loadbalancer'){
-        formSubmit = util.RESTCalls.deployLbDefinition(formPayload);
-    }else if(formtype == 'cartridges'){
-        formSubmit = util.RESTCalls.deployCartridgeDefinition(formPayload);
-    }else if(formtype == 'multitenant'){
-        formSubmit = util.RESTCalls.deployServiceDefinition(formPayload);
+
+    switch(formtype) {
+        case 'partitions':
+            formSubmit = util.RESTCalls.deployPartitionDefinition(formPayload);
+            break;
+        case 'autoscalingpolicies':
+            formSubmit = util.RESTCalls.deployAutoscalePolicyDefinition(formPayload);
+            break;
+        case 'deployments':
+            formSubmit = util.RESTCalls.deployDeploymentPolicyDefinition(formPayload);
+            break;
+        case 'loadbalancer':
+            formSubmit = util.RESTCalls.deployLbDefinition(formPayload);
+            break;
+        case 'cartridges':
+            formSubmit = util.RESTCalls.deployCartridgeDefinition(formPayload);
+            break;
+        case 'multitenant':
+            formSubmit = util.RESTCalls.deployServiceDefinition(formPayload);
+            break;
+        default:
+            default code block
     }
 
     //print(session.get("deploy-status"));
+    
 }catch(e){
     log.info(e);
 }

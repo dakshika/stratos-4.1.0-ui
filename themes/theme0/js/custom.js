@@ -1,3 +1,16 @@
+//*****************************************************************// 
+// Calling Bootstrap Wizard Function
+//*****************************************************************// 
+
+$(document).ready(function() {
+    $('#rootwizard').bootstrapWizard();
+});
+
+
+//*****************************************************************// 
+// Slide Window Function
+//*****************************************************************//
+
 // window variables
 var slideWindow = '.slidewindow',
     slideWindowButton = '.slidewindow-handle',
@@ -27,9 +40,9 @@ var tabContainer = '.tab-container',
 
 $(window).load(function(){
     
-    //********************************************// 
-    // Slide Window Function
-    //********************************************// 
+    //--------------------------------
+    // Window Sliding Function
+    //--------------------------------
     
     // hidding slide windows on page laod
     $(slideWindow).each(function(){
@@ -115,9 +128,9 @@ $(window).load(function(){
     });
     
     
-    //********************************************// 
+    //--------------------------------
     // Slide Window Menu Function
-    //********************************************//  
+    //--------------------------------
     
     // function to toggle hide/show menu options
     $(slideWindowMenuButton).click(function(){
