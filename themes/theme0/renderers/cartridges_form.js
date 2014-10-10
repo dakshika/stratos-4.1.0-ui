@@ -1,45 +1,13 @@
 var render = function (theme, data, meta, require) {
 
-    if(data.error.length == 0 ){
-        var log = new Log();
-        session.remove("get-status");
-        session.remove("deploy-status");
-        var cartridges = data.cartridges.cartridge,cartridges_new =[];
-
-
-        for (var i = 0; i < cartridges.length; i++) {
-            if(cartridges[i].serviceGroup != undefined){
-                if(!cartridges[i].done){
-
-                    cartridges[i].done = true;
-                    var newObj = {};
-                    var serviceGroup = cartridges[i].serviceGroup;
-                    newObj.serviceGroup = serviceGroup;
-                    newObj.cartridgeType = cartridges[i].cartridgeType;
-                    newObj.items = [];
-                    newObj.items.push(parse(stringify(cartridges[i])));
-                    newObj.version = cartridges[i].version;
-                    for (var j = 0; j < cartridges.length; j++) {
-                        if(cartridges[j].serviceGroup == serviceGroup && !cartridges[j].done){
-                            cartridges[j].done =true;
-                            newObj.items.push(parse(stringify(cartridges[j])));
-                        }
-                    }
-
-                    cartridges_new.push(newObj);
-                }
-            }else {
-                cartridges_new.push(cartridges[i]);
-            }
-        }
-
+    if(data.error.length === 0 ){
         theme('index', {
             page_meta: [
                 {
-                    partial:'index_title',
-                    context:{
-                        page_title:'Apache Stratos Home',
-                        page_description:'Apache Stratos Home'
+                    partial: 'index_title',
+                    context: {
+                        page_title: 'Apache Stratos Home',
+                        page_description: 'Apache Stratos Home'
                     }
                 }
             ],
@@ -47,7 +15,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial: 'index_header',
                     context:{
-                        user_name:'admin@wso2.com'
+                        user_name: 'admin@wso2.com'
                     }
                 }
             ],
@@ -55,7 +23,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_sub_header',
                     context:{
-                        breadcrumbPathLevelOne:'cartridges',
+                        breadcrumbPathLevelOne:data.breadcrumbPathLevelOne,
                         breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
                     }
                 }
@@ -64,7 +32,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-                        left_menu:data.left_menu
+
                     }
                 }
             ],
@@ -77,20 +45,27 @@ var render = function (theme, data, meta, require) {
                 }
             ],
             content: [
-
                 {
-                    partial: 'cartridges',
+                    partial:'cartridges_form',
                     context:{
-                        content_menu:'links',
-                        content_title:'Subscribe to Cartridge',
-                        content_body:{sections:cartridges_new}
-
+                        formContext: data.breadcrumbPathLevelTwo,
+                        form_action: data.form_action,
+                        formHtml: data.formHtml,
+                        formData: data.formData,
+                        formDataRaw: data.formDataRaw,
+                        formTitle: data.formTitle,
+                        isForm: data.isForm,
+                        content_body: {sections:
+                            data.list_data
+                        }
                     }
                 }
+
             ]
         });
 
     }else{
+
         theme('index', {
             page_meta: [
                 {
@@ -123,6 +98,5 @@ var render = function (theme, data, meta, require) {
                 }
             ]
         });
-
     }
 };

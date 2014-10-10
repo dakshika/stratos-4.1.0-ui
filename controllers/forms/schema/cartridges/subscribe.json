@@ -1,0 +1,62 @@
+{
+    "type":"object",
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "id": "root",
+    "required":false,
+    "properties":{
+        "alias": {
+            "type":"string",
+            "id": "root/alias",
+            "default": "<ALIAS>",
+            "required":false
+        },
+        "autoscalePolicy": {
+            "type":"string",
+            "id": "root/autoscalePolicy",
+            "default": "<POLICY_NAME>",
+            "required":false
+        },
+        "cartridgeType": {
+            "type":"string",
+            "id": "root/cartridgeType",
+            "default": "php",
+            "required":false
+        },
+        "commitsEnabled": {
+            "type":"string",
+            "id": "root/commitsEnabled",
+            "default": "true",
+            "required":false
+        },
+        "deploymentPolicy": {
+            "type":"string",
+            "id": "root/deploymentPolicy",
+            "default": "<POLICY_NAME>",
+            "required":false
+        },
+        "privateRepo": {
+            "type":"string",
+            "id": "root/privateRepo",
+            "default": "true",
+            "required":false
+        },
+        "repoPassword": {
+            "type":"string",
+            "id": "root/repoPassword",
+            "default": "my_password",
+            "required":false
+        },
+        "repoURL": {
+            "type":"string",
+            "id": "root/repoURL",
+            "default": "<GIT_REPO_URL>",
+            "required":false
+        },
+        "repoUsername": {
+            "type":"string",
+            "id": "root/repoUsername",
+            "default": "my_username",
+            "required":false
+        }
+    }
+}

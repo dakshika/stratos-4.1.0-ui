@@ -42,12 +42,12 @@ var formData = require('controllers/forms/schema/configure/' + elements.formtype
 
 if (elements.formtype == 'partitions') {
     list_data = util.RESTCalls.getPartitions();
-    if (list_data.partition.length === 0) {
+    if (list_data.partition && list_data.partition.length === 0) {
         list_data = null;
     }
 } else if (elements.formtype == 'autoscalingpolicies') {
     list_data = util.RESTCalls.getPolicyAutoScale();
-    if (list_data.autoscalePolicy.length === 0) {
+    if (list_data.autoscalePolicy && list_data.autoscalePolicy.length === 0) {
         list_data = null;
     }
 } else if (elements.formtype == 'deployments') {
@@ -55,7 +55,7 @@ if (elements.formtype == 'partitions') {
 
 } else if (elements.formtype == 'loadbalancer') {
     list_data = util.RESTCalls.getLbCartridges();
-    if (list_data.cartridge.length === 0) {
+    if (list_data.cartridge && list_data.cartridge.length === 0) {
         list_data = null;
     }
 } else if (elements.formtype == 'cartridges') {
@@ -67,7 +67,7 @@ if (elements.formtype == 'partitions') {
             i = i - 1;
         }
     }
-    if (list_data.cartridge.length === 0) {
+    if (list_data.cartridge && list_data.cartridge.length === 0) {
         list_data = null;
     } else {
 
@@ -75,10 +75,9 @@ if (elements.formtype == 'partitions') {
     }
 } else if (elements.formtype == 'multitenant') {
     list_data = util.RESTCalls.getServices();
-    if (list_data.serviceDefinitionBean.length === 0) {
+    if (list_data.serviceDefinitionBean && list_data.serviceDefinitionBean.length === 0) {
         list_data = null;
     }
-    log.info('hit me')
 }
 
 log.info( list_data);
