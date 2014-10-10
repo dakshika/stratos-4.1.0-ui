@@ -35,12 +35,12 @@ var leftMenu = menuGenerator(menuJson.menu , userPermissions );
 //create metro block
 var metroMenu = metroGenerator('/', menuJson.menu , userPermissions );
 //get startos - carbon log
-var startosLog = printLog();
+var stratosLog = printLog();
 
 caramel.render({
     metro_menu:metroMenu,
     left_menu: leftMenu,
-    stratos_log: startosLog,
+    stratos_log: stratosLog,
     error: error
 });
 

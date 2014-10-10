@@ -20,7 +20,7 @@
  *
  */
 
-var log = new Log("apacheStratos.test-wizard");
+var log = new Log("apacheStratos.wizard");
 var error=[];
 var caramel = require('caramel'),
     menuJson = require('/controllers/menu/menu.json'),
@@ -33,10 +33,10 @@ include('/controllers/menu/menu_generator.jag');
 //create left menu
 var left_menu = menuGenerator(menuJson.menu , userPermissions );
 //create metro block
-var metro_menu = metroGenerator('/test-wizard', menuJson.menu , userPermissions );
+var metro_menu = metroGenerator('/wizard', menuJson.menu , userPermissions );
 
 caramel.render({
-    breadcrumbPathLevelOne:'test-wizard',
+    breadcrumbPathLevelOne:'wizard',
     metro_menu:metro_menu,
     left_menu: left_menu,
     error: error
