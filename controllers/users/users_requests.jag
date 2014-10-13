@@ -32,8 +32,8 @@ try {
     if(formtype == 'users'){
         formSubmit = util.RESTCalls.addUser(JSON.parse(formPayload));
 
-    }else if(formtype == 'autoscalingpolicies'){
-        formSubmit = util.RESTCalls.deployAutoscalePolicyDefinition(formPayload);
+    }else if(formtype == 'tenants'){
+        formSubmit = util.RESTCalls.addTenant(JSON.parse(formPayload));
     }
 
 }catch(e){
