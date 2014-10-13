@@ -39,7 +39,11 @@
                         <div class="lb-description">This will be auto subscribed for you</div>
 
                     {{else}}
-                        <h2>{{displayName}} - {{version}}</h2>
+                        <h2>
+                            <a href="{{url ""}}/cartridges/subscribe/{{cartridgeType}}">
+                                {{displayName}} - {{version}}
+                            </a>
+                        </h2>
                         {{#if multiTenant}}
                             Multi Tenant Enabled
                         {{else}}
