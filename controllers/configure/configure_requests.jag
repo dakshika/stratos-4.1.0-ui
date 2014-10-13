@@ -49,8 +49,6 @@ try {
         case 'multitenant':
             formSubmit = util.RESTCalls.deployServiceDefinition(formPayload);
             break;
-        default:
-            default code block
     }
 
     //print(session.get("deploy-status"));
@@ -59,6 +57,6 @@ try {
     log.info(e);
 }
 
-
 print(session.get("deploy-status"));
+
 %>
