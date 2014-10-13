@@ -1,15 +1,15 @@
 var render = function (theme, data, meta, require) {
 
-    if(data.error.length == 0 ){
+    if (data.error.length == 0) {
         var log = new Log();
         session.remove("get-status");
         session.remove("deploy-status");
-        var cartridges = data.cartridges.cartridge,cartridges_new =[];
+        var cartridges = data.cartridges.cartridge, cartridges_new = [];
 
 
         for (var i = 0; i < cartridges.length; i++) {
-            if(cartridges[i].serviceGroup != undefined){
-                if(!cartridges[i].done){
+            if (cartridges[i].serviceGroup != undefined) {
+                if (!cartridges[i].done) {
 
                     cartridges[i].done = true;
                     var newObj = {};
@@ -20,15 +20,15 @@ var render = function (theme, data, meta, require) {
                     newObj.items.push(parse(stringify(cartridges[i])));
                     newObj.version = cartridges[i].version;
                     for (var j = 0; j < cartridges.length; j++) {
-                        if(cartridges[j].serviceGroup == serviceGroup && !cartridges[j].done){
-                            cartridges[j].done =true;
+                        if (cartridges[j].serviceGroup == serviceGroup && !cartridges[j].done) {
+                            cartridges[j].done = true;
                             newObj.items.push(parse(stringify(cartridges[j])));
                         }
                     }
 
                     cartridges_new.push(newObj);
                 }
-            }else {
+            } else {
                 cartridges_new.push(cartridges[i]);
             }
         }
@@ -36,42 +36,42 @@ var render = function (theme, data, meta, require) {
         theme('index', {
             page_meta: [
                 {
-                    partial:'index_title',
-                    context:{
-                        page_title:'Apache Stratos Home',
-                        page_description:'Apache Stratos Home'
+                    partial: 'index_title',
+                    context: {
+                        page_title: 'Apache Stratos Home',
+                        page_description: 'Apache Stratos Home'
                     }
                 }
             ],
-            header:[
+            header: [
                 {
                     partial: 'index_header',
-                    context:{
-                        user_name:'admin@wso2.com'
+                    context: {
+                        user_name: 'admin@wso2.com'
                     }
                 }
             ],
-            sub_header:[
+            sub_header: [
                 {
-                    partial:'index_sub_header',
-                    context:{
-                        breadcrumbPathLevelOne:'cartridges',
-                        breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
+                    partial: 'index_sub_header',
+                    context: {
+                        breadcrumbPathLevelOne: 'cartridges',
+                        breadcrumbPathLevelTwo: data.breadcrumbPathLevelTwo
                     }
                 }
             ],
-            left_menu:[
+            left_menu: [
                 {
-                    partial:'index_left_menu',
-                    context:{
-                        left_menu:data.left_menu
+                    partial: 'index_left_menu',
+                    context: {
+                        left_menu: data.left_menu
                     }
                 }
             ],
-            right_menu_help:[
+            right_menu_help: [
                 {
-                    partial:'index_right_menu_help',
-                    context:{
+                    partial: 'index_right_menu_help',
+                    context: {
 
                     }
                 }
@@ -80,31 +80,31 @@ var render = function (theme, data, meta, require) {
 
                 {
                     partial: 'cartridges',
-                    context:{
-                        content_menu:'links',
-                        content_title:'Subscribe to Cartridge',
-                        content_body:{sections:cartridges_new}
+                    context: {
+                        content_menu: 'links',
+                        content_title: 'Subscribe to Cartridge',
+                        content_body: {sections: cartridges_new}
 
                     }
                 }
             ]
         });
 
-    }else{
+    } else {
         theme('index', {
             page_meta: [
                 {
-                    partial:'index_title',
-                    context:{
-                        page_title:'Apache Stratos Home - Error',
-                        page_description:'Apache Stratos Home - Error'
+                    partial: 'index_title',
+                    context: {
+                        page_title: 'Apache Stratos Home - Error',
+                        page_description: 'Apache Stratos Home - Error'
                     }
                 }
             ],
-            header:[
+            header: [
                 {
                     partial: 'index_header',
-                    context:{
+                    context: {
                     }
                 }
             ],
@@ -112,10 +112,10 @@ var render = function (theme, data, meta, require) {
 
                 {
                     partial: 'error_page',
-                    context:{
-                        error:data.error,
-                        content_title:'Sorry Something went Wrong...! ',
-                        content_body:{
+                    context: {
+                        error: data.error,
+                        content_title: 'Sorry Something went Wrong...! ',
+                        content_body: {
 
                         }
 

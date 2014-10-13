@@ -63,7 +63,7 @@
             "context":"/",
             "title":"Users",
             "icon":"fa-users",
-            "permissionPaths":["/permission" ],
+            "permissionPaths":["/permission","/permission/admin" ],
             "description":"Define partitions/partition groups to be used in auto scaling and deployment policies.",
             "sub-menu": [
                     {
