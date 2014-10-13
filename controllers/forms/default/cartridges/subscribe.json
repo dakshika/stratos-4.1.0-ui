@@ -1,0 +1,11 @@
+{
+    "cartridgeType": "php",
+    "alias": "<ALIAS>",
+    "repoURL": "<GIT_REPO_URL>",
+    "privateRepo": "true",
+    "repoUsername": "my_username",
+    "repoPassword": "my_password",
+    "commitsEnabled": "true",
+    "autoscalePolicy": "<POLICY_NAME>",
+    "deploymentPolicy": "<POLICY_NAME>"
+}

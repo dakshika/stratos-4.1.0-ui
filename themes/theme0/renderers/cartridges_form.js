@@ -1,13 +1,13 @@
 var render = function (theme, data, meta, require) {
 
-    if(data.error.length == 0 ){
+    if(data.error.length === 0 ){
         theme('index', {
             page_meta: [
                 {
-                    partial:'index_title',
-                    context:{
-                        page_title:'Apache Stratos Home',
-                        page_description:'Apache Stratos Home'
+                    partial: 'index_title',
+                    context: {
+                        page_title: 'Apache Stratos Home',
+                        page_description: 'Apache Stratos Home'
                     }
                 }
             ],
@@ -15,6 +15,16 @@ var render = function (theme, data, meta, require) {
                 {
                     partial: 'index_header',
                     context:{
+                        user_name: 'admin@wso2.com'
+                    }
+                }
+            ],
+            sub_header:[
+                {
+                    partial:'index_sub_header',
+                    context:{
+                        breadcrumbPathLevelOne:data.breadcrumbPathLevelOne,
+                        breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
                     }
                 }
             ],
@@ -22,7 +32,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-                        left_menu:data.left_menu
+
                     }
                 }
             ],
@@ -30,21 +40,27 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_right_menu_help',
                     context:{
-                        stratos_log:data.stratos_log
+
                     }
                 }
             ],
             content: [
-
                 {
-                    partial: 'metro_menu',
+                    partial:'cartridges_form',
                     context:{
-                        content_menu:'links',
-                        content_title:'Welcome to Apache Stratos',
-                        content_body:{sections: data.metro_menu}
-
+                        formContext: data.breadcrumbPathLevelTwo,
+                        form_action: data.form_action,
+                        formHtml: data.formHtml,
+                        formData: data.formData,
+                        formDataRaw: data.formDataRaw,
+                        formTitle: data.formTitle,
+                        isForm: data.isForm,
+                        content_body: {sections:
+                            data.list_data
+                        }
                     }
                 }
+
             ]
         });
 
@@ -82,6 +98,5 @@ var render = function (theme, data, meta, require) {
                 }
             ]
         });
-
     }
 };

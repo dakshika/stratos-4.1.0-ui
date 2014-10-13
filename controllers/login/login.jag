@@ -66,7 +66,7 @@ try{
 
         try{
             //get all user permission
-            var userPermissions = um.getAllowedUIResourcesForUser(userObject.username, '/');
+            var userPermissions = um.getAllowedUIResources(userObject.username, '/');
             session.put("PERMISSIONS",userPermissions);
             //call the authentication rest-endpoint and get the JSESSION_ID
             var result =  util.RESTCalls.getSessionCookie(username,password);

@@ -20,41 +20,67 @@
  *
  */
 include('/controllers/login/validator.jag');
-include('/controllers/forms/form_generator.jag');
 
 var log = new Log("apachestratos.configure_form"),
-    error=[],
-    list_data,
-    caramel = require('caramel'),
-    util = require('/controllers/rest/rest_calls.jag'),
-    uriMatcher = new URIMatcher(request.getRequestURI()),
-    elements = uriMatcher.match('/{context}/configure/{formtype}/'),
-    breadcrumbPathLevelOne = 'configure',
-    isForm = false;
+        error = [],
+        list_data,
+        caramel = require('caramel'),
+        util = require('/controllers/rest/rest_calls.jag'),
+        uriMatcher = new URIMatcher(request.getRequestURI()),
+        elements = uriMatcher.match('/{context}/configure/{formtype}/'),
+        breadcrumbPathLevelOne = 'configure',
+        isForm = false;
 
-if(!elements){
+if (!elements) {
     elements = uriMatcher.match('/{context}/configure/{formtype}/{action}/');
     isForm = true;
 }
 
 var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
-    formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
-    formTitle = formData.title;
+        formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
+        formTitle = formData.title;
 
-if(elements.formtype == 'partitions'){
-    list_data =  util.RESTCalls.getPartitions();
-}else if(elements.formtype == 'autoscalingpolicies'){
-    list_data =  util.RESTCalls.getAutoScalePolicies();
-}else if(elements.formtype == 'deployment'){
-    list_data =  util.RESTCalls.getPolicyDeployment();
-}else if(elements.formtype == 'loadbalancer'){
-    list_data =  util.RESTCalls.getLbCartridges();
-}else if(elements.formtype == 'cartridges'){
-    list_data =  util.RESTCalls.getCartridges();
-}else if(elements.formtype == 'multitenent'){
-    list_data =  util.RESTCalls.getServices();
+if (elements.formtype == 'partitions') {
+    list_data = util.RESTCalls.getPartitions();
+    if (list_data.partition && list_data.partition.length === 0) {
+        list_data = null;
+    }
+} else if (elements.formtype == 'autoscalingpolicies') {
+    list_data = util.RESTCalls.getPolicyAutoScale();
+    if (list_data.autoscalePolicy && list_data.autoscalePolicy.length === 0) {
+        list_data = null;
+    }
+} else if (elements.formtype == 'deployments') {
+    list_data = util.RESTCalls.getPolicyDeployment();
+
+} else if (elements.formtype == 'loadbalancer') {
+    list_data = util.RESTCalls.getLbCartridges();
+    if (list_data.cartridge && list_data.cartridge.length === 0) {
+        list_data = null;
+    }
+} else if (elements.formtype == 'cartridges') {
+    list_data = util.RESTCalls.getCartridges();
+    //remove LB from current object
+    for (var i = 0; i < list_data.cartridge.length; i++) {
+        if (list_data.cartridge[i].loadBalancer === true) {
+            list_data.cartridge.splice(i, 1);
+            i = i - 1;
+        }
+    }
+    if (list_data.cartridge && list_data.cartridge.length === 0) {
+        list_data = null;
+    } else {
+
+        log.info(list_data)
+    }
+} else if (elements.formtype == 'multitenant') {
+    list_data = util.RESTCalls.getServices();
+    if (list_data.serviceDefinitionBean && list_data.serviceDefinitionBean.length === 0) {
+        list_data = null;
+    }
 }
 
+log.info( list_data);
 
 var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
@@ -62,12 +88,12 @@ finalHtml += "<div class='row'>" +
         "<div class='container text-center'>" +
         "<div class='col-md-4'><button class='btn btn-default' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
         "<div class='col-md-4'><button class='btn btn-warning' type='button' id='editortoggle'>JSON Editor</button></div>" +
-        "<div class='col-md-4'><button class='btn btn-info' type='button' id='deploy' data-form='"+ elements.formtype +
+        "<div class='col-md-4'><button class='btn btn-info' type='button' id='deploy' data-form='" + elements.formtype +
         "'> Deploy</button></div>" +
         "</div>" +
         "</div>";
 
-finalHtml +=     "<div class='form' action='#' id='textform'></div>";
+finalHtml += "<div class='form' action='#' id='textform'></div>";
 // HTML for the JSON editor view
 finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' action='#'><textarea placeholder='JSON Editor' id='jsoneditor' class='form-control'></textarea></div></div></div>";
 
@@ -78,16 +104,16 @@ finalHtml += "</div>";
 log.info(list_data)
 
 var caramelData = {
-    breadcrumbPathLevelOne:breadcrumbPathLevelOne,
+    breadcrumbPathLevelOne: breadcrumbPathLevelOne,
     breadcrumbPathLevelTwo: elements.formtype,
-	isForm: isForm,
-	formHtml: finalHtml,
-    formTitle:  formTitle,
+    isForm: isForm,
+    formHtml: finalHtml,
+    formTitle: formTitle,
     formDataRaw: JSON.stringify(formDataRaw),
     //formDataRaw: JSON.stringify(partition_data.partition[0]),
-	formData: JSON.stringify(formData),
+    formData: JSON.stringify(formData),
     list_data: list_data,
-	error: error
+    error: error
 }
 
 

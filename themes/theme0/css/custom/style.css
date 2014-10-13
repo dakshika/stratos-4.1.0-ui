@@ -151,8 +151,10 @@
 }
 
 .block.list-group-item i{
-    font-size: 1em;
-    color:#7fbee8;
+    font-size: 3em;
+    color: #7fbee8;
+    margin-top: .3em;
+    margin-left: .2em;
 }
 
 .list-group-item > .toggle-menu-icon, .list-group-item > h2,  .list-group-item > .toggle-menu-description{
