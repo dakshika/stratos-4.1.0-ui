@@ -46,6 +46,10 @@ if(elements.formtype == 'users'){
     if(list_data.userInfoBean.length === 0){
         list_data = null;
     }
+
+}else if(elements.formtype == 'tenants'){
+    list_data =  util.RESTCalls.getTenants();
+
     log.info(list_data);
 }
 

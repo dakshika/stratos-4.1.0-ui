@@ -5,28 +5,7 @@
 </div>
 <div class="container content">
     <div class="row text-center">
-        {{#if content_body.sections}}
-            <div class="row form-toolbar ">
-                <div class="col-md-5 col-sm-3 text-left">
-                    <!--<input type="text" class="form-control" placeholder="Search">-->
-                    <div class="btn-group">
-                        <a href="#" id="list" class="btn btn-default">
-                            <i class="fa fa-list-ul"></i> List
-                        </a>
-                        <a href="#" id="grid" class="btn btn-default">
-                            <i class="fa fa-th"></i> Grid
-                        </a>
-                    </div>
-                </div>
-            </div>
-        {{else}}
-            <div class="row no-item row-overide">
-                <div class="row title">
-                    <h2>No {{formTitle}} found..</h2>
-                    <a type="button" class="btn btn-primary btn-lg" href="new/">Add New {{formTitle}}</a>
-                </div>
-            </div>
-        {{/if}}
+    {{dump .}}
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
                 <div class="block col-md-4 grid-group-item border-right">
@@ -40,8 +19,8 @@
 
                     {{else}}
                         <h2>
-                            <a href="{{url ""}}/cartridges/subscribe/{{cartridgeType}}">
-                                {{displayName}} - {{version}}
+                            <a href="{{url ""}}/mycartridges/info/{{cartridgeAlias}}">
+                                {{cartridgeAlias}} ({{displayName}} - {{version}})
                             </a>
                         </h2>
                         {{#if multiTenant}}
@@ -56,5 +35,6 @@
                 </div>
             {{/each}}
         </div>
+
     </div>
 </div>

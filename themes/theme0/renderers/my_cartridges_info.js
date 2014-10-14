@@ -26,8 +26,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_title',
                     context:{
-                        page_title:'Apache Stratos Home',
-                        page_description:'Apache Stratos Home'
+                        page_title:'Apache Stratos My Cartrides',
+                        page_description:'Apache Stratos My Cartrides'
                     }
                 }
             ],
@@ -43,8 +43,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_sub_header',
                     context:{
-                        breadcrumbPathLevelOne:'users',
-                        breadcrumbPathLevelTwo:''
+                        breadcrumbPathLevelOne:data.breadcrumbPathLevelOne,
+                        breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
                     }
                 }
             ],
@@ -52,7 +52,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-
+                        left_menu:data.left_menu
                     }
                 }
             ],
@@ -67,25 +67,11 @@ var render = function (theme, data, meta, require) {
             content: [
 
                 {
-                    partial: 'metro_menu',
+                    partial: 'my_cartridges_info',
                     context:{
-                        content_menu:'links',
-                        content_title:'User Management',
-                        content_body:{sections:[
-                            {
-                                link:'users/',
-                                title:'Users',
-                                icon:"fa-th-large",
-                                description:"Define partitions/partition groups to be used in autoscaling and deployment policies."
-                            },
-                            {
-                                link:'tenants/',
-                                title:'Tenant',
-                                icon:"fa-road",
-                                description:"Define specific policies for cartridge deployment."
-                            }
-                        ]
-
+                        content_title:'My Cartridge: ',
+                        content_body:{
+                            myCartridgeInfo: data.myCartridgeInfo
                         }
 
                     }

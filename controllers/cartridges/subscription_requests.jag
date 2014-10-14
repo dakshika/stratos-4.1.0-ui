@@ -19,6 +19,25 @@
  * under the License.
  *
  */
-session.invalidate();
-response.sendRedirect(request.getContextPath()+'/login/');
+var log = new Log("apachestratos.subscription_request"),
+        util = require('/controllers/rest/rest_calls.jag'),
+        formPayload = request.getParameter('formPayload'),
+        formtype = request.getParameter('formtype'),
+        formSubmit;
+
+//add login validator for pages
+include('/controllers/login/validator.jag');
+
+try {
+    if(formtype == 'subscribe'){
+        formSubmit = util.RESTCalls.subscribeToCartridge(JSON.parse(formPayload));
+
+    }
+
+}catch(e){
+    log.info(e);
+}
+
+
+print(session.get("get-status"));
 %>
