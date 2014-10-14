@@ -3,9 +3,7 @@
         <div class="row title">
             <div class="title-main text-center">
                 {{#if isForm}}
-                    <h1>Add new {{formTitle}}</h1>
-                {{else}}
-                    <h1>{{formTitle}}</h1>
+                    <h1>Subscribe to {{formTitle}}</h1>
                 {{/if}}
             </div>
         </div>
@@ -42,16 +40,6 @@
                 startval: starting_value
             });
 
-            // Hook up the submit button to log to the console
-            document.getElementById('editortoggle').addEventListener('click', function () {
-                // Get the value from the editor
-                console.log(editor.getValue());
-            });
-
-            // Hook up the Restore to Default button
-            //    document.getElementById('restore').addEventListener('click',function() {
-            //        editor.setValue(starting_value);
-            //    });
 
             //    Hook up the validation indicator to update its
             //    status whenever the editor changes
@@ -73,31 +61,6 @@
 //        }
             });
 
-            /**
-             * Function to handle hiding and showing the JSON form
-             */
-            $('#editortoggle').click(function () {
-                if (isForm) {
-
-                    changeDisplayMode('#textform', '#jsonform');
-                    $('#editortoggle').text('Form View');
-                    isForm = false;
-                    changeBoxHeight();
-                    $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(),null,'\t' ));
-                    console.log('click once')
-                } else {
-
-                    changeDisplayMode('#jsonform', '#textform');
-                    $('#editortoggle').text('JSON Editor');
-                    editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
-                    isForm = true;
-                    changeBoxHeight();
-                    // Fire a change event to force revalidation
-                    editor.onChange();
-                    console.log($('textarea#jsoneditor').val())
-                }
-            });
-
 
             // Finding the height of the rendered form, and setting the JSON
             // editor to the same height
@@ -113,7 +76,7 @@
             });
         {{/if}}
 
-        $('#deploy').click(function(){
+        $('#subscribe').click(function(){
 
             var payload =  editor.getValue();
             var btn = $(this);
@@ -122,13 +85,15 @@
                     btn.html("<i class='fa fa-spinner fa-spin'></i> Deploying...");
             $.ajax({
                 type: "POST",
-                url: caramel.context + "/controllers/configure/configure_requests.jag",
+                url: caramel.context + "/controllers/cartridges/subscription_requests.jag",
                 dataType: 'json',
                 data: { "formPayload": JSON.stringify(payload) , "formtype": formtype },
                 success:function(data){
                     console.log(data);
                     if(data.status == 'error'){
                         var n = noty({text: data.message, layout:'bottomRight',type: 'error'});
+                    }else if(data.status == 'warning'){
+                        var n = noty({text: data.message, layout:'bottomRight',type: 'warning'});
                     }else{
                         var n = noty({text: data.message , layout:'bottomRight',type: 'success'});
                     }

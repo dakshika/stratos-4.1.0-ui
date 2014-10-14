@@ -27,16 +27,93 @@ var log = new Log("apachestratos.cartridge_form"),
         caramel = require('caramel'),
         util = require('/controllers/rest/rest_calls.jag'),
         uriMatcher = new URIMatcher(request.getRequestURI()),
-        elements = uriMatcher.match('/{context}/cartridges/{formtype}/'),
-        breadcrumbPathLevelOne = 'configure',
-        isForm = false;
+        elements = uriMatcher.match('/{context}/cartridges/{formtype}/{cartridgeType}'),
+        breadcrumbPathLevelOne = 'cartridges',
+        isForm = true;
+
+
+
+var autoScalePolicies = util.RESTCalls.getAutoScalePolicies();
+var deploymentPolicies = util.RESTCalls.getApplicableDeploymentPolicies(elements.cartridgeType);
+var mtServiceInfo = util.RESTCalls.getServiceInfo(elements.cartridgeType);
+var cartridge = util.RESTCalls.getSingleTenantCartridgeInfo(elements.cartridgeType);
+var autoScalePoliciesEnum = [],deploymentPoliciesEnum=[];
 
 var formData = require('controllers/forms/schema/cartridges/' + elements.formtype + '.json'),
-        formDataRaw = require('controllers/forms/default/cartridges/' + elements.formtype + '.json'),
-        formTitle = formData.title;
+        formDataRaw = require('controllers/forms/default/cartridges/' + elements.formtype + '.json');
+
+if(autoScalePolicies == null || autoScalePolicies == undefined || autoScalePolicies == ""){
+    autoScalePolicies = {};
+}else{
+    for (var i = 0; i < autoScalePolicies.autoscalePolicy.length; i++) {
+        autoScalePoliciesEnum.push(autoScalePolicies.autoscalePolicy[i].id);
+    }
+}
+
+if(autoScalePolicies.Error != undefined ){
+    error.push(autoScalePolicies.Error);
+}
+
+if(deploymentPolicies == null || deploymentPolicies == undefined || deploymentPolicies == ""){
+    deploymentPolicies = {};
+}else{
+    for (var i = 0; i < deploymentPolicies.deploymentPolicy.length; i++) {
+        deploymentPoliciesEnum.push(deploymentPolicies.deploymentPolicy[i].id);
+    }
+
+}
+if(deploymentPolicies.Error != undefined ){
+    error.push(deploymentPolicies.Error);
+}
+
+if(cartridge == null || cartridge == undefined || cartridge == ""){
+    cartridge = {};
+}
+if(cartridge.Error != undefined ){
+    error.push(cartridge.Error);
+}
+
+if(mtServiceInfo == null || mtServiceInfo == undefined || mtServiceInfo == ""){
+    mtServiceInfo = {};
+    //for single tenant
+    formData.properties['autoscalePolicy']['enum'] = autoScalePoliciesEnum;
+    formData.properties['deploymentPolicy']['enum'] = deploymentPoliciesEnum;
+}else{
+    log.info(mtServiceInfo );
+    formData.properties['autoscalePolicy']['enum'] = [mtServiceInfo.serviceDefinitionBean.autoscalingPolicyName];
+    formData.properties['deploymentPolicy']['enum'] = [mtServiceInfo.serviceDefinitionBean.deploymentPolicyName];
+    formData.properties['autoscalePolicy']['options']['hidden'] = true;
+    formData.properties['deploymentPolicy']['options']['hidden'] = true;
+}
+
+if(mtServiceInfo.Error != undefined ){
+    error.push(mtServiceInfo.Error);
+}
+
+
+
+
+
+//modify data to get correct form UI
+formDataRaw.cartridgeType = elements.cartridgeType;
+
+
+
+
+
 
 var finalHtml = "<div class='container' id='content'>";
+
+finalHtml += "<div class='row'>" +
+        "<div class='container text-center'>" +
+        "<div class='col-md-6'><button class='btn btn-default' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
+        "<div class='col-md-6'><button class='btn btn-info' type='button' id='subscribe' data-form='" + elements.formtype +
+        "'> Subscribe</button></div>" +
+        "</div>" +
+        "</div>";
+
 finalHtml += "<div class='form' action='#' id='textform'></div></div>";
+
 
 
 var caramelData = {
@@ -44,7 +121,7 @@ var caramelData = {
     breadcrumbPathLevelTwo: elements.formtype,
     isForm: isForm,
     formHtml: finalHtml,
-    formTitle: formTitle,
+    formTitle: elements.cartridgeType,
     formDataRaw: JSON.stringify(formDataRaw),
     //formDataRaw: JSON.stringify(partition_data.partition[0]),
     formData: JSON.stringify(formData),
