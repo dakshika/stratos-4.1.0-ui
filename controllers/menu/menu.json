@@ -64,10 +64,10 @@
             "title":"Users",
             "icon":"fa-users",
             "permissionPaths":["/permission","/permission/admin" ],
-            "description":"Define partitions/partition groups to be used in auto scaling and deployment policies.",
+            "description":"Manage Users and Tenants",
             "sub-menu": [
                 {
-                    "link": "users/",
+                    "link": "users/users/",
                     "context":"/users",
                     "title": "Manage Users",
                     "icon": "fa-user",
@@ -75,7 +75,7 @@
                     "description": "Manage users."
                 },
                 {
-                    "link": "tenants/",
+                    "link": "users/tenants/",
                     "context":"/users",
                     "title": "Manage Tenants",
                     "icon": "fa-building",
@@ -90,7 +90,7 @@
             "title":"My Cartridges",
             "icon":"fa-inbox",
             "permissionPaths":["/permission","/permission/admin/manage/view/cartridge"],
-            "description":"Subscribed cartridges"
+            "description":"Your cartridges"
         },
         {
             "link":"cartridges/",

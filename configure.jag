@@ -19,25 +19,25 @@
  * under the License.
  *
  */
-
-var log = new Log("apacheStratos.configure");
-var error=[];
-var caramel = require('caramel'),
-    menuJson = require('/controllers/menu/menu.json'),
-    userPermissions = session.get('PERMISSIONS');
-
 //add login validator for pages
 include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
 
+var log = new Log("apacheStratos.configure");
+var error = [];
+var caramel = require('caramel'),
+        context = caramel.configs().context,
+        menuJson = require('/controllers/menu/menu.json'),
+        userPermissions = session.get('PERMISSIONS');
+
 //create left menu
-var left_menu = menuGenerator(menuJson.menu , userPermissions );
+var left_menu = menuGenerator(context, menuJson.menu, userPermissions);
 //create metro block
-var metro_menu = metroGenerator('/configure', menuJson.menu , userPermissions );
+var metro_menu = metroGenerator('/configure', menuJson.menu, userPermissions);
 
 caramel.render({
-    breadcrumbPathLevelOne:'configure',
-    metro_menu:metro_menu,
+    breadcrumbPathLevelOne: 'configure',
+    metro_menu: metro_menu,
     left_menu: left_menu,
     error: error
 });
