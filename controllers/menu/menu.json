@@ -9,7 +9,7 @@
             "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS",
             "sub-menu": [
                 {
-                    "link": "partitions/",
+                    "link": "configure/partitions/",
                     "context":"/configure",
                     "title": "Partitions",
                     "icon": "fa-th-large",
@@ -17,7 +17,7 @@
                     "description": "Define partitions/partition groups to be used in autoscaling and deployment policies."
                 },
                 {
-                    "link": "autoscalingpolicies/",
+                    "link": "configure/autoscalingpolicies/",
                     "context":"/configure",
                     "title": "Autoscaling Policies",
                     "icon": "fa-expand",
@@ -25,7 +25,7 @@
                     "description": "Define policies which specify inbound requests, memory usage and CPU usage etc."
                 },
                 {
-                    "link": "deployments/",
+                    "link": "configure/deployments/",
                     "context":"/configure",
                     "title": "Deployment Policies",
                     "icon": "fa-road",
@@ -33,7 +33,7 @@
                     "description": "Define specific policies for cartridge deployment."
                 },
                 {
-                    "link": "loadbalancer/",
+                    "link": "configure/loadbalancer/",
                     "context":"/configure",
                     "title": "Load Balancers",
                     "icon": "fa-tasks",
@@ -41,7 +41,7 @@
                     "description": "Define load balancer for cartridges."
                 },
                 {
-                    "link": "cartridges/",
+                    "link": "configure/cartridges/",
                     "context":"/configure",
                     "title": "Cartridges",
                     "icon": "fa-inbox",
@@ -49,7 +49,7 @@
                     "description": "Define and manage single/multi tenant cartridges."
                 },
                 {
-                    "link": "multitenant/",
+                    "link": "configure/multitenant/",
                     "context":"/configure",
                     "title": "Multitenant Services",
                     "icon": "fa-sitemap",
@@ -66,13 +66,22 @@
             "permissionPaths":["/permission","/permission/admin" ],
             "description":"Define partitions/partition groups to be used in auto scaling and deployment policies.",
             "sub-menu": [
-                    {
-                        "link": "configure/multitenent/",
-                        "title": "Multitenant Services",
-                        "icon": "fa-sitemap",
-                        "permissionPaths": ["/permission"],
-                        "description": "Define and manage multitenant services."
-                    }
+                {
+                    "link": "users/",
+                    "context":"/users",
+                    "title": "Manage Users",
+                    "icon": "fa-user",
+                    "permissionPaths": ["/permission"],
+                    "description": "Manage users."
+                },
+                {
+                    "link": "tenants/",
+                    "context":"/users",
+                    "title": "Manage Tenants",
+                    "icon": "fa-building",
+                    "permissionPaths": ["/permission"],
+                    "description": "Manage tenants."
+                }
                 ]
         },
         {
