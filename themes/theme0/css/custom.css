@@ -1,5 +1,5 @@
 body{ background: url('../images/stratos_background.png')  no-repeat; background-position:fixed; background-size:100% auto; background-color:#4872fd; height: 100%;width: 100%; font-family: 'Open Sans', san-serif; }h1{font-family: 'Open Sans', san-serif; color: rgb(255,255,255); text-shadow: 0 0 5px rgb(75,75,75); margin: 2em 0px; font-weight: 600 }
-
+.error-page{margin-top: 2em;}
 /* index_header partial related styles */
 .logo img { width: 140px; }
 .user-image img { width: 50px; }
