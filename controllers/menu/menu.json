@@ -5,7 +5,7 @@
             "context":"/",
             "title": "Configure",
             "icon": "fa-gears",
-            "permissionPaths": ["/permission"],
+            "permissionPaths": ["/permission","/permission/admin"],
             "description": "Configure partitions, deployment and scaling policies, cartridges and manage IaaS",
             "sub-menu": [
                 {
@@ -13,7 +13,7 @@
                     "context":"/configure",
                     "title": "Partitions",
                     "icon": "fa-th-large",
-                    "permissionPaths": ["/permission" ],
+                    "permissionPaths": ["/permission","/permission/admin"],
                     "description": "Define partitions/partition groups to be used in autoscaling and deployment policies."
                 },
                 {
@@ -21,7 +21,7 @@
                     "context":"/configure",
                     "title": "Autoscaling Policies",
                     "icon": "fa-expand",
-                    "permissionPaths": ["/permission/admin/manage/view/autoscalingpolicy"],
+                    "permissionPaths": ["/permission","/permission/admin","/permission/admin/manage/view/autoscalingpolicy"],
                     "description": "Define policies which specify inbound requests, memory usage and CPU usage etc."
                 },
                 {
@@ -29,7 +29,7 @@
                     "context":"/configure",
                     "title": "Deployment Policies",
                     "icon": "fa-road",
-                    "permissionPaths": ["/permission", "/permission/admin/manage/view/deploymentpolicy"],
+                    "permissionPaths": ["/permission","/permission/admin", "/permission/admin/manage/view/deploymentpolicy"],
                     "description": "Define specific policies for cartridge deployment."
                 },
                 {
@@ -37,7 +37,7 @@
                     "context":"/configure",
                     "title": "Load Balancers",
                     "icon": "fa-tasks",
-                    "permissionPaths": ["/permission"],
+                    "permissionPaths": ["/permission","/permission/admin"],
                     "description": "Define load balancer for cartridges."
                 },
                 {
@@ -45,7 +45,7 @@
                     "context":"/configure",
                     "title": "Cartridges",
                     "icon": "fa-inbox",
-                    "permissionPaths": ["/permission"],
+                    "permissionPaths": ["/permission","/permission/admin"],
                     "description": "Define and manage single/multi tenant cartridges."
                 },
                 {
@@ -53,7 +53,7 @@
                     "context":"/configure",
                     "title": "Multitenant Services",
                     "icon": "fa-sitemap",
-                    "permissionPaths": ["/permission"],
+                    "permissionPaths": ["/permission","/permission/admin"],
                     "description": "Define and manage multitenant services."
                 }
             ]
@@ -71,7 +71,7 @@
                     "context":"/users",
                     "title": "Manage Users",
                     "icon": "fa-user",
-                    "permissionPaths": ["/permission"],
+                    "permissionPaths": ["/permission","/permission/admin"],
                     "description": "Manage users."
                 },
                 {
@@ -89,7 +89,7 @@
             "context":"/",
             "title":"My Cartridges",
             "icon":"fa-inbox",
-            "permissionPaths":["/permission","/permission/admin/manage/view/cartridge"],
+            "permissionPaths":["/permission","/permission/admin/manage/view/subscription"],
             "description":"Your cartridges"
         },
         {
