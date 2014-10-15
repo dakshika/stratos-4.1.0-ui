@@ -28,19 +28,15 @@ var caramel = require('caramel'),
 
 include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
-include('/controllers/log/console.jag');
 
 //create left menu
 var leftMenu = menuGenerator(menuJson.menu , userPermissions );
 //create metro block
 var metroMenu = metroGenerator('/', menuJson.menu , userPermissions );
-//get startos - carbon log
-var startosLog = printLog();
 
 caramel.render({
     metro_menu:metroMenu,
     left_menu: leftMenu,
-    stratos_log: startosLog,
     error: error
 });
 
