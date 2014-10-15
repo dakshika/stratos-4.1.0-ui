@@ -4,6 +4,7 @@ $(document).ready(function(){
         password = $('#password'), // Get the password field
         form_error = $('.form-error');
 
+    //handle form valiadation
     var isValidForm = function(){
         if(username.val() == "" || password.val() == ""){
             var error = "Enter your username";
@@ -42,19 +43,9 @@ $(document).ready(function(){
 
     };
 
-    username.keyup(function(){
-        isValidForm();
-    });
-    password.keyup(function(){
-        isValidForm();
-    });
-    
-    // handle the submit button click event
-    $('#submit-btn').click(function () {
-        var btn = $(this); //get current clicked button
-
+    //handle login ajax request
+    function loginCheck(btn){
         btn.button('loading');
-
         if(!isValidForm()){
             btn.button('reset');
         }else{
@@ -75,9 +66,27 @@ $(document).ready(function(){
                     btn.button('reset');
                 });
         }
+    }
 
-
-
+    username.keyup(function(){
+        isValidForm();
+    });
+    password.keyup(function(){
+        isValidForm();
+    });
+    
+    // handle the submit button click event
+    $('#submit-btn').click(function () {
+        var btn = $(this); //get current clicked button
+        loginCheck(btn);
     });// end of submit button
+
+    //handle key "Enter" press
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            var btn = $('#submit-btn');
+            loginCheck(btn);
+        }
+    });
 
 });
