@@ -157,6 +157,16 @@
     margin-left: .2em;
 }
 
+.grid-group-item:after {
+    content: '';
+    position: absolute;
+    width:90%;
+    min-height: 21.429em;
+    border-bottom: 1px solid #e4e7ea;
+    left: 1.429em;
+    top: 1.429em;
+}
+
 .list-group-item > .toggle-menu-icon, .list-group-item > h2,  .list-group-item > .toggle-menu-description{
     float: left;
 }
