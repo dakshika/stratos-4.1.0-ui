@@ -20,6 +20,7 @@
  *
  */
 include('/controllers/login/validator.jag');
+include('/controllers/menu/menu_generator.jag');
 
 var log = new Log("apachestratos.configure_form"),
         error = [],
@@ -33,8 +34,6 @@ var log = new Log("apachestratos.configure_form"),
         elements = uriMatcher.match('/{context}/configure/{formtype}/'),
         breadcrumbPathLevelOne = 'configure',
         isForm = false;
-
-include('/controllers/menu/menu_generator.jag');
 
 //create left menu
 var leftMenu = menuGenerator(context, menuJson.menu, userPermissions);
@@ -86,6 +85,11 @@ if (elements.formtype == 'partitions') {
     if (list_data.serviceDefinitionBean && list_data.serviceDefinitionBean.length === 0) {
         list_data = null;
     }
+}
+
+//check user has permission to access endpoints
+if(list_data.hasOwnProperty('Error')){
+    error.push(list_data.Error);
 }
 
 var finalHtml = "<div class='container' id='content'>";

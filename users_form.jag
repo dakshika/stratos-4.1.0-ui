@@ -19,6 +19,8 @@
  * under the License.
  *
  */
+//add login validator for pages
+include('/controllers/login/validator.jag');
 
 var log = new Log("apacheStratos.users");
 var error=[];
@@ -28,9 +30,6 @@ var caramel = require('caramel'),
     elements = uriMatcher.match('/{context}/users/{formtype}/'),
     list_data,
     isForm = false;
-
-//add login validator for pages
-include('/controllers/login/validator.jag');
 
 if(!elements){
     elements = uriMatcher.match('/{context}/users/{formtype}/{action}/');
@@ -43,14 +42,20 @@ var formData = require('controllers/forms/schema/users/' + elements.formtype + '
 
 if(elements.formtype == 'users'){
     list_data =  util.RESTCalls.getUserList();
-    if(list_data.userInfoBean.length === 0){
+    if(list_data.userInfoBean && list_data.userInfoBean.length === 0){
         list_data = null;
     }
 
 }else if(elements.formtype == 'tenants'){
     list_data =  util.RESTCalls.getTenants();
+    if(list_data.tenantInfoBean && list_data.tenantInfoBean.length === 0){
+        list_data = null;
+    }
+}
 
-    log.info(list_data);
+//check user has permission to access endpoints
+if(list_data.hasOwnProperty('Error')){
+    error.push(list_data.Error);
 }
 
 

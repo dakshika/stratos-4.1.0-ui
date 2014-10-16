@@ -20,7 +20,6 @@
                     </div>
                 </div>
             </div>
-        {{/if}}
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
                 <div class="block col-md-4 grid-group-item border-right">
@@ -50,6 +49,13 @@
                 </div>
             {{/each}}
         </div>
-
+        {{else}}
+            <div class="row no-item row-overide">
+                <div class="row title">
+                    <h2>No Cartridge found..</h2>
+                    <a type="button" class="btn btn-primary btn-lg" href="{{url ""}}/cartridges/">Subscribe to Cartridge</a>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </div>
