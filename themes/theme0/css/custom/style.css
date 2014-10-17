@@ -188,3 +188,15 @@
 }
 
 .well{background-color: #fff;}
+
+/* page buttons stick to top */
+.stick-to-top {
+    position: fixed;
+    top: 7em;
+    z-index: 10000;
+    border-radius: 0 0 0.5em 0.5em;
+    background-color: #FFFFFF;
+    margin-top: 0.3em;
+    padding: 0.35em;
+    border: 1px solid rgb(223, 223, 223);
+}

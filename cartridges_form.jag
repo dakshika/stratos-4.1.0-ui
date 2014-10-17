@@ -111,7 +111,7 @@ formDataRaw.cartridgeType = elements.cartridgeType;
 var finalHtml = "<div class='container' id='content'>";
 
 finalHtml += "<div class='row'>" +
-        "<div class='container text-center'>" +
+        "<div class='container text-center form-toolbar'>" +
         "<div class='col-md-6'><button class='btn btn-default btn-lg' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
         "<div class='col-md-6'><button class='btn btn-info btn-lg' type='button' id='subscribe' data-form='" + elements.formtype +
         "'> Subscribe</button></div>" +
