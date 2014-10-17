@@ -45,7 +45,8 @@ if (!elements) {
 
 var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
         formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
-        formTitle = formData.title;
+        formTitle = formData.title,
+        buttonText = formData.name;
 
 if (elements.formtype == 'partitions') {
     list_data = util.RESTCalls.getPartitions();
@@ -120,6 +121,7 @@ var caramelData = {
     formDataRaw: JSON.stringify(formDataRaw),
     //formDataRaw: JSON.stringify(partition_data.partition[0]),
     formData: JSON.stringify(formData),
+    buttonText:buttonText,
     list_data: list_data,
     error: error
 }

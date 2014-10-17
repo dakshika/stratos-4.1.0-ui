@@ -4,6 +4,7 @@
     "id": "root",
     "required":false,
     "title":"Auto Scaling Policy Definition",
+    "name": "Auto Scaling Policy",
     "options": {
         "disable_properties": true
     },

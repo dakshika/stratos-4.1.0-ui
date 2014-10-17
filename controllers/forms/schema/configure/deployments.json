@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
     "title": "Deployment Definition",
-    "name": "Deployment Definition",
+    "name": "Deployment Policy",
     "required":false,
     "properties":{
         "id": {

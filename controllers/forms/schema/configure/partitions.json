@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
     "title": "Partition Definition",
-    "name": "Partition Definition",
+    "name": "Partition",
     "required":true,
     "options": {
         "disable_properties": true
