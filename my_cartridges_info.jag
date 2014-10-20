@@ -30,6 +30,7 @@ var error = [],
         menuJson = require('/controllers/menu/menu.json'),
         userPermissions = session.get('PERMISSIONS'),
         uriMatcher = new URIMatcher(request.getRequestURI()),
+        cartridgeHtml = '',
         util = require('/controllers/rest/rest_calls.jag');
 var myCartridgeInfo, myCartridgeInfoStatus;
 
@@ -43,6 +44,10 @@ if (elements != null) {
     myCartridgeInfoStatus = true;
     try {
         myCartridgeInfo = util.RESTCalls.getCartridgeInfo(cartridgeAlias);
+        for (specNumber in myCartridgeInfo.cartridge) {
+            log.info(myCartridgeInfo.cartridge[specNumber])
+            cartridgeHtml +='<tr><td>' + specNumber +' </td><td>'+ myCartridgeInfo.cartridge[specNumber] + '</td></tr>';
+        }
     } catch (e) {
 
     }
@@ -50,12 +55,11 @@ if (elements != null) {
     myCartridgeInfoStatus = false;
 }
 
-
 caramel.render({
     error: error,
     breadcrumbPathLevelOne: 'mycartridges',
     left_menu: leftMenu,
-    myCartridgeInfo: myCartridgeInfo
+    myCartridgeInfo: cartridgeHtml
 });
 
 %>
