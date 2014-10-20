@@ -33,14 +33,23 @@ var log = new Log("apachestratos.configure_form"),
         uriMatcher = new URIMatcher(request.getRequestURI()),
         elements = uriMatcher.match('/{context}/configure/{formtype}/'),
         breadcrumbPathLevelOne = 'configure',
+        formDataEdit='',
+        isEdit = false,
         isForm = false;
 
 //create left menu
 var leftMenu = menuGenerator(context, menuJson.menu, userPermissions);
 
+
 if (!elements) {
     elements = uriMatcher.match('/{context}/configure/{formtype}/{action}/');
     isForm = true;
+
+    if(elements.action !='new'){
+        isEdit = true;
+
+        log.info(elements)
+    }
 }
 
 var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
@@ -48,11 +57,25 @@ var formData = require('controllers/forms/schema/configure/' + elements.formtype
         formTitle = formData.title,
         buttonText = formData.name;
 
+if(elements.action !='new'){
+    formTitle ='Partition - ' + elements.action;
+}
+
 if (elements.formtype == 'partitions') {
     list_data = util.RESTCalls.getPartitions();
     if (list_data.partition && list_data.partition.length === 0) {
         list_data = null;
+    }else{
+        formDataEdit = list_data.partition;
+        for (specNumber in list_data.partition) {
+            if(list_data.partition[specNumber].id == elements.action){
+                formDataEdit = list_data.partition[specNumber];
+            }
+
+        }
+
     }
+
 } else if (elements.formtype == 'autoscalingpolicies') {
     list_data = util.RESTCalls.getPolicyAutoScale();
     if (list_data.autoscalePolicy && list_data.autoscalePolicy.length === 0) {
@@ -97,11 +120,15 @@ var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
 finalHtml += "<div class='row'>" +
         "<div class='container text-center form-toolbar'>" +
-        "<div class='col-md-4'><button class='btn btn-default btn-lg' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
-        "<div class='col-md-4'><button class='btn btn-warning btn-lg' type='button' id='editortoggle'>JSON Editor</button></div>" +
-        "<div class='col-md-4'><button class='btn btn-info btn-lg' type='button' id='deploy' data-form='" + elements.formtype +
-        "'> Deploy</button></div>" +
-        "</div>" +
+        "<div class='col-md-4'><button class='btn btn-default btn-lg' type='button' onclick='history.back(-1)'> Cancel</button></div>";
+if(!isEdit){
+    finalHtml +=        "<div class='col-md-4'><button class='btn btn-warning btn-lg' type='button' id='editortoggle'>JSON Editor</button></div>" +
+            "<div class='col-md-4'><button class='btn btn-info btn-lg' type='button' id='deploy' data-form='" + elements.formtype +
+            "'> Deploy</button></div>";
+}
+
+
+        finalHtml +=        "</div>" +
         "</div>";
 
 finalHtml += "<div class='form' action='#' id='textform'></div>";
@@ -111,11 +138,15 @@ finalHtml += "<div id='jsonform'><div class='form-group'><div class='form' actio
 // closing outer border div
 finalHtml += "</div>";
 
+log.info(list_data)
+
 var caramelData = {
     breadcrumbPathLevelOne: breadcrumbPathLevelOne,
     breadcrumbPathLevelTwo: elements.formtype,
     left_menu: leftMenu,
     isForm: isForm,
+    isEdit:isEdit,
+    formDataEdit:JSON.stringify(formDataEdit),
     formHtml: finalHtml,
     formTitle: formTitle,
     formDataRaw: JSON.stringify(formDataRaw),

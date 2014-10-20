@@ -76,6 +76,8 @@ var render = function (theme, data, meta, require) {
                         formTitle: data.formTitle,
                         buttonText: data.buttonText,
                         isForm: data.isForm,
+                        isEdit:data.isEdit,
+                        formDataEdit:data.formDataEdit,
                         content_body: {sections:
                                         data.list_data
                         }
