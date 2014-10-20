@@ -26,8 +26,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_title',
                     context:{
-                        page_title:'Apache Stratos My Cartrides',
-                        page_description:'Apache Stratos My Cartrides'
+                        page_title:'Apache Stratos - My Cartrides',
+                        page_description:'Apache Stratos - My Cartrides'
                     }
                 }
             ],
