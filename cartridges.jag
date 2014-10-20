@@ -19,36 +19,34 @@
  * under the License.
  *
  */
+include('/controllers/login/validator.jag');
+include('/controllers/menu/menu_generator.jag');
 
 var log = new Log("apacheStratos.index");
 var error = [];
 var caramel = require('caramel'),
-    menuJson = require('/controllers/menu/menu.json'),
-    util = require('/controllers/rest/rest_calls.jag'),
-    userPermissions = session.get('PERMISSIONS');
-
-include('/controllers/login/validator.jag');
-include('/controllers/menu/menu_generator.jag');
+        context = caramel.configs().context,
+        menuJson = require('/controllers/menu/menu.json'),
+        util = require('/controllers/rest/rest_calls.jag'),
+        userPermissions = session.get('PERMISSIONS');
 
 var availableCartridges = util.RESTCalls.getCartridges();
 
-if(availableCartridges == null || availableCartridges == undefined || availableCartridges == ""){
+if (availableCartridges == null || availableCartridges == undefined || availableCartridges == "") {
     availableCartridges = {};
 }
-if(availableCartridges.Error != undefined){
+if (availableCartridges.Error != undefined) {
     error.push(availableCartridges.Error);
 }
 
-
-log.info(availableCartridges)
 //create left menu
-var leftMenu = menuGenerator(menuJson.menu , userPermissions );
+var leftMenu = menuGenerator(context, menuJson.menu, userPermissions);
 //create metro block
-var metroMenu =metroGenerator('/', menuJson.menu , userPermissions );
+var metroMenu = metroGenerator('/', menuJson.menu, userPermissions);
 
 caramel.render({
-    metro_menu:metroMenu,
-    cartridges:availableCartridges,
+    metro_menu: metroMenu,
+    cartridges: availableCartridges,
     left_menu: leftMenu,
     error: error
 });

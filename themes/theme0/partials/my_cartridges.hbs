@@ -20,10 +20,10 @@
                     </div>
                 </div>
             </div>
-        {{/if}}
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
-                <div class="block col-md-4 grid-group-item border-right">
+                <a href="{{url ""}}/mycartridges/info/{{cartridgeAlias}}" class="block">
+                <div class="col-md-4 grid-group-item border-right">
                     <div class="toggle-menu-icon">
                         <i class="fa fa-tasks "></i>
                     </div>
@@ -31,13 +31,8 @@
                         <h2>{{displayName}} - {{version}}</h2>
                         <div class="cartridge-description">{{description}}</div>
                         <div class="lb-description">This will be auto subscribed for you</div>
-
                     {{else}}
-                        <h2>
-                            <a href="{{url ""}}/mycartridges/info/{{cartridgeAlias}}">
-                              {{cartridgeAlias}} ({{displayName}} - {{version}})
-                            </a>
-                        </h2>
+                        <h2>{{cartridgeAlias}} ({{displayName}} - {{version}})</h2>
                         {{#if multiTenant}}
                             Multi Tenant Enabled
                         {{else}}
@@ -45,11 +40,19 @@
                         {{/if}}
                         <div class="toggle-menu-description">{{description}}</div>
                     {{/if}}
-
-
                 </div>
+                </a>
             {{/each}}
+
         </div>
 
+        {{else}}
+            <div class="row no-item row-overide">
+                <div class="row title">
+                    <h2>No Cartridge found..</h2>
+                    <a type="button" class="btn btn-primary btn-lg" href="{{url ""}}/cartridges/">Subscribe to Cartridge</a>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </div>

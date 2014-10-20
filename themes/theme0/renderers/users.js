@@ -52,7 +52,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-
+                        left_menu:data.left_menu
                     }
                 }
             ],
@@ -71,22 +71,7 @@ var render = function (theme, data, meta, require) {
                     context:{
                         content_menu:'links',
                         content_title:'User Management',
-                        content_body:{sections:[
-                            {
-                                link:'users/',
-                                title:'Users',
-                                icon:"fa-th-large",
-                                description:"Define partitions/partition groups to be used in autoscaling and deployment policies."
-                            },
-                            {
-                                link:'tenants/',
-                                title:'Tenant',
-                                icon:"fa-road",
-                                description:"Define specific policies for cartridge deployment."
-                            }
-                        ]
-
-                        }
+                        content_body:{sections:data.metro_menu}
 
                     }
                 }

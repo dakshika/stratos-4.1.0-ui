@@ -52,7 +52,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-
+                        left_menu:data.left_menu
                     }
                 }
             ],

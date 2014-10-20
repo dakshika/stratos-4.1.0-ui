@@ -52,7 +52,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-
+                        left_menu:data.left_menu
                     }
                 }
             ],
@@ -74,7 +74,10 @@ var render = function (theme, data, meta, require) {
                         formData: data.formData,
                         formDataRaw: data.formDataRaw,
                         formTitle: data.formTitle,
+                        buttonText: data.buttonText,
                         isForm: data.isForm,
+                        isEdit:data.isEdit,
+                        formDataEdit:data.formDataEdit,
                         content_body: {sections:
                                         data.list_data
                         }

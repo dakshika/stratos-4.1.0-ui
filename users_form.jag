@@ -19,6 +19,8 @@
  * under the License.
  *
  */
+//add login validator for pages
+include('/controllers/login/validator.jag');
 
 var log = new Log("apacheStratos.users");
 var error=[];
@@ -28,9 +30,6 @@ var caramel = require('caramel'),
     elements = uriMatcher.match('/{context}/users/{formtype}/'),
     list_data,
     isForm = false;
-
-//add login validator for pages
-include('/controllers/login/validator.jag');
 
 if(!elements){
     elements = uriMatcher.match('/{context}/users/{formtype}/{action}/');
@@ -43,23 +42,29 @@ var formData = require('controllers/forms/schema/users/' + elements.formtype + '
 
 if(elements.formtype == 'users'){
     list_data =  util.RESTCalls.getUserList();
-    if(list_data.userInfoBean.length === 0){
+    if(list_data.userInfoBean && list_data.userInfoBean.length === 0){
         list_data = null;
     }
 
 }else if(elements.formtype == 'tenants'){
     list_data =  util.RESTCalls.getTenants();
+    if(list_data.tenantInfoBean && list_data.tenantInfoBean.length === 0){
+        list_data = null;
+    }
+}
 
-    log.info(list_data);
+//check user has permission to access endpoints
+if(list_data.hasOwnProperty('Error')){
+    error.push(list_data.Error);
 }
 
 
 var finalHtml = "<div class='container' id='content'>";
 // HTML for the cancel, json editor and deploy buttons
 finalHtml += "<div class='row'>" +
-        "<div class='container text-center'>" +
-        "<div class='col-md-4'><button class='btn btn-default' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
-        "<div class='col-md-offset-4 col-md-4  '><button class='btn btn-info' type='button' id='deploy' data-form='"+ elements.formtype +
+        "<div class='container text-center form-toolbar'>" +
+        "<div class='col-md-4'><button class='btn btn-default btn-lg' type='button' onclick='history.back(-1)'> Cancel</button></div>" +
+        "<div class='col-md-offset-4 col-md-4  '><button class='btn btn-info btn-lg' type='button' id='deploy' data-form='"+ elements.formtype +
         "'> Add</button></div>" +
         "</div>" +
         "</div>";

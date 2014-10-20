@@ -29,7 +29,10 @@
         {{/if}}
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
-                <div class="block col-md-4 grid-group-item border-right">
+                {{#unless loadBalancer}}
+                    <a href="{{url ""}}/cartridges/subscribe/{{cartridgeType}}" class="block ">
+                {{/unless}}
+                <div class="col-md-4 grid-group-item border-right">
                     <div class="toggle-menu-icon">
                         <i class="fa fa-tasks "></i>
                     </div>
@@ -39,11 +42,7 @@
                         <div class="lb-description">This will be auto subscribed for you</div>
 
                     {{else}}
-                        <h2>
-                            <a href="{{url ""}}/cartridges/subscribe/{{cartridgeType}}">
-                                {{displayName}} - {{version}}
-                            </a>
-                        </h2>
+                        <h2>{{displayName}} - {{version}}</h2>
                         {{#if multiTenant}}
                             Multi Tenant Enabled
                         {{else}}
@@ -54,6 +53,9 @@
 
 
                 </div>
+                {{#unless loadBalancer}}
+                </a>
+                {{/unless}}
             {{/each}}
         </div>
     </div>

@@ -19,37 +19,41 @@
  * under the License.
  *
  */
-
-var log = new Log("apacheStratos.mycartridges");
-var error=[],
-    caramel = require('caramel'),
-    uriMatcher = new URIMatcher(request.getRequestURI()),
-    util = require('/controllers/rest/rest_calls.jag');
-var myCartridges, cartridgeAlias,myCartridgeInfo, myCartridgeInfoStatus;
-
 //add login validator for pages
 include('/controllers/login/validator.jag');
+include('/controllers/menu/menu_generator.jag');
 
+var log = new Log("apacheStratos.mycartridges");
+var error = [],
+        caramel = require('caramel'),
+        context = caramel.configs().context,
+        menuJson = require('/controllers/menu/menu.json'),
+        userPermissions = session.get('PERMISSIONS'),
+        uriMatcher = new URIMatcher(request.getRequestURI()),
+        util = require('/controllers/rest/rest_calls.jag');
 
-try{
+var myCartridges, cartridgeAlias, myCartridgeInfo, myCartridgeInfoStatus;
+//create left menu
+var leftMenu = menuGenerator(context, menuJson.menu, userPermissions);
 
+try {
     myCartridges = util.RESTCalls.getSubscribedCartridges();
-}catch (e){
-
+} catch (e) {
+    log.warn(e);
 }
 
 
 elements = uriMatcher.match('/{context}/mycartridges/{formtype}/{aliasType}')
 
-if(elements != null){
+if (elements != null) {
     cartridgeAlias = elements.aliasType;
     myCartridgeInfoStatus = true;
-    try{
+    try {
         myCartridgeInfo = util.RESTCalls.getCartridgeInfo(cartridgeAlias);
-    }catch (e){
-
+    } catch (e) {
+        log.warn(e);
     }
-}else{
+} else {
     myCartridgeInfoStatus = false;
 }
 
@@ -57,6 +61,8 @@ log.info(myCartridgeInfoStatus);
 
 caramel.render({
     error: error,
+    breadcrumbPathLevelOne: 'mycartridges',
+    left_menu: leftMenu,
     myCartridgeInfoStatus: myCartridgeInfoStatus,
     myCartridgeInfo: myCartridgeInfo,
     myCartridges: myCartridges.cartridge

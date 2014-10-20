@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
     "title": "Multi-Tenant Service Definition",
-    "name": "Multi-Tenant Service Definition",
+    "name": "Service Definition",
     "required":false,
     "properties":{
         "autoscalingPolicyName": {

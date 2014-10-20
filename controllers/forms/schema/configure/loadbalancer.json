@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
     "title": "Load Balancer Definition",
-    "name": "Load Balancer Definition",
+    "name": "Load Balancer",
     "required":false,
     "properties":{
         "defaultAutoscalingPolicy": {

@@ -49,12 +49,12 @@ var render = function (theme, data, meta, require) {
                 }
             ],
             left_menu:[
-                {
-                    partial:'index_left_menu',
-                    context:{
-
-                    }
+            {
+                partial:'index_left_menu',
+                context:{
+                    left_menu:data.left_menu
                 }
+            }
             ],
             right_menu_help:[
                 {

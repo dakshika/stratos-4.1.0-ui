@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-03/schema",
     "id": "root",
     "title": "Cartridge Definition",
-    "name": "Cartridge Definition",
+    "name": "Cartridge ",
     "required":false,
     "properties":{
         "defaultAutoscalingPolicy": {
