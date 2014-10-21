@@ -57,8 +57,8 @@ var formData = require('controllers/forms/schema/configure/' + elements.formtype
         formTitle = formData.title,
         buttonText = formData.name;
 
-if(elements.action !='new'){
-    formTitle ='Partition - ' + elements.action;
+if(elements.action !='new' && isEdit){
+    formTitle ='Partition Details - ' + elements.action;
 }
 
 if (elements.formtype == 'partitions') {
@@ -150,7 +150,6 @@ var caramelData = {
     formHtml: finalHtml,
     formTitle: formTitle,
     formDataRaw: JSON.stringify(formDataRaw),
-    //formDataRaw: JSON.stringify(partition_data.partition[0]),
     formData: JSON.stringify(formData),
     buttonText:buttonText,
     list_data: list_data,
