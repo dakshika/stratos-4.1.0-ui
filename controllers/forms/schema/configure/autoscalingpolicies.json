@@ -12,7 +12,10 @@
             "type":"string",
             "id": "root/id",
             "title":"Auto Scale policy ID",
-            "minLength":4
+            "minLength":4,
+            "default":"policyname",
+            "required":true,
+            "maxItems":1
         },
         "loadThresholds": {
             "type":"object",
@@ -23,28 +26,29 @@
                 "disable_properties": true
             },
             "properties":{
-                "loadAverage": {
+                "requestsInFlight": {
                     "type":"object",
-                    "title":"Load Average",
-                    "id": "root/loadThresholds/loadAverage",
-                    "required":["lowerLimit", "upperLimit"],
+                    "id": "root/loadThresholds/requestsInFlight",
                     "format": "grid",
                     "options": {
                         "disable_properties": true,
                         "collapsed": true
                     },
+                    "required":["lowerLimit", "upperLimit"],
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/loadAverage/lowerLimit",
-                            "default":20,
+                            "id": "root/loadThresholds/requestsInFlight/lowerLimit",
+                            "default":5,
                             "format": "number",
+                            "required":false
                         },
                         "upperLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/loadAverage/upperLimit",
-                            "default":100,
+                            "id": "root/loadThresholds/requestsInFlight/upperLimit",
+                            "default":30,
                             "format": "number",
+                            "required":false
                         }
                     }
                 },
@@ -74,34 +78,35 @@
                         }
                     }
                 },
-                "requestsInFlight": {
+                "loadAverage": {
                     "type":"object",
-                    "id": "root/loadThresholds/requestsInFlight",
-                    "required":["lowerLimit", "upperLimit"],
+                    "id": "root/loadThresholds/loadAverage",
                     "format": "grid",
                     "options": {
                         "disable_properties": true,
                         "collapsed": true
                     },
+                    "required":["lowerLimit", "upperLimit"],
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/requestsInFlight/lowerLimit",
-                            "default":5,
+                            "id": "root/loadThresholds/loadAverage/lowerLimit",
+                            "default":20,
                             "format": "number",
                             "required":false
                         },
                         "upperLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/requestsInFlight/upperLimit",
-                            "default":30,
+                            "id": "root/loadThresholds/loadAverage/upperLimit",
+                            "default":100,
                             "format": "number",
                             "required":false
                         }
                     }
                 }
+
+
             }
         }
-    },
-    "required":["id"]
+    }
 }
