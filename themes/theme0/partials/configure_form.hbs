@@ -142,6 +142,10 @@
             // Seed the form with a starting value
           startval: starting_value
         });
+
+    JSONEditor.prototype.showErrors = function() {
+        this.setOption('show_errors','always');
+    }
     {{#if isEdit}}
     editor.disable();
     {{/if}}
@@ -161,7 +165,11 @@
         editor.on('change', function () {
             // Get an array of errors from the validator
             var errors = editor.validate();
+            console.log('========error========')
             console.log(errors);
+            if(errors.length) {
+
+            }
             //       var indicator = document.getElementById('valid_indicator');
 
 //        // Not valid
@@ -192,6 +200,7 @@
 
                 changeDisplayMode('#jsonform', '#textform');
                 $('#editortoggle').text('JSON Editor');
+                editor.validate();
                 editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
                 isForm = true;
                 changeBoxHeight();
@@ -206,14 +215,26 @@
         // editor to the same height
         var formHeight = $('#textform').height();
         $('#jsoneditor').css('height', formHeight);
+//
+//        //track json editor text view changes
+//        $('#jsoneditor').bind('input propertychange', function() {
+//            console.log('hit change event' + $('textarea#jsoneditor').val())
+//            editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
+//           // editor.onChange();
+//            console.log('got from seeted value '+ JSON.stringify(editor.getValue()))
+//            // Fire a change event to force revalidation
+//
+//
+//        });
 
-        //track json editor text view changes
-        $('#jsoneditor').bind('input propertychange', function() {
-            editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
-            // Fire a change event to force revalidation
-            editor.onChange();
+    $('#jsoneditor').on('keyup paste', function() {
+        console.log('called');
+        console.log('hit change event' + $('textarea#jsoneditor').val())
+        editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
+        editor.onChange();
+        console.log('got from seeted value '+ JSON.stringify(editor.getValue()))
+    });
 
-        });
 {{/if}}
 
         $('#deploy').click(function(){

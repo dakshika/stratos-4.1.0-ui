@@ -1,13 +1,13 @@
 {
     "type":"object",
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-03/schema",
     "id": "root",
     "title": "Partition Definition",
     "name": "Partition",
-    "required":true,
     "options": {
         "disable_properties": true
     },
+    "required" : ["id", "provider", "description", "property"],
     "properties":{
         "id": {
             "type":"string",
@@ -15,19 +15,16 @@
             "name": "Partition ID",
             "description": "ID for partition",
             "id": "root/id",
-            "default": "P1",
-            "required":true
+            "default": "P1"
         },
         "provider": {
             "type":"string",
             "id": "root/provider",
-            "default": "ec2",
-            "required":true
+            "default": "ec2"
         },
         "description": {
             "type":"string",
-            "id": "root/description",
-            "required":true
+            "id": "root/description"
         },
         "property": {
             "readonly":true,
@@ -36,6 +33,7 @@
             "options":{
                 "no_additional_properties":true
             },
+            "maxItems":3,
             "items":[
                 {
                     "type":"object",
@@ -44,7 +42,8 @@
                     "options":{
                         "no_additional_properties":true
                     },
-                    "properties":{
+                    "required":["name", "value"],
+                        "properties":{
                         "name": {
                             "type":"string",
                             "id": "root/property/0/name",
