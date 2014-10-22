@@ -93,27 +93,35 @@
             "id": "root/portMapping",
             "title": "Port Mapping",
             "name": "Port Mapping",
-            "minItems":1,
             "items":[
                 {
                     "type":"object",
                     "id": "root/portMapping/0",
                     "required":["port", "protocol", "proxyPort"],
+                    "format": "grid",
                     "properties":{
-                        "port": {
-                            "type":"string",
-                            "id": "root/portMapping/0/port",
-                            "default": "8280",
-                        },
                         "protocol": {
                             "type":"string",
                             "id": "root/portMapping/0/protocol",
-                            "default": "http",
+                            "title": "Protocol",
+                            "name": "Protocol",
+                            "default": "http"
+                        },
+                        "port": {
+                            "type":"number",
+                            "id": "root/portMapping/0/port",
+                            "title": "Port",
+                            "name": "Port",
+                            "default": "8280",
+                            "format": "number"
                         },
                         "proxyPort": {
-                            "type":"string",
+                            "type":"number",
                             "id": "root/portMapping/0/proxyPort",
+                            "title": "Proxy Port",
+                            "name": "Proxy Port",
                             "default": "8280",
+                            "format": "number"
                         }
                     }
                 },
@@ -121,21 +129,30 @@
                     "type":"object",
                     "id": "root/portMapping/1",
                     "required":false,
+                    "format": "grid",
                     "properties":{
-                        "port": {
-                            "type":"string",
-                            "id": "root/portMapping/1/port",
-                            "default": "8243",
-                        },
                         "protocol": {
                             "type":"string",
                             "id": "root/portMapping/1/protocol",
-                            "default": "https",
+                            "title": "Protocol",
+                            "name": "Protocol",
+                            "default": "https"
+                        },
+                        "port": {
+                            "type":"number",
+                            "id": "root/portMapping/1/port",
+                            "title": "Port",
+                            "name": "Port",
+                            "default": "8243",
+                            "format": "number"
                         },
                         "proxyPort": {
-                            "type":"string",
+                            "type":"number",
                             "id": "root/portMapping/1/proxyPort",
+                            "title": "Proxy Port",
+                            "name": "Proxy Port",
                             "default": "8243",
+                            "format": "number"
                         }
                     }
                 }
@@ -151,19 +168,30 @@
             {
                 "type":"object",
                 "id": "root/iaasProvider/0",
-                "required":false,
+                "format": "grid",
+                "required":["type", "imageId", "maxInstanceLimit"],
                 "properties":{
+                    "type": {
+                        "type":"string",
+                        "id": "root/iaasProvider/0/type",
+                        "title": "Type",
+                        "name": "Type",
+                        "default": "ec2"
+                    },
                     "imageId": {
                         "type":"string",
                         "id": "root/iaasProvider/0/imageId",
-                        "default": "ap-southeast-1/ami­-70326522",
-                        "required":false
+                        "title": "Image ID",
+                        "name": "Image ID",
+                        "default": "ap-southeast-1/ami­-70326522"
                     },
                     "maxInstanceLimit": {
-                        "type":"string",
+                        "type":"number",
                         "id": "root/iaasProvider/0/maxInstanceLimit",
+                        "title": "Max Instance Limit",
+                        "name": "Max Instance Limit",
                         "default": "5",
-                        "required":false
+                        "format":"number"
                     },
                     "property": {
                         "type":"array",
@@ -173,19 +201,18 @@
                             {
                                 "type":"object",
                                 "id": "root/iaasProvider/0/property/0",
-                                "required":false,
+                                "format": "grid",
+                                "required":["name", "value"],
                                 "properties":{
                                     "name": {
                                         "type":"string",
                                         "id": "root/iaasProvider/0/property/0/name",
-                                        "default": "instanceType",
-                                        "required":false
+                                        "default": "instanceType"
                                     },
                                     "value": {
                                         "type":"string",
                                         "id": "root/iaasProvider/0/property/0/value",
-                                        "default": "m1.medium",
-                                        "required":false
+                                        "default": "m1.medium"
                                     }
                                 }
                             },
@@ -193,6 +220,7 @@
                                 "type":"object",
                                 "id": "root/iaasProvider/0/property/1",
                                 "required":false,
+                                "format": "grid",
                                 "properties":{
                                     "name": {
                                         "type":"string",
@@ -209,12 +237,6 @@
                                 }
                             }
                         ]
-                    },
-                    "type": {
-                        "type":"string",
-                        "id": "root/iaasProvider/0/type",
-                        "default": "ec2",
-                        "required":false
                     }
                 }
             }
