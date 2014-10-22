@@ -222,7 +222,9 @@
                     $(this).addClass("has-success").removeClass('has-error');
                     editor.setValue(rawEditValidate);
                     editor.onChange();
-                    if (event.keyCode != '13') {
+                    if (event.keyCode == '13' || event.keyCode == '32') {
+
+                    }else{
                         $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(), null, '\t'));
                     }
 
