@@ -45,17 +45,11 @@
             "readonly":true,
             "type":"array",
             "id": "root/property",
-            "options":{
-                "no_additional_properties":true
-            },
             "items":[
                 {
                     "type":"object",
                     "id": "root/property/0",
                     "format": "grid",
-                    "options":{
-                        "no_additional_properties":true
-                    },
                     "required":["name", "value"],
                         "properties":{
                         "name": {
