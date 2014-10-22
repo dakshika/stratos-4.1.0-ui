@@ -60,7 +60,7 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-gears "></i>
                         </div>
-                        <h2>{{autoscalingPolicyName}} </h2>
+                        <h2 class="truncate">{{autoscalingPolicyName}} </h2>
 
                         <div class="toggle-menu-description">{{cartridgeType}}</div>
 
@@ -71,7 +71,7 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-tasks"></i>
                         </div>
-                        <h2>{{displayName}} </h2>
+                        <h2 class="truncate">{{displayName}} </h2>
 
                         <div class="toggle-menu-description">{{description}}</div>
 
@@ -82,14 +82,9 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-road "></i>
                         </div>
-                        <h2>{{id}} </h2>
+                        <h2 class="truncate">{{id}} </h2>
 
-                        <div class="toggle-menu-description">Define partitions/partition groups to be used in
-                            autoscaling and deployment policies.
-                        </div>
-                        <div class="toggle-menu-button">
-                            <button type="button" class="btn btn-primary">Remove</button>
-                        </div>
+                        <div class="toggle-menu-description">{{description}}</div>
                     </div>
                 {{/each}}
                 {{#each content_body.sections.autoscalePolicy}}
@@ -97,11 +92,9 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-expand "></i>
                         </div>
-                        <h2>{{id}} </h2>
+                        <h2 class="truncate">{{id}} </h2>
 
-                        <div class="toggle-menu-description">Define partitions/partition groups to be used in
-                            autoscaling and deployment policies.
-                        </div>
+                        <div class="toggle-menu-description">{{description}}</div>
                     </div>
                 {{/each}}
                 {{#each content_body.sections.partition}}
