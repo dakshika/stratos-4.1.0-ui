@@ -52,7 +52,6 @@
                         "disable_properties": true,
                         "collapsed": false
                     },
-                    "required":["lowerLimit", "upperLimit"],
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
@@ -84,7 +83,6 @@
                         "disable_properties": true,
                         "collapsed": false
                     },
-                    "required":["lowerLimit", "upperLimit"],
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
@@ -116,7 +114,6 @@
                         "disable_properties": true,
                         "collapsed": false
                     },
-                    "required":["lowerLimit", "upperLimit"],
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
