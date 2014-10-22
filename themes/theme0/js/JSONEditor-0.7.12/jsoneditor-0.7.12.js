@@ -1177,7 +1177,6 @@
                 // Version 4 `required`
                 if(schema.required && Array.isArray(schema.required)) {
                     for(i=0; i<schema.required.length; i++) {
-                        console.log(value[schema.required[i]] + typeof value[schema.required[i]])
                         if(typeof value[schema.required[i]] === "undefined") {
                             errors.push({
                                 path: path,

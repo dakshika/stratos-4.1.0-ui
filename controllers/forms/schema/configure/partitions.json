@@ -5,7 +5,8 @@
     "title": "Partition Definition",
     "name": "Partition",
     "options": {
-        "disable_properties": true
+        "disable_properties": true,
+        "disable_collapse": true
     },
     "required" : ["id","provider","property"],
     "properties":{
