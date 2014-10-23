@@ -1,50 +1,67 @@
 {
     "type":"object",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
     "title": "Users",
-    "required":false,
+    "options": {
+        "disable_properties": true,
+        "disable_collapse": true
+    },
+    "required":["userName","credential","role"],
     "properties":{
+        "userName": {
+            "type":"string",
+            "id": "root/userName",
+            "title": "User Name",
+            "name": "User Name",
+            "default": ""
+        },
         "credential": {
             "type":"string",
             "id": "root/credential",
-            "default": "lasindu",
-            "required":false
+            "title": "Password",
+            "name": "Password",
+            "default": ""
+        },
+        "role": {
+            "type":"string",
+            "id": "root/role",
+            "title": "User Role",
+            "name": "User Role",
+            "enum":["admin","Internal/user"],
+            "default": "Internal/user"
         },
         "email": {
             "type":"string",
             "id": "root/email",
-            "default": "lasindu@wso2.com",
+            "title": "Email",
+            "name": "Email",
+            "format":"email",
+            "default": "name@host.com",
             "required":false
         },
         "firstName": {
             "type":"string",
             "id": "root/firstName",
-            "default": "Lasindu",
+            "title": "First Name",
+            "name": "First Name",
+            "default": "",
             "required":false
         },
         "lastName": {
             "type":"string",
             "id": "root/lastName",
-            "default": "Charith",
+            "title": "Last Name",
+            "name": "Last Name",
+            "default": "",
             "required":false
         },
         "profileName": {
             "type":"string",
             "id": "root/profileName",
-            "default": "null",
-            "required":false
-        },
-        "role": {
-            "type":"string",
-            "id": "root/role",
-            "default": "Internal/user",
-            "required":false
-        },
-        "userName": {
-            "type":"string",
-            "id": "root/userName",
-            "default": "lasindu",
+            "title": "Profile Name",
+            "name": "Profile Name",
+            "default": "",
             "required":false
         }
     }
