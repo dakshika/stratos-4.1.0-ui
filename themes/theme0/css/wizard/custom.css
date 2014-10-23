@@ -68,3 +68,5 @@ div.stratos-tab-content{
 div.stratos-tab div.stratos-tab-content:not(.active){
     display: none;
 }
+
+.wizard a{font-size: 1.5em;}
