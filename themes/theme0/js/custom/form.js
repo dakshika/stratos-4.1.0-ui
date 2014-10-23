@@ -51,9 +51,9 @@ $(document).ready(function() {
         $('.general-table .block').addClass('grid-group-item');
     });
 
-    $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} )
-    console.log($('div[data-schemapath="root"]').find('h3 span'))
+    $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} );
 
+    $("[name='my-checkbox']").bootstrapSwitch('state', false, true);
 });
 
 

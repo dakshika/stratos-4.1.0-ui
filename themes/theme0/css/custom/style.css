@@ -209,7 +209,6 @@
 }
 
 /*.has-success{background-color: rgb(219, 255, 195);border: 1px solid rgb(219, 255, 195) !important;}*/
+.editor-button{margin-top: 0.4em;font-size: 18px;}
 
-.toggle-menu-icon {
-    min-height: 10em;
-}
+.auto-correct{display: none}
