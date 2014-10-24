@@ -47,7 +47,6 @@
                 </div>
             </div>
         {{/if}}
-        {{{content_body.sections}}}
     </div>
 {{else}}
     <div class="row title">
@@ -292,6 +291,7 @@
                     .always(function () {
                         btn.html('Deploy');
                     });
+
         });//end of deploy button trigger
 
         $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} );

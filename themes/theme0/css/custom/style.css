@@ -193,7 +193,7 @@
 /* page buttons stick to top */
 .stick-to-top {
     position: fixed;
-    top: 7em;
+    top: 6.5em;
     z-index: 10000;
     border-radius: 0 0 0.5em 0.5em;
     background-color: #FFFFFF;
