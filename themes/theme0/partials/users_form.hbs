@@ -10,7 +10,25 @@
             </div>
         </div>
         {{#if isForm}}
-            {{{formHtml}}}
+            <div class='container' id='content'>
+                <div class='row'>
+                    <div class='container text-center form-toolbar'>
+                        <div class='col-md-5'></div>
+                        <div class='col-md-7 '>
+                            <button class='btn btn-info btn-lg pull-right' type='button' id='deploy' data-form=''> Add</button>
+                            <button class='btn btn-default btn-lg pull-right button-gap' type='button' onclick='history.back(-1)'> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class='form' action='#' id='textform'></div>
+                <div id='jsonform'>
+                    <div class='form-group'>
+                        <div class='form' action='#'><textarea placeholder='JSON Editor' id='jsoneditor'
+                                                               class='form-control'></textarea></div>
+                    </div>
+                </div>
+            </div>
         {{/if}}
     </div>
 {{else}}
@@ -55,7 +73,10 @@
                             <i class="fa fa-user"></i>
                         </div>
                         <h2>{{userName}} </h2>
-                        <div class="toggle-menu-description">Define partitions/partition groups to be used in autoscaling and deployment policies. </div>
+
+                        <div class="toggle-menu-description">Define partitions/partition groups to be used in
+                            autoscaling and deployment policies.
+                        </div>
                         <!--<div class="toggle-menu-button">
                             <button type="button" class="btn btn-primary" >Remove</button>
                         </div>-->
@@ -67,6 +88,7 @@
                             <i class="fa fa-building"></i>
                         </div>
                         <h2>{{tenantDomain}} </h2>
+
                         <div class="toggle-menu-description">{{email}} - {{createdDate}} </div>
                         <!--<div class="toggle-menu-button">
                             <button type="button" class="btn btn-primary" >Remove</button>
@@ -79,7 +101,7 @@
 {{/if}}
 <script>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         {{#if isForm}}
             // Set the default CSS theme and icon library globally
             JSONEditor.defaults.theme = 'bootstrap3';
@@ -106,7 +128,6 @@
             });
 
 
-
             //    status whenever the editor changes
             editor.on('change', function () {
                 // Get an array of errors from the validator
@@ -127,9 +148,9 @@
             });
         {{/if}}
 
-        $('#deploy').click(function(){
+        $('#deploy').click(function () {
 
-            var payload =  editor.getValue();
+            var payload = editor.getValue();
             var btn = $(this);
             var formtype = '{{formContext}}';
             console.log(btn),
@@ -138,15 +159,15 @@
                 type: "POST",
                 url: caramel.context + "/controllers/users/users_requests.jag",
                 dataType: 'json',
-                data: { "formPayload": JSON.stringify(payload) , "formtype": formtype },
-                success:function(data){
+                data: { "formPayload": JSON.stringify(payload), "formtype": formtype },
+                success: function (data) {
                     console.log(data);
-                    if(data.status == 'error'){
-                        var n = noty({text: data.message, layout:'bottomRight',type: 'error'});
-                    }else if(data.status == 'warning'){
-                        var n = noty({text: data.message, layout:'bottomRight',type: 'warning'});
-                    }else{
-                        var n = noty({text: data.message , layout:'bottomRight',type: 'success'});
+                    if (data.status == 'error') {
+                        var n = noty({text: data.message, layout: 'bottomRight', type: 'error'});
+                    } else if (data.status == 'warning') {
+                        var n = noty({text: data.message, layout: 'bottomRight', type: 'warning'});
+                    } else {
+                        var n = noty({text: data.message, layout: 'bottomRight', type: 'success'});
                     }
                 }
             })
