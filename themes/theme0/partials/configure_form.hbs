@@ -25,7 +25,7 @@
                                 <span class='pull-left'>Editor
                                 <input type="checkbox" name="my-checkbox" id='editortoggle' checked>
                                 </span>
-                                <span class="auto-correct"><input type="checkbox" checked id="auto-correct-check">Auto correct JSON definition</span>
+                                <span class="auto-correct"><input type="checkbox" checked id="auto-correct-check">Auto correct with schema</span>
                             </div>
 
                         </div>
@@ -243,8 +243,10 @@
                 try {
                     var rawEditValidate = JSON.parse($('textarea#jsoneditor').val());
                     $(this).addClass("has-success").removeClass('has-error');
+                    $('#deploy').prop('disabled', false);
                 } catch (e) {
                     $(this).addClass("has-error").removeClass('has-success');
+                    $('#deploy').prop('disabled', true);
                     return false;
                 }
 
