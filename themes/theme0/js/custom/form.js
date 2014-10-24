@@ -53,6 +53,8 @@ $(document).ready(function() {
 
     $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} );
 
+    $.fn.bootstrapSwitch.defaults.onText = 'JSON';
+    $.fn.bootstrapSwitch.defaults.offText = 'UI';
     $("[name='my-checkbox']").bootstrapSwitch('state', false, true);
 });
 
