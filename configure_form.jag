@@ -31,6 +31,8 @@ var log = new Log("apachestratos.configure_form"),
     breadcrumbPathLevelOne = 'configure',
     isForm = false;
 
+
+
 if(!elements){
     elements = uriMatcher.match('/{context}/configure/{formtype}/{action}/');
     isForm = true;

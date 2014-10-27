@@ -20,25 +20,22 @@
  *
  */
 
-var log = new Log("apacheStratos.wizard");
+var log = new Log("apacheStratos.configure_wizard");
 var error=[];
 var caramel = require('caramel'),
-    menuJson = require('/controllers/menu/menu.json'),
+    util = require('/controllers/rest/rest_calls.jag'),
     userPermissions = session.get('PERMISSIONS');
 
 //add login validator for pages
 include('/controllers/login/validator.jag');
-include('/controllers/menu/menu_generator.jag');
+include('/controllers/configure/configure_wizard.jag');
 
-//create left menu
-var left_menu = menuGenerator(menuJson.menu , userPermissions );
-//create metro block
-var metro_menu = metroGenerator('/wizard', menuJson.menu , userPermissions );
+var configure_steps = configureWizard();
 
 caramel.render({
-    breadcrumbPathLevelOne:'wizard',
-    metro_menu:metro_menu,
-    left_menu: left_menu,
+    breadcrumbPathLevelOne:'configure',
+    breadcrumbPathLevelTwo:'wizard',
+    configure_steps:configure_steps,
     error: error
 });
 

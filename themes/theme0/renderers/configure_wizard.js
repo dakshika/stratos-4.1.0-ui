@@ -14,7 +14,9 @@ var render = function (theme, data, meta, require) {
             header:[
                 {
                     partial: 'index_header',
-                    context:{}
+                    context:{
+                        user_name: 'admin@wso2.com'
+                    }
                 }
             ],
             sub_header:[
@@ -40,8 +42,10 @@ var render = function (theme, data, meta, require) {
             ],
             content: [
                 {
-                    partial:'wizard',
-                    context:{}
+                    partial:'configure_wizard',
+                    context:{
+                        configure_steps:data.configure_steps
+                    }
                 }
 
             ]
