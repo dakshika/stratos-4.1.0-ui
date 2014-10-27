@@ -115,8 +115,13 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     color: #7b828c;
     text-decoration: none;
 }
+
 .content a:hover > .content-menu-block i{
     color: #7b828c;
+}
+
+a.btn-primary:hover {
+    color: #ffffff;
 }
 
 
