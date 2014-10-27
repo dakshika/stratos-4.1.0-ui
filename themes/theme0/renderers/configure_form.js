@@ -70,7 +70,6 @@ var render = function (theme, data, meta, require) {
                     context:{
                         formContext: data.breadcrumbPathLevelTwo,
                         form_action: data.form_action,
-                        formHtml: data.formHtml,
                         formData: data.formData,
                         formDataRaw: data.formDataRaw,
                         formTitle: data.formTitle,

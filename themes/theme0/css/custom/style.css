@@ -193,7 +193,7 @@
 /* page buttons stick to top */
 .stick-to-top {
     position: fixed;
-    top: 7em;
+    top: 6.5em;
     z-index: 10000;
     border-radius: 0 0 0.5em 0.5em;
     background-color: #FFFFFF;
@@ -209,4 +209,6 @@
 }
 
 /*.has-success{background-color: rgb(219, 255, 195);border: 1px solid rgb(219, 255, 195) !important;}*/
+.editor-button{margin-top: 0.4em;font-size: 18px;}
 
+.auto-correct{display: none}

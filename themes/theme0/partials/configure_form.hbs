@@ -6,7 +6,7 @@
                     {{#if isEdit}}
                         <h1>{{formTitle}}</h1>
                     {{else}}
-                        <h1>Add new {{formTitle}}</h1>
+                        <h1>Add New {{formTitle}}</h1>
                     {{/if}}
                 {{else}}
                     <h1>{{formTitle}}</h1>
@@ -14,9 +14,39 @@
             </div>
         </div>
         {{#if isForm}}
-            {{{formHtml}}}
+            <div class='container' id='content'>
+                <div class='row'>
+                    <div class='container text-center form-toolbar'>
+                        {{#if isEdit}}
+                            <div class='col-md-4'><button class='btn btn-default btn-lg' type='button' onclick='history.back(-1)'> Back</button></div>
+                        {{else}}
+                        <div class='col-md-5'>
+                            <div class="editor-button">
+                                <span class='pull-left'>Editor
+                                <input type="checkbox" name="my-checkbox" id='editortoggle' checked>
+                                </span>
+                                <span class="auto-correct"><input type="checkbox" checked id="auto-correct-check">Auto correct with schema</span>
+                            </div>
+
+                        </div>
+                        <div class='col-md-7'>
+                            <button class='btn btn-info btn-lg pull-right' type='button' id='deploy' data-form='{{formContext}}'> Deploy {{formTitle}}</button>
+                            <button class='btn btn-default btn-lg pull-right button-gap' type='button' onclick='history.back(-1)'> Cancel</button>
+
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class='form' action='#' id='textform'></div>
+                <div id='jsonform'>
+                    <div class='form-group'>
+                        <div class='form' action='#'>
+                            <textarea placeholder='JSON Editor' id='jsoneditor' class='form-control'></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {{/if}}
-        {{{content_body.sections}}}
     </div>
 {{else}}
     <div class="row title">
@@ -69,7 +99,7 @@
                 {{#each content_body.sections.cartridge}}
                     <div class="block col-md-4 grid-group-item border-right">
                         <div class="toggle-menu-icon">
-                            <i class="fa fa-tasks"></i>
+                            <i class="fa icon-{{cartridgeType}} fa-inbox "></i>
                         </div>
                         <h2 class="truncate">{{displayName}} </h2>
 
@@ -172,7 +202,7 @@
             /**
              * Function to handle hiding and showing the JSON form
              */
-            $('#editortoggle').click(function () {
+            $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
                 if (isForm) {
 
                     changeDisplayMode('#textform', '#jsonform');
@@ -191,7 +221,12 @@
                     changeBoxHeight();
                     // Fire a change event to force revalidation
                     editor.onChange();
-                    console.log($('textarea#jsoneditor').val())
+                }
+
+                if(state){
+                    $('.auto-correct').css({"display":"block"});
+                }else{
+                    $('.auto-correct').css({"display":"none"});
                 }
             });
 
@@ -206,17 +241,21 @@
                 //valiadate raw json and do validation
                 try {
                     var rawEditValidate = JSON.parse($('textarea#jsoneditor').val());
+                    $(this).addClass("has-success").removeClass('has-error');
+                    $('#deploy').prop('disabled', false);
                 } catch (e) {
                     $(this).addClass("has-error").removeClass('has-success');
+                    $('#deploy').prop('disabled', true);
                     return false;
                 }
 
-                if (rawEditValidate) {
-                    $(this).addClass("has-success").removeClass('has-error');
+                var autoCorrect = $('#auto-correct-check:checked').val();
+
+                if (rawEditValidate && autoCorrect ) {
+
                     editor.setValue(rawEditValidate);
                     editor.onChange();
                     if (event.keyCode == '13' || event.keyCode == '32') {
-
                     }else{
                         $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(), null, '\t'));
                     }
@@ -232,7 +271,6 @@
             var payload = editor.getValue();
             var btn = $(this);
             var formtype = '{{formContext}}';
-            console.log(btn),
                     btn.html("<i class='fa fa-spinner fa-spin'></i> Deploying...");
             $.ajax({
                 type: "POST",
@@ -253,8 +291,14 @@
                     .always(function () {
                         btn.html('Deploy');
                     });
-            console.log(payload);
+
         });//end of deploy button trigger
+
+        $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} );
+
+        $.fn.bootstrapSwitch.defaults.onText = 'JSON';
+        $.fn.bootstrapSwitch.defaults.offText = 'UI';
+        $("[name='my-checkbox']").bootstrapSwitch('state', false, true);
 
     });
 

@@ -12,7 +12,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
 
 /* index_sub_header partial related styles */
 .sub-header {
-    padding: 9px 15px;
+    padding: 1.643em 1.071em;
     border-bottom: 1px solid #d3d7db;
     border-top: 1px solid #eee;
     background: #f7f7f7;
@@ -20,7 +20,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     height: 40px;
     z-index: 99990;
     width: 100%;
-    margin-top: 4.429em;
+    margin-top: 3.429em;
 }
 .sub-header h2 {
     font-size: 18px;
@@ -162,3 +162,4 @@ h2.truncate {
 a.btn:hover {
     color: #fff;
 }
+.button-gap{margin-right: 10px}
