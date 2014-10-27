@@ -151,3 +151,14 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
 
 .no-item{margin-bottom: 5em;}
 .no-item h2{margin-bottom: 2em;}
+
+h2.truncate {
+    width: 11em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a.btn:hover {
+    color: #fff;
+}

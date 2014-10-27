@@ -30,12 +30,13 @@
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
                 {{#unless loadBalancer}}
-                    <a href="{{url ""}}/cartridges/subscribe/{{cartridgeType}}" class="block ">
+                    <a href="{{url ""}}/cartridges/subscribe/{{cartridgeType}}" class="">
                 {{/unless}}
-                <div class="col-md-4 grid-group-item border-right">
+                <div class="col-md-4 border-right block grid-group-item ">
                     <div class="toggle-menu-icon">
                         <i class="fa fa-tasks "></i>
                     </div>
+
                     {{#if loadBalancer}}
                         <h2>{{displayName}} - {{version}}</h2>
                         <div class="cartridge-description">{{description}}</div>
@@ -50,8 +51,6 @@
                         {{/if}}
                         <div class="toggle-menu-description">{{description}}</div>
                     {{/if}}
-
-
                 </div>
                 {{#unless loadBalancer}}
                 </a>

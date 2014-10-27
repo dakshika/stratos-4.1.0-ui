@@ -2,15 +2,15 @@
     <div id="centered">
         <div class="row title">
             <div class="title-main text-center">
-            {{#if isForm}}
-                {{#if isEdit}}
-                    <h1>{{formTitle}}</h1>
+                {{#if isForm}}
+                    {{#if isEdit}}
+                        <h1>{{formTitle}}</h1>
+                    {{else}}
+                        <h1>Add new {{formTitle}}</h1>
+                    {{/if}}
                 {{else}}
-                    <h1>Add new {{formTitle}}</h1>
+                    <h1>{{formTitle}}</h1>
                 {{/if}}
-            {{else}}
-                 <h1>{{formTitle}}</h1>
-            {{/if}}
             </div>
         </div>
         {{#if isForm}}
@@ -41,16 +41,17 @@
                         </div>
                     </div>
                     <div class="col-md-7 col-sm-3 text-right">
-                        <a type="button" class="btn btn-primary btn-lg add-button" href="new/">Add New {{buttonText}}</a>
+                        <a type="button" class="btn btn-primary btn-lg add-button" href="new/">Add
+                            New {{buttonText}}</a>
                     </div>
                 </div>
             {{else}}
-            <div class="row no-item row-overide">
-                <div class="row title">
-                    <h2>No {{formTitle}} found..</h2>
-                    <a type="button" class="btn btn-primary btn-lg" href="new/">Add New {{formTitle}}</a>
+                <div class="row no-item row-overide">
+                    <div class="row title">
+                        <h2>No {{formTitle}} found..</h2>
+                        <a type="button" class="btn btn-primary btn-lg" href="new/">Add New {{formTitle}}</a>
+                    </div>
                 </div>
-            </div>
             {{/if}}
 
             <div class="row general-table row-overide">
@@ -59,7 +60,8 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-gears "></i>
                         </div>
-                        <h2>{{autoscalingPolicyName}} </h2>
+                        <h2 class="truncate">{{autoscalingPolicyName}} </h2>
+
                         <div class="toggle-menu-description">{{cartridgeType}}</div>
 
                     </div>
@@ -69,7 +71,8 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-tasks"></i>
                         </div>
-                        <h2>{{displayName}} </h2>
+                        <h2 class="truncate">{{displayName}} </h2>
+
                         <div class="toggle-menu-description">{{description}}</div>
 
                     </div>
@@ -79,28 +82,29 @@
                         <div class="toggle-menu-icon">
                             <i class="fa fa-road "></i>
                         </div>
-                        <h2>{{id}} </h2>
-                        <div class="toggle-menu-description">Define partitions/partition groups to be used in autoscaling and deployment policies. </div>
-                        <div class="toggle-menu-button">
-                            <button type="button" class="btn btn-primary" >Remove</button>
-                        </div>
+                        <h2 class="truncate">{{id}} </h2>
+
+                        <div class="toggle-menu-description">{{description}}</div>
                     </div>
                 {{/each}}
                 {{#each content_body.sections.autoscalePolicy}}
-                <div class="block col-md-4 grid-group-item border-right">
-                   <div class="toggle-menu-icon">
-                       <i class="fa fa-expand "></i>
-                   </div>
-                   <h2>{{id}} </h2>
-                   <div class="toggle-menu-description">Define partitions/partition groups to be used in autoscaling and deployment policies. </div>
-                </div>
+                    <div class="block col-md-4 col-xs-4 grid-group-item border-right">
+                        <div class="toggle-menu-icon">
+                            <i class="fa fa-expand "></i>
+                        </div>
+                        <h2 class="truncate">{{id}} </h2>
+
+                        <div class="toggle-menu-description">{{description}}</div>
+                    </div>
                 {{/each}}
                 {{#each content_body.sections.partition}}
-                    <a href="{{url ""}}/configure/partitions/{{id}}/" class="block col-md-4 grid-group-item border-right">
+                    <a href="{{url ""}}/configure/partitions/{{id}}/"
+                       class="block col-md-4 grid-group-item border-right">
                         <div class="toggle-menu-icon">
                             <i class="fa fa-th-large"></i>
                         </div>
-                        <h2>{{id}} </h2>
+                        <h2 class="truncate">{{id}} </h2>
+
                         <div class="toggle-menu-description">{{description}} </div>
                         <!--<div class="toggle-menu-button">
                             <button type="button" class="btn btn-primary" >Remove</button>
@@ -113,138 +117,145 @@
 {{/if}}
 <script>
 
-    $(document).ready(function() {
-{{#if isForm}}
-        // Set the default CSS theme and icon library globally
-        JSONEditor.defaults.theme = 'bootstrap3';
-        JSONEditor.defaults.iconlib = 'fontawesome4';
-        JSONEditor.defaults.show_errors = "always";
+    $(document).ready(function () {
+        {{#if isForm}}
+            // Set the default CSS theme and icon library globally
+            JSONEditor.defaults.theme = 'bootstrap3';
+            JSONEditor.defaults.iconlib = 'fontawesome4';
+            JSONEditor.defaults.show_errors = "always";
 
-        // This is the starting value for the editor
-        // We will use this to seed the initial editor
-        // and to provide a "Restore to Default" button.
-    {{#if isEdit}}
-        var starting_value = {{{formDataEdit}}};
-    {{else}}
-        var starting_value = {{{formDataRaw}}};
-    {{/if}}
+            // This is the starting value for the editor
+            // We will use this to seed the initial editor
+            // and to provide a "Restore to Default" button.
+            {{#if isEdit}}
+                var starting_value = {{{formDataEdit}}};
+            {{else}}
+                var starting_value = {{{formDataRaw}}};
+            {{/if}}
 
-        // Initialize the editor
-        var editor = new JSONEditor(document.getElementById('textform'), {
-            // Enable fetching schemas via ajax
-            ajax: false,
-            disable_edit_json: true,
-            //  disable_properties:true,
-            // The schema for the editor
-            schema: {{{formData}}},
-            format: "grid",
+            // Initialize the editor
+            var editor = new JSONEditor(document.getElementById('textform'), {
+                // Enable fetching schemas via ajax
+                ajax: false,
+                disable_edit_json: true,
+                //  disable_properties:true,
+                // The schema for the editor
+                schema: {{{formData}}},
+                format: "grid",
 
-            // Seed the form with a starting value
-          startval: starting_value
-        });
-    {{#if isEdit}}
-    editor.disable();
-    {{/if}}
-        // Hook up the submit button to log to the console
-        document.getElementById('editortoggle').addEventListener('click', function () {
-            // Get the value from the editor
-            console.log(editor.getValue());
-        });
+                // Seed the form with a starting value
+                startval: starting_value
+            });
 
-        // Hook up the Restore to Default button
-        //    document.getElementById('restore').addEventListener('click',function() {
-        //        editor.setValue(starting_value);
-        //    });
-
-        //    Hook up the validation indicator to update its
-        //    status whenever the editor changes
-        editor.on('change', function () {
-            // Get an array of errors from the validator
-            var errors = editor.validate();
-            console.log(errors);
-            //       var indicator = document.getElementById('valid_indicator');
-
-//        // Not valid
-//        if(errors.length) {
-//            indicator.className = 'label alert';
-//            indicator.textContent = 'not valid';
-//        }
-//        // Valid
-//        else {
-//            indicator.className = 'label success';
-//            indicator.textContent = 'valid';
-//        }
-        });
-
-        /**
-         * Function to handle hiding and showing the JSON form
-         */
-        $('#editortoggle').click(function () {
-            if (isForm) {
-
-                changeDisplayMode('#textform', '#jsonform');
-                $('#editortoggle').text('Form View');
-                isForm = false;
-                changeBoxHeight();
-                $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(),null,'\t' ));
-                console.log('click once')
-            } else {
-
-                changeDisplayMode('#jsonform', '#textform');
-                $('#editortoggle').text('JSON Editor');
-                editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
-                isForm = true;
-                changeBoxHeight();
-                // Fire a change event to force revalidation
-                editor.onChange();
-                console.log($('textarea#jsoneditor').val())
+            JSONEditor.prototype.showErrors = function () {
+                this.setOption('show_errors', 'always');
             }
-        });
+            {{#if isEdit}}
+                editor.disable();
+            {{/if}}
+
+            //    Hook up the validation indicator to update its
+            //    status whenever the editor changes
+            editor.on('change', function () {
+                // Get an array of errors from the validator
+                var errors = editor.validate();
+                if (errors.length) {
+                    for (var i = 0; i < errors.length; i++) {
+                        var n = noty({text: errors[i].message + ' in ' + errors[i].path, layout: 'bottomRight',
+                            type: 'error', timeout: 2000});
+                    }
+
+                }
+
+            });
+
+            /**
+             * Function to handle hiding and showing the JSON form
+             */
+            $('#editortoggle').click(function () {
+                if (isForm) {
+
+                    changeDisplayMode('#textform', '#jsonform');
+                    $('#editortoggle').text('Form View');
+                    isForm = false;
+                    changeBoxHeight();
+                    $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(), null, '\t'));
+                    console.log('click once')
+                } else {
+
+                    changeDisplayMode('#jsonform', '#textform');
+                    $('#editortoggle').text('JSON Editor');
+                    editor.validate();
+                    editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
+                    isForm = true;
+                    changeBoxHeight();
+                    // Fire a change event to force revalidation
+                    editor.onChange();
+                    console.log($('textarea#jsoneditor').val())
+                }
+            });
 
 
-        // Finding the height of the rendered form, and setting the JSON
-        // editor to the same height
-        var formHeight = $('#textform').height();
-        $('#jsoneditor').css('height', formHeight);
+            // Finding the height of the rendered form, and setting the JSON
+            // editor to the same height
+            var formHeight = $('#textform').height();
+            $('#jsoneditor').css('height', formHeight);
 
-        //track json editor text view changes
-        $('#jsoneditor').bind('input propertychange', function() {
-            editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
-            // Fire a change event to force revalidation
-            editor.onChange();
+            //handle changes happens on json editor
+            $('textarea#jsoneditor').on('keyup', function (event) {
+                //valiadate raw json and do validation
+                try {
+                    var rawEditValidate = JSON.parse($('textarea#jsoneditor').val());
+                } catch (e) {
+                    $(this).addClass("has-error").removeClass('has-success');
+                    return false;
+                }
 
-        });
-{{/if}}
+                if (rawEditValidate) {
+                    $(this).addClass("has-success").removeClass('has-error');
+                    editor.setValue(rawEditValidate);
+                    editor.onChange();
+                    if (event.keyCode == '13' || event.keyCode == '32') {
 
-        $('#deploy').click(function(){
+                    }else{
+                        $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(), null, '\t'));
+                    }
 
-            var payload =  editor.getValue();
+                }
+
+            });
+
+        {{/if}}
+
+        $('#deploy').click(function () {
+
+            var payload = editor.getValue();
             var btn = $(this);
             var formtype = '{{formContext}}';
             console.log(btn),
-            btn.html("<i class='fa fa-spinner fa-spin'></i> Deploying...");
+                    btn.html("<i class='fa fa-spinner fa-spin'></i> Deploying...");
             $.ajax({
                 type: "POST",
                 url: caramel.context + "/controllers/configure/configure_requests.jag",
                 dataType: 'json',
-                data: { "formPayload": JSON.stringify(payload) , "formtype": formtype },
-                success:function(data){
+                data: { "formPayload": JSON.stringify(payload), "formtype": formtype },
+                success: function (data) {
                     console.log(data);
-                    if(data.status == 'error'){
-                        var n = noty({text: data.message, layout:'bottomRight',type: 'error'});
-                    }else if(data.status == 'warning'){
-                        var n = noty({text: data.message, layout:'bottomRight',type: 'warning'});
-                    }else{
-                        var n = noty({text: data.message , layout:'bottomRight',type: 'success'});
+                    if (data.status == 'error') {
+                        var n = noty({text: data.message, layout: 'bottomRight', type: 'error'});
+                    } else if (data.status == 'warning') {
+                        var n = noty({text: data.message, layout: 'bottomRight', type: 'warning'});
+                    } else {
+                        var n = noty({text: data.message, layout: 'bottomRight', type: 'success'});
                     }
                 }
             })
-            .always(function () {
-                btn.html('Deploy');
-            });
+                    .always(function () {
+                        btn.html('Deploy');
+                    });
             console.log(payload);
         });//end of deploy button trigger
 
-        });
+    });
 
 </script>

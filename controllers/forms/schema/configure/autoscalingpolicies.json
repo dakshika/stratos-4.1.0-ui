@@ -1,20 +1,37 @@
 {
     "type":"object",
-    "$schema": "http://json-schema.org/draft-03/schema",
+    "$schema": "http://json-schema.org/draft-04/schema",
     "id": "root",
-    "required":false,
     "title":"Auto Scaling Policy Definition",
     "name": "Auto Scaling Policy",
     "options": {
-        "disable_properties": true
+        "disable_properties": true,
+        "disable_collapse": true
     },
+    "required" : ["id", "loadThresholds"],
     "properties":{
         "id": {
             "type":"string",
             "id": "root/id",
             "title":"Auto Scale policy ID",
-            "default": "economy",
-            "required":false
+            "minLength":4,
+            "default":"Policy name",
+            "maxItems":1
+        },
+        "description": {
+            "type":"string",
+            "id": "root/description",
+            "title": "Description",
+            "name": "Description",
+            "maxItems":1
+        },
+        "isPublic": {
+            "type":"boolean",
+            "id": "root/isPublic",
+            "title": "Is Public",
+            "name": "Is Public",
+            "default": false,
+            "maxItems":1
         },
         "loadThresholds": {
             "type":"object",
@@ -25,27 +42,32 @@
                 "disable_properties": true
             },
             "properties":{
-                "loadAverage": {
+                "requestsInFlight": {
                     "type":"object",
-                    "title":"Load Average",
-                    "id": "root/loadThresholds/loadAverage",
-                    "required":["lowerLimit", "upperLimit"],
+                    "id": "root/loadThresholds/requestsInFlight",
+                    "title": "Requests In Flight",
+                    "name": "Requests In Flight",
                     "format": "grid",
                     "options": {
                         "disable_properties": true,
-                        "collapsed": true
+                        "collapsed": false
                     },
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/loadAverage/lowerLimit",
-                            "default":20,
-                            "format": "number"
+                            "id": "root/loadThresholds/requestsInFlight/lowerLimit",
+                            "title": "Lower Limit",
+                            "name": "Lower Limit",
+                            "default":5,
+                            "format": "number",
+                            "required":false
                         },
                         "upperLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/loadAverage/upperLimit",
-                            "default":100,
+                            "id": "root/loadThresholds/requestsInFlight/upperLimit",
+                            "title": "Upper Limit",
+                            "name": "Upper Limit",
+                            "default":30,
                             "format": "number",
                             "required":false
                         }
@@ -54,16 +76,19 @@
                 "memoryConsumption": {
                     "type":"object",
                     "id": "root/loadThresholds/memoryConsumption",
+                    "title": "Memory Consumption",
+                    "name": "Memory Consumption",
                     "format": "grid",
                     "options": {
                         "disable_properties": true,
-                        "collapsed": true
+                        "collapsed": false
                     },
-                    "required":["lowerLimit", "upperLimit"],
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
                             "id": "root/loadThresholds/memoryConsumption/lowerLimit",
+                            "title": "Lower Limit",
+                            "name": "Lower Limit",
                             "default":50,
                             "format": "number",
                             "required":false
@@ -71,38 +96,47 @@
                         "upperLimit": {
                             "type":"number",
                             "id": "root/loadThresholds/memoryConsumption/upperLimit",
+                            "title": "Upper Limit",
+                            "name": "Upper Limit",
                             "default":80,
                             "format": "number",
                             "required":false
                         }
                     }
                 },
-                "requestsInFlight": {
+                "loadAverage": {
                     "type":"object",
-                    "id": "root/loadThresholds/requestsInFlight",
-                    "required":["lowerLimit", "upperLimit"],
+                    "id": "root/loadThresholds/loadAverage",
+                    "title": "Load Average",
+                    "name": "Load Average",
                     "format": "grid",
                     "options": {
                         "disable_properties": true,
-                        "collapsed": true
+                        "collapsed": false
                     },
                     "properties":{
                         "lowerLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/requestsInFlight/lowerLimit",
-                            "default":5,
+                            "id": "root/loadThresholds/loadAverage/lowerLimit",
+                            "title": "Lower Limit",
+                            "name": "Lower Limit",
+                            "default":20,
                             "format": "number",
                             "required":false
                         },
                         "upperLimit": {
                             "type":"number",
-                            "id": "root/loadThresholds/requestsInFlight/upperLimit",
-                            "default":30,
+                            "id": "root/loadThresholds/loadAverage/upperLimit",
+                            "title": "Upper Limit",
+                            "name": "Upper Limit",
+                            "default":100,
                             "format": "number",
                             "required":false
                         }
                     }
                 }
+
+
             }
         }
     }

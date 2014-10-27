@@ -26,8 +26,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_title',
                     context:{
-                        page_title:'Apache Stratos Home',
-                        page_description:'Apache Stratos Home'
+                        page_title:'Apache Stratos - User Managment',
+                        page_description:'Apache Stratos - User Managment'
                     }
                 }
             ],

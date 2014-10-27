@@ -19,47 +19,25 @@
  * under the License.
  *
  */
-//add login validator for pages
 include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
 
-var log = new Log("apacheStratos.mycartridges");
-var error = [],
-        caramel = require('caramel'),
+var log = new Log("apacheStratos.wizard");
+var error = [];
+var caramel = require('caramel'),
         context = caramel.configs().context,
         menuJson = require('/controllers/menu/menu.json'),
-        userPermissions = session.get('PERMISSIONS'),
-        uriMatcher = new URIMatcher(request.getRequestURI()),
-        cartridgeHtml = '',
-        util = require('/controllers/rest/rest_calls.jag');
-var myCartridgeInfo, myCartridgeInfoStatus;
+        userPermissions = session.get('PERMISSIONS');
 
 //create left menu
 var leftMenu = menuGenerator(context, menuJson.menu, userPermissions);
-
-elements = uriMatcher.match('/{context}/mycartridges/{formtype}/{aliasType}')
-
-if (elements != null) {
-    cartridgeAlias = elements.aliasType;
-    myCartridgeInfoStatus = true;
-    try {
-        myCartridgeInfo = util.RESTCalls.getCartridgeInfo(cartridgeAlias);
-        for (specNumber in myCartridgeInfo.cartridge) {
-            log.info(myCartridgeInfo.cartridge[specNumber])
-            cartridgeHtml +='<tr><td>' + specNumber +' </td><td>'+ myCartridgeInfo.cartridge[specNumber] + '</td></tr>';
-        }
-    } catch (e) {
-
-    }
-} else {
-    myCartridgeInfoStatus = false;
-}
+//create metro block
+var metroMenu = metroGenerator('/', menuJson.menu, userPermissions);
 
 caramel.render({
-    error: error,
-    breadcrumbPathLevelOne: 'mycartridges',
+    metro_menu: metroMenu,
     left_menu: leftMenu,
-    myCartridgeInfo: cartridgeHtml
+    error: error
 });
 
 %>

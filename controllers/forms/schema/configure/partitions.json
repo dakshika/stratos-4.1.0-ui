@@ -4,47 +4,54 @@
     "id": "root",
     "title": "Partition Definition",
     "name": "Partition",
-    "required":true,
     "options": {
-        "disable_properties": true
+        "disable_properties": true,
+        "disable_collapse": true
     },
+    "required" : ["id","provider","property"],
     "properties":{
         "id": {
             "type":"string",
             "title": "Partition ID",
             "name": "Partition ID",
-            "description": "ID for partition",
             "id": "root/id",
             "default": "P1",
-            "required":true
-        },
-        "provider": {
-            "type":"string",
-            "id": "root/provider",
-            "default": "ec2",
-            "required":true
+            "maxItems":1
         },
         "description": {
             "type":"string",
             "id": "root/description",
-            "required":true
+            "title": "Description",
+            "name": "Description",
+            "maxItems":1
+        },
+        "isPublic": {
+            "type":"boolean",
+            "id": "root/isPublic",
+            "title": "Is Public",
+            "name": "Is Public",
+            "default": false,
+            "maxItems":1
+        },
+        "provider": {
+            "type":"string",
+            "id": "root/provider",
+            "title": "Provider",
+            "name": "Provider",
+            "default": "ec2",
+            "enum": ["ec2", "openstack", "vcloud"],
         },
         "property": {
             "readonly":true,
             "type":"array",
             "id": "root/property",
-            "options":{
-                "no_additional_properties":true
-            },
             "items":[
                 {
                     "type":"object",
                     "id": "root/property/0",
                     "format": "grid",
-                    "options":{
-                        "no_additional_properties":true
-                    },
-                    "properties":{
+                    "required":["name", "value"],
+                        "properties":{
                         "name": {
                             "type":"string",
                             "id": "root/property/0/name",

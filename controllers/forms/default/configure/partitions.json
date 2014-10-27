@@ -1,5 +1,7 @@
 {
     "id": "P1",
+    "description":"partition description",
+    "isPublic":false,
     "provider": "ec2",
     "property": [
         {

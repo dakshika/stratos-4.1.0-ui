@@ -33,7 +33,7 @@ var log = new Log("apachestratos.configure_form"),
         uriMatcher = new URIMatcher(request.getRequestURI()),
         elements = uriMatcher.match('/{context}/configure/{formtype}/'),
         breadcrumbPathLevelOne = 'configure',
-        formDataEdit='',
+        formDataEdit = '',
         isEdit = false,
         isForm = false;
 
@@ -45,7 +45,7 @@ if (!elements) {
     elements = uriMatcher.match('/{context}/configure/{formtype}/{action}/');
     isForm = true;
 
-    if(elements.action !='new'){
+    if (elements.action != 'new') {
         isEdit = true;
 
         log.info(elements)
@@ -57,18 +57,18 @@ var formData = require('controllers/forms/schema/configure/' + elements.formtype
         formTitle = formData.title,
         buttonText = formData.name;
 
-if(elements.action !='new'){
-    formTitle ='Partition - ' + elements.action;
+if (elements.action != 'new' && isEdit) {
+    formTitle = 'Partition Details - ' + elements.action;
 }
 
 if (elements.formtype == 'partitions') {
     list_data = util.RESTCalls.getPartitions();
     if (list_data.partition && list_data.partition.length === 0) {
         list_data = null;
-    }else{
+    } else {
         formDataEdit = list_data.partition;
         for (specNumber in list_data.partition) {
-            if(list_data.partition[specNumber].id == elements.action){
+            if (list_data.partition[specNumber].id == elements.action) {
                 formDataEdit = list_data.partition[specNumber];
             }
 
@@ -112,7 +112,7 @@ if (elements.formtype == 'partitions') {
 }
 
 //check user has permission to access endpoints
-if(list_data.hasOwnProperty('Error')){
+if (list_data.hasOwnProperty('Error')) {
     error.push(list_data.Error);
 }
 
@@ -121,14 +121,14 @@ var finalHtml = "<div class='container' id='content'>";
 finalHtml += "<div class='row'>" +
         "<div class='container text-center form-toolbar'>" +
         "<div class='col-md-4'><button class='btn btn-default btn-lg' type='button' onclick='history.back(-1)'> Cancel</button></div>";
-if(!isEdit){
-    finalHtml +=        "<div class='col-md-4'><button class='btn btn-warning btn-lg' type='button' id='editortoggle'>JSON Editor</button></div>" +
+if (!isEdit) {
+    finalHtml += "<div class='col-md-4'><button class='btn btn-warning btn-lg' type='button' id='editortoggle'>JSON Editor</button></div>" +
             "<div class='col-md-4'><button class='btn btn-info btn-lg' type='button' id='deploy' data-form='" + elements.formtype +
             "'> Deploy</button></div>";
 }
 
 
-        finalHtml +=        "</div>" +
+finalHtml += "</div>" +
         "</div>";
 
 finalHtml += "<div class='form' action='#' id='textform'></div>";
@@ -145,14 +145,13 @@ var caramelData = {
     breadcrumbPathLevelTwo: elements.formtype,
     left_menu: leftMenu,
     isForm: isForm,
-    isEdit:isEdit,
-    formDataEdit:JSON.stringify(formDataEdit),
+    isEdit: isEdit,
+    formDataEdit: JSON.stringify(formDataEdit),
     formHtml: finalHtml,
     formTitle: formTitle,
     formDataRaw: JSON.stringify(formDataRaw),
-    //formDataRaw: JSON.stringify(partition_data.partition[0]),
     formData: JSON.stringify(formData),
-    buttonText:buttonText,
+    buttonText: buttonText,
     list_data: list_data,
     error: error
 }

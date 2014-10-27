@@ -26,8 +26,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_title',
                     context:{
-                        page_title:'Apache Stratos - My Cartrides',
-                        page_description:'Apache Stratos - My Cartrides'
+                        page_title:'Apache Stratos Wizard',
+                        page_description:'Apache Stratos Wizard'
                     }
                 }
             ],
@@ -35,18 +35,17 @@ var render = function (theme, data, meta, require) {
                 {
                     partial: 'index_header',
                     context:{
-                        user_name:'admin@wso2.com'
                     }
                 }
             ],
             sub_header:[
-                {
-                    partial:'index_sub_header',
-                    context:{
-                        breadcrumbPathLevelOne:data.breadcrumbPathLevelOne,
-                        breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
-                    }
+            {
+                partial:'index_sub_header',
+                context:{
+                    breadcrumbPathLevelOne:'wizard',
+                    breadcrumbPathLevelTwo:data.breadcrumbPathLevelTwo
                 }
+            }
             ],
             left_menu:[
                 {
@@ -60,21 +59,17 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_right_menu_help',
                     context:{
-
                     }
                 }
             ],
             content: [
 
                 {
-                    partial: 'my_cartridges',
+                    partial: 'wizard',
                     context:{
-                        content_title:'My Cartridges',
-                        content_body:{
-                            sections:data.myCartridges,
-                            myCartridgeInfoStatus: data.myCartridgeInfoStatus,
-                            myCartridgeInfo: data.myCartridgeInfo
-                        }
+                        content_menu:'links',
+                        content_title:'Configuration Wizard',
+                        content_body:{sections: data.metro_menu}
 
                     }
                 }
@@ -82,6 +77,7 @@ var render = function (theme, data, meta, require) {
         });
 
     }else{
+
         theme('index', {
             page_meta: [
                 {
