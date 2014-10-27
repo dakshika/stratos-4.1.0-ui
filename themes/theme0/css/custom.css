@@ -163,3 +163,27 @@ a.btn:hover {
     color: #fff;
 }
 .button-gap{margin-right: 10px}
+
+.bottom-bar {
+    position: absolute;
+    width: 100%;
+    height: 77px;
+    background-color: rgba(161, 166, 173, 0.5);
+    margin: -45px -21px;
+    overflow: hidden;
+    bottom: -32px;
+}
+
+.bottom-bar-wrapper {
+    height: 5em;
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    margin: 0px -20px;
+    padding: 20px;
+    bottom: -19px;
+}
+
+.hover-subscribe {
+    margin-top: 0.7em;
+}

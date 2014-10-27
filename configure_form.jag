@@ -112,7 +112,7 @@ if (elements.formtype == 'partitions') {
 }
 
 //check user has permission to access endpoints
-if (list_data.hasOwnProperty('Error')) {
+if (list_data != null && list_data.hasOwnProperty('Error')) {
     error.push(list_data.Error);
 }
 
