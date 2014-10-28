@@ -38,11 +38,15 @@ var log = new Log("apachestratos.cartridge_form"),
 //create left menu
 var leftMenu = menuGenerator(context, menuJson.menu, userPermissions);
 
+try {
+    var autoScalePolicies = util.RESTCalls.getAutoScalePolicies();
+    var deploymentPolicies = util.RESTCalls.getApplicableDeploymentPolicies(elements.cartridgeType);
+    var mtServiceInfo = util.RESTCalls.getServiceInfo(elements.cartridgeType);
+    var cartridge = util.RESTCalls.getSingleTenantCartridgeInfo(elements.cartridgeType);
+}catch (e){
+    log.info(e);
+}
 
-var autoScalePolicies = util.RESTCalls.getAutoScalePolicies();
-var deploymentPolicies = util.RESTCalls.getApplicableDeploymentPolicies(elements.cartridgeType);
-var mtServiceInfo = util.RESTCalls.getServiceInfo(elements.cartridgeType);
-var cartridge = util.RESTCalls.getSingleTenantCartridgeInfo(elements.cartridgeType);
 var autoScalePoliciesEnum = [],deploymentPoliciesEnum=[];
 
 var formData = require('controllers/forms/schema/cartridges/' + elements.formtype + '.json'),
@@ -62,7 +66,7 @@ if(autoScalePolicies.Error != undefined ){
 
 if(deploymentPolicies == null || deploymentPolicies == undefined || deploymentPolicies == ""){
     deploymentPolicies = {};
-}else{
+}else if(deploymentPolicies.hasOwnProperty('deploymentPolicy')){
     for (var i = 0; i < deploymentPolicies.deploymentPolicy.length; i++) {
         deploymentPoliciesEnum.push(deploymentPolicies.deploymentPolicy[i].id);
     }
