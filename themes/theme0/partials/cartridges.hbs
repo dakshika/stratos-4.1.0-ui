@@ -30,7 +30,7 @@
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
                 {{#unless loadBalancer}}
-                    <div data-url="{{url ""}}/cartridges/subscribe/{{cartridgeType}}" class="data-url">
+                <div data-url="{{url ""}}/cartridges/subscribe/{{cartridgeType}}" class="data-url">
                 {{/unless}}
                 <div class="col-md-4 border-right block grid-group-item ">
                     <div class="toggle-menu-icon">
@@ -40,6 +40,7 @@
                     {{#if loadBalancer}}
 
                         <h2>{{displayName}} - {{version}}</h2>
+
                         <div class="cartridge-description">{{description}}</div>
                         <div class="lb-description">This will be auto subscribed for you</div>
 
@@ -51,10 +52,12 @@
                             Single Tenant
                         {{/if}}
                         <div class="toggle-menu-description">{{description}}</div>
-                    <div class="bottom-bar-wrapper">
-                        <div class="bottom-bar">
-                            <button class="btn btn-info btn-lg hover-subscribe" type="button" id="subscribe" data-form=""> Subscribe</button>
-                        </div>
+                        <div class="bottom-bar-wrapper">
+                            <div class="bottom-bar">
+                                <button class="btn btn-info btn-lg hover-subscribe" type="button" id="subscribe"
+                                        data-form=""> Subscribe
+                                </button>
+                            </div>
                         </div>
                     {{/if}}
                 </div>
@@ -68,15 +71,15 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('.general-table div.data-url').click(function(){
+    $(document).ready(function () {
+        $('.general-table div.data-url').click(function () {
             window.location = $(this).attr("data-url");
         });
 
-        $('.general-table .grid-group-item').hover(function(){
-            $(this).find('.bottom-bar').stop().animate({bottom:'37px'},'slow');
-        },function(){
-            $(this).find('.bottom-bar').stop().animate({bottom:'-32px'},'slow');
+        $('.general-table .grid-group-item').hover(function () {
+            $(this).find('.bottom-bar').stop().animate({bottom: '37px'}, 'slow');
+        }, function () {
+            $(this).find('.bottom-bar').stop().animate({bottom: '-32px'}, 'slow');
         })
     });
 

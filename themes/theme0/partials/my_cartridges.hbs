@@ -22,7 +22,8 @@
             </div>
         <div class="row general-table row-overide">
             {{#each content_body.sections}}
-                <a href="{{url ""}}/mycartridges/info/{{cartridgeAlias}}" class="">
+                <div data-url="{{url ""}}/mycartridges/info/{{cartridgeAlias}}" class="data-url">
+
                 <div class="col-md-4 block grid-group-item border-right">
                     <div class="toggle-menu-icon">
                         <i class="fa icon-{{cartridgeType}} fa-inbox"></i>
@@ -39,9 +40,20 @@
                             Single Tenant
                         {{/if}}
                         <div class="toggle-menu-description">{{description}}</div>
+                        <div class="bottom-bar-wrapper">
+                            <div class="bottom-bar">
+                                <button class="btn btn-info btn-lg hover-vide" type="button" id="subscribe"
+                                        data-form=""> View
+                                </button>
+                                <button class="btn btn-info btn-lg hover-unsubscribe" type="button" id="subscribe"
+                                                 data-form=""> Unsubscribe
+                                </button>
+
+                            </div>
+                        </div>
                     {{/if}}
                 </div>
-                </a>
+                </div>
             {{/each}}
 
         </div>
@@ -56,3 +68,18 @@
         {{/if}}
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.general-table div.data-url').click(function () {
+            window.location = $(this).attr("data-url");
+        });
+
+        $('.general-table .grid-group-item').hover(function () {
+            $(this).find('.bottom-bar').stop().animate({bottom: '37px'}, 'slow');
+        }, function () {
+            $(this).find('.bottom-bar').stop().animate({bottom: '-32px'}, 'slow');
+        })
+    });
+
+</script>
