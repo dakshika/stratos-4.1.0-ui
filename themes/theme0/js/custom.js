@@ -14,7 +14,8 @@ var slideWindow = '.slidewindow',
 
 // menu veriables
 var slideWindowMenu = slideWindow+' '+'.menu',
-    slideWindowMenuButton = slideWindowMenu+' '+'.fa-angle-down';
+    slideWindowMenuButton = slideWindowMenu+' '+'.fa-angle-down',
+    breadcrumb = '.sub-header';
 
 // tab specific veriables
 var tabContainer = '.tab-container',
@@ -51,7 +52,17 @@ $(window).load(function(){
         }
          
     });
-    
+
+	// open menu if current page is not home page    
+    var currentPage = $(location).attr('pathname').toLowerCase();
+	$(slideWindowMenu+' li a').each(function(){
+		if($(this).attr('href').toLowerCase() == currentPage){
+			$(this).closest(slideWindow).css('left', '0');
+	        $(this).closest(slideWindow).children().find(slideWindowButton).css('z-index', 100);
+	        $(this).closest('ul').show();
+		}
+	});
+    	
     // function to handle window slide
     $(slideWindowButton).click(function(){
         
