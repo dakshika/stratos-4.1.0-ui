@@ -143,7 +143,7 @@
 .grid-group-item{
     padding: 1.5em;
     min-height: 21.429em;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .grid-group-item i{
