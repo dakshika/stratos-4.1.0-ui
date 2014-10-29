@@ -12,19 +12,17 @@ var slideWindow = '.slidewindow',
         else {return 'left';}// default window position 'left' 
     };
 
-// menu veriables
+// menu variables
 var slideWindowMenu = slideWindow+' '+'.menu',
-    slideWindowMenuButton = slideWindowMenu+' '+'.fa-angle-down',
-    breadcrumb = '.sub-header';
+    slideWindowMenuButton = slideWindowMenu+' '+'.fa-angle-down,'+slideWindowMenu+' '+'.fa-angle-up';
 
-// tab specific veriables
+// tab specific variables
 var tabContainer = '.tab-container',
     tab = '.tab',
     tabHandles = '.tab-handles',
     tabButtonAction,
     tabContent,
     tabClosed = true;
-    
 
 $(window).load(function(){
     
@@ -32,9 +30,27 @@ $(window).load(function(){
     // Slide Window Function
     //********************************************// 
     
-    // hidding slide windows on page laod
+	var currentPage = $(location).attr('pathname').toLowerCase(),
+		menuOpened = false;
+     
     $(slideWindow).each(function(){
         
+    	// open sub-menu if current page is not home page
+    	$(slideWindowMenu+' li a').each(function(){
+    		if(($(this).attr('href').toLowerCase() == currentPage) && (menuOpened == false)){
+    	        if($(this).closest('ul').hasClass('menu')){
+    	        	$(this).siblings('ul').show();
+    	        	$(this).siblings('i').toggleClass('fa-angle-down fa-angle-up');
+    	        }
+    	        else{
+    	        	$(this).parents('ul').show();
+    	        	$(this).parents('ul').siblings('i').toggleClass('fa-angle-down fa-angle-up');
+    	        }
+    	        menuOpened = true;
+    		}
+    	});
+
+    	// hiding slide windows on page load
         if (getSlideWindowPosition(this) == 'left'){
             $(this).css('top', leftOffset);
             leftOffset = leftOffset + 55;
@@ -52,16 +68,6 @@ $(window).load(function(){
         }
          
     });
-
-	// open menu if current page is not home page    
-    var currentPage = $(location).attr('pathname').toLowerCase();
-	$(slideWindowMenu+' li a').each(function(){
-		if($(this).attr('href').toLowerCase() == currentPage){
-			$(this).closest(slideWindow).css('left', '0');
-	        $(this).closest(slideWindow).children().find(slideWindowButton).css('z-index', 100);
-	        $(this).closest('ul').show();
-		}
-	});
     	
     // function to handle window slide
     $(slideWindowButton).click(function(){
