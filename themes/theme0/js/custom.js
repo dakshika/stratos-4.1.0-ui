@@ -37,7 +37,7 @@ $(window).load(function(){
         
     	// open sub-menu if current page is not home page
     	$(slideWindowMenu+' li a').each(function(){
-    		if(($(this).attr('href').toLowerCase() == currentPage) && (menuOpened == false)){
+    		if((currentPage.indexOf($(this).attr('href').toLowerCase()) >= 0) && (menuOpened == false)){
     	        if($(this).closest('ul').hasClass('menu')){
     	        	$(this).siblings('ul').show();
     	        	$(this).siblings('i').toggleClass('fa-angle-down fa-angle-up');
