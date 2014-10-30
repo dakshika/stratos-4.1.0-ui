@@ -7,7 +7,6 @@
     "description":"LB Cartridge",
     "version":"4",
     "defaultAutoscalingPolicy":"economyPolicy",
-    "multiTenant":"false",
     "portMapping":[
         {
             "protocol":"http",

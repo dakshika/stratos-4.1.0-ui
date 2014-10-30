@@ -81,14 +81,6 @@
             "default": "economyPolicy",
             "required": false
         },
-        "multiTenant": {
-            "type": "boolean",
-            "id": "root/multiTenant",
-            "title": "Multi Tenant",
-            "name": "Multi Tenant",
-            "default": false,
-            "maxItems": 1
-        },
         "portMapping": {
             "type": "array",
             "id": "root/portMapping",
