@@ -1,4 +1,7 @@
-body{ background: url('../images/stratos_background.png')  no-repeat; background-position:top; background-attachment: fixed;  background-size:100% auto; background-color:#4872fd; height: 100%;width: 100%; font-family: 'Open Sans', san-serif; }h1{font-family: 'Open Sans', san-serif; color: rgb(255,255,255); text-shadow: 0 0 5px rgb(75,75,75); margin: 2em 0px; font-weight: 600 }
+body{ background: url('../images/stratos_background.png')  no-repeat; background-position:top; background-attachment: fixed;  background-size:100% auto; background-color:#4872fd; height: 100%;width: 100%; font-family: 'Open Sans', san-serif; }
+
+h1{ font-family: 'Open Sans', san-serif; color: rgb(255,255,255); text-shadow: 0 0 5px rgb(75,75,75); margin: 1em 0px; font-weight: 600 }
+
 .error-page{margin-top: 2em;}
 /* index_header partial related styles */
 .logo img { width: 140px; }
@@ -7,8 +10,9 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
 .navbar { border-radius: 0px; box-shadow:0 0 5px -1px rgb(100,100,100); margin-bottom: 0px; z-index: 99999; position: fixed; width: 100%; }
 .navbar-default { background: #fff; }
 .navbar-nav>li>a { padding: 5px; }
-.navbar-brand { float: left; height: 50px; padding: 6px 15px; font-size: 18px; line-height: 20px; }
-.navbar-nav{ margin: 0px }
+.navbar-brand { float: left; height: 50px; padding: 6px 15px; font-size: 18px; line-height: 20px; margin-left: 0; }
+.navbar-nav { margin: 0px }
+.navbar-menutoggle { float:left; font-size:22px; margin: 19px 15px 19px 3px; display: none; }
 
 .bootstrap-switch { z-index: 50; }
 
@@ -22,7 +26,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     height: 40px;
     z-index: 99990;
     width: 100%;
-    margin-top: 3.429em;
+    margin-top: 4em;
 }
 .sub-header h2 {
     font-size: 18px;
@@ -43,7 +47,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
 .slidewindow:after { clear: both; display: block; }
 .slidewindow .row { margin:0; }
 
-.slidewindow i.fa { line-height:22px; width: 22px; height: 22px; text-align: center; vertical-align: middle; }
+.slidewindow i.fa, .navbar-menutoggle { line-height:22px; width: 22px; height: 22px; text-align: center; vertical-align: middle; cursor: pointer;  }
 
 .slidewindow .tab-container, .slidewindow .tab-handles { float: left; }
 .slidewindow .tab-handles .slidewindow-handle { margin-bottom: 10px; }
@@ -88,13 +92,12 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
 	cursor:pointer;
 }
 
-
 /* menu box realted styles */
 .title{
-    margin-top: 3em;
+    margin-top: 4.5em;
 }
 .content{
-    background-color: #fff;box-shadow: 0 0 5px -1px rgb(100,100,100);
+    background-color: #fff; box-shadow: 0 0 5px -1px rgb(100,100,100);
 
 }
 
@@ -194,4 +197,100 @@ a.btn:hover {
 
 button.hover-unsubscribe, button.hover-details{
     margin-top: .7em;
+}
+
+@media (max-width: 470px){
+	.navbar-menutoggle { display: block; margin-left: 15px; }
+	.slidewindow { display: none; }
+	.menubar { display: block; }
+	.sub-header { display: none; }
+	h1, .h1 { font-size: 18px; }
+}
+
+@media (max-width: 768px){
+	
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #fff;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper .slidewindow {
+	position: static;
+	float: none;
+	margin-top: 0;
+	display: block;
+}
+
+#sidebar-wrapper .slidewindow-content {
+	float: none;
+	width: 100%;
+	box-shadow: inherit;	
+}
+
+#sidebar-wrapper .slidewindow-handle {
+	display: none;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
 }

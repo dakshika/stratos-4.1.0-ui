@@ -15,8 +15,8 @@
     <link rel="shortcut icon" href="{{url "/themes/theme0/images/favicon.png"}}">
     <link rel="stylesheet" href="{{url "/themes/theme0/css/web-fonts/open_sans.css"}}" type="text/css" >
     <link rel="stylesheet" href="{{url "/themes/theme0/css/bootstrap-3.2.0/bootstrap.min.css"}}" type="text/css" >
-    <link rel="stylesheet" href="{{url "/themes/theme0/css/custom.css"}}" type="text/css" >
     <link rel="stylesheet" href="{{url "/themes/theme0/css/font-awesome-4.2.0/font-awesome.min.css"}}" type="text/css" >
+    <link rel="stylesheet" href="{{url "/themes/theme0/css/custom.css"}}" type="text/css" >
     {{css .}}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,21 +28,38 @@
     <script type="text/javascript" src="{{url "/themes/theme0/js/jquery-1.11.1/jquery-1.11.1.js"}}"></script>
 </head>
 <body>
-{{include header}}
-{{include sub_header}}
-{{include left_menu}}
-{{include right_menu_help}}
-{{include right_menu_log}}
-<div class="container-fluid">
-{{include content}}
-</div>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-<script type="text/javascript" src="{{url "/themes/theme0/js/bootstrap-3.2.0/bootstrap.min.js"}}"></script>
-<script type="text/javascript" src="{{url "/themes/theme0/js/noty-2.2.9/noty-2.2.9.js"}}"></script>
-<script type="text/javascript" src="{{url "/themes/theme0/js/custom.js"}}"></script>
-{{js .}}
+	<div id="wrapper" class="toggled">
+
+       <!-- Sidebar -->
+       <div id="sidebar-wrapper" class="sidebar">
+           {{include left_menu}}
+       </div>
+       <!-- /#sidebar-wrapper -->
+
+       <!-- Page Content -->
+       <div id="page-content-wrapper">
+           	{{include header}}
+			{{include sub_header}}
+			{{include left_menu}}
+			{{include right_menu_help}}
+			{{include right_menu_log}}
+			<div class="container-fluid">
+				{{include content}}
+			</div>
+       </div>
+       <!-- /#page-content-wrapper -->
+
+   	</div>
+   	<!-- /#wrapper -->
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	
+	<script type="text/javascript" src="{{url "/themes/theme0/js/bootstrap-3.2.0/bootstrap.min.js"}}"></script>
+	<script type="text/javascript" src="{{url "/themes/theme0/js/noty-2.2.9/noty-2.2.9.js"}}"></script>
+	<script type="text/javascript" src="{{url "/themes/theme0/js/custom.js"}}"></script>
+    {{js .}}
 
 </body>
 </html>

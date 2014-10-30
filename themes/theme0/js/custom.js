@@ -32,8 +32,8 @@ $(window).load(function(){
     
 	var currentPage = $(location).attr('pathname').toLowerCase(),
 		menuOpened = false;
-     
-    $(slideWindow).each(function(){
+	
+    $(slideWindow+':not(#sidebar-wrapper > .slidewindow'+slideWindow+')').each(function(){
         
     	// open sub-menu if current page is not home page
     	$(slideWindowMenu+' li a').each(function(){
@@ -139,6 +139,15 @@ $(window).load(function(){
     // function to toggle hide/show menu options
     $(slideWindowMenuButton).click(function(){
         $(this).toggleClass('fa-angle-up fa-angle-down').siblings('ul').slideToggle();
+    });
+    
+    //********************************************// 
+    // Sidebar Menu Togle Function (For Low Size Screens)
+    //********************************************//
+    
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
     });
 
 });
