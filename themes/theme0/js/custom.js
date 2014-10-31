@@ -38,15 +38,15 @@ $(window).load(function(){
     	// open sub-menu if current page is not home page
     	$(slideWindowMenu+' li a').each(function(){
     		if((currentPage.indexOf($(this).attr('href').toLowerCase()) >= 0) && (menuOpened == false)){
-    	        if($(this).closest('ul').hasClass('menu')){
+    			if($(this).closest('ul').hasClass('menu')){
     	        	$(this).siblings('ul').show();
     	        	$(this).siblings('i').toggleClass('fa-angle-down fa-angle-up');
     	        }
-    	        else{
+    	        else if(currentPage.indexOf($(this).attr('href').toLowerCase()) !== 0){
     	        	$(this).parents('ul').show();
     	        	$(this).parents('ul').siblings('i').toggleClass('fa-angle-down fa-angle-up');
     	        }
-    	        menuOpened = true;
+    	        menuOpened = false;
     		}
     	});
 
@@ -142,7 +142,7 @@ $(window).load(function(){
     });
     
     //********************************************// 
-    // Sidebar Menu Togle Function (For Low Size Screens)
+    // Sidebar Menu Toggle Function (For Low Res Screens)
     //********************************************//
     
     $("#menu-toggle").click(function(e) {
