@@ -208,7 +208,6 @@
                     changeDisplayMode('#textform', '#jsonform');
                     $('#editortoggle').text('Form View');
                     isForm = false;
-                    changeBoxHeight();
                     $('textarea#jsoneditor').val(JSON.stringify(editor.getValue(), null, '\t'));
                     console.log('click once')
                 } else {
@@ -218,7 +217,6 @@
                     editor.validate();
                     editor.setValue(JSON.parse($('textarea#jsoneditor').val()));
                     isForm = true;
-                    changeBoxHeight();
                     // Fire a change event to force revalidation
                     editor.onChange();
                 }
@@ -294,7 +292,7 @@
 
         });//end of deploy button trigger
 
-        $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} );
+      //  $('div[data-schemapath="root"]').find('h3 span').first().css({"display":"none"} );
 
         $.fn.bootstrapSwitch.defaults.onText = 'JSON';
         $.fn.bootstrapSwitch.defaults.offText = 'UI';
