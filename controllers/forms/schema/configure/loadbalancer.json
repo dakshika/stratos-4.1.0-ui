@@ -8,7 +8,7 @@
         "disable_properties": true,
         "disable_collapse": true
     },
-    "required": ["type", "provider", "host", "displayName", "description", "version", "multiTenant", "portMapping"],
+    "required": ["type", "provider", "host", "displayName", "description", "version", "portMapping"],
     "properties": {
         "type": {
             "type": "string",
