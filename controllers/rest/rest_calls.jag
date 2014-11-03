@@ -175,14 +175,14 @@ RESTCalls = new function(){
     this.getConfigStatus = function(){
         var configStatus = {};
         var error;
-        var par_res = this.sendReceive("GET","/partition",{});
+        var par_res = this.sendReceive("GET","/policy/autoscale",{});
         var get_status = session.get("get-status");
         if(par_res.Error != undefined){
             error = par_res.Error;
             configStatus.first_use = true;
         }else{
-            if(get_status == "succeeded") {
-                if(par_res.partition.length == 0){
+            if(get_status.status == "success") {
+                if(par_res.autoscalePolicy.length == 0){
                     configStatus.first_use = true;
                 }else{
                     var car_res = this.sendReceive("GET","/cartridge/available/list",{});
@@ -192,7 +192,7 @@ RESTCalls = new function(){
                         configStatus.not_complete = true;
                     }else{
                         get_status = session.get("get-status");
-                        if(get_status == "succeeded") {
+                        if(get_status.status == "success") {
                             if(car_res.cartridge.length == 0){
                                 configStatus.first_use = false;
                                 configStatus.not_complete = true;

@@ -63,6 +63,7 @@ div.stratos-tab-content{
     /* border: 1px solid #eeeeee; */
     padding-left: 20px;
     padding-top: 10px;
+    text-align: left;
 }
 
 div.stratos-tab div.stratos-tab-content:not(.active){
@@ -70,3 +71,17 @@ div.stratos-tab div.stratos-tab-content:not(.active){
 }
 
 .wizard a{font-size: 1.5em;}
+
+span.auto-correct {
+    float: left;
+    margin-left: 1em;
+}
+
+.wizard-button{
+    margin-left: 0.5em;width: 7em;
+}
+
+.stratos-tab-menu .wizard{position: fixed}
+.wizard a.list-group-item {
+    text-align: left;
+}

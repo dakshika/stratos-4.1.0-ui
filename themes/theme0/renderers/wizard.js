@@ -69,7 +69,15 @@ var render = function (theme, data, meta, require) {
                     context:{
                         content_menu:'links',
                         content_title:'Configuration Wizard',
-                        content_body:{sections: data.metro_menu}
+                        formData: data.formData,
+                        formDataRaw: data.formDataRaw,
+                        formTitle: data.formTitle,
+                        isSelection: data.isSelection,
+                        wizardstep:data.wizardstep,
+                        nsettype:data.nsettype,
+                        step:data.step,
+                        pstep:data.pstep,
+                        steplast:data.steplast
 
                     }
                 }
