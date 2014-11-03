@@ -199,18 +199,6 @@ button.hover-unsubscribe, button.hover-details{
     margin-top: .7em;
 }
 
-@media (max-width: 470px){
-	.navbar-menutoggle { display: block; margin-left: 15px; }
-	.slidewindow { display: none; }
-	.menubar { display: block; }
-	.sub-header { display: none; }
-	h1, .h1 { font-size: 18px; }
-}
-
-@media (max-width: 768px){
-	
-}
-
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -269,28 +257,16 @@ button.hover-unsubscribe, button.hover-details{
 }
 
 @media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
-
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-        width: 250px;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
-
-    #page-content-wrapper {
-        
-    }
-
     #wrapper.toggled #page-content-wrapper {
         position: relative;
         margin-right: 0;
     }
+}
+
+@media (max-width: 470px){
+	.navbar-menutoggle { display: block; margin-left: 15px; }
+	.slidewindow { display: none; }
+	.menubar { display: block; }
+	.sub-header { display: none; }
+	h1, .h1 { font-size: 18px; }
 }
