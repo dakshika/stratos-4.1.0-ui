@@ -91,18 +91,17 @@ if (elements.formtype == 'partitions') {
     }
 } else if (elements.formtype == 'cartridges') {
     list_data = util.RESTCalls.getCartridges();
-    //remove LB from current object
-    for (var i = 0; i < list_data.cartridge.length; i++) {
-        if (list_data.cartridge[i].loadBalancer === true) {
-            list_data.cartridge.splice(i, 1);
-            i = i - 1;
-        }
-    }
+
     if (list_data.cartridge && list_data.cartridge.length === 0) {
         list_data = null;
-    } else {
-
-        log.info(list_data)
+    } else if(list_data.hasOwnProperty('cartridge')) {
+        //remove LB from current object
+        for (var i = 0; i < list_data.cartridge.length; i++) {
+            if (list_data.cartridge[i].loadBalancer === true) {
+                list_data.cartridge.splice(i, 1);
+                i = i - 1;
+            }
+        }
     }
 } else if (elements.formtype == 'multitenant') {
     list_data = util.RESTCalls.getServices();
