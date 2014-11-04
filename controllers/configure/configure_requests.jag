@@ -41,6 +41,8 @@ try {
         formSubmit = util.RESTCalls.deployCartridgeDefinition(formPayload);
     }else if(formtype == 'multitenant'){
         formSubmit = util.RESTCalls.deployServiceDefinition(formPayload);
+    }else{
+        session.put("deploy-status", { "message": "Sorry Endpoint Error", "status": "error" })
     }
 
     //print(session.get("deploy-status"));
