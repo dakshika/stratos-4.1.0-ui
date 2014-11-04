@@ -47,15 +47,19 @@ if (!elements) {
 
     if (elements.action != 'new') {
         isEdit = true;
-
-        log.info(elements)
     }
 }
 
-var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
-        formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
-        formTitle = formData.title,
-        buttonText = formData.name;
+try{
+    var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
+            formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
+            formTitle = formData.title,
+            buttonText = formData.name;
+}catch(e){
+    log.error(e.message);
+    error.push({"errorMessage": e.message}  );
+}
+
 
 if (elements.action != 'new' && isEdit) {
     formTitle = 'Partition Details - ' + elements.action;
@@ -94,7 +98,7 @@ if (elements.formtype == 'partitions') {
 
     if (list_data.cartridge && list_data.cartridge.length === 0) {
         list_data = null;
-    } else if(list_data.hasOwnProperty('cartridge')) {
+    } else if (list_data.hasOwnProperty('cartridge')) {
         //remove LB from current object
         for (var i = 0; i < list_data.cartridge.length; i++) {
             if (list_data.cartridge[i].loadBalancer === true) {
@@ -108,6 +112,8 @@ if (elements.formtype == 'partitions') {
     if (list_data.serviceDefinitionBean && list_data.serviceDefinitionBean.length === 0) {
         list_data = null;
     }
+} else if (elements.formtype == 'docker') {
+
 }
 
 //check user has permission to access endpoints
