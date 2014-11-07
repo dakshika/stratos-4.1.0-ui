@@ -331,10 +331,10 @@ RESTCalls = new function(){
     };
 
 
-    this.getSessionCookie = function(userName, password){
+    this.getSession = function(userName, password){
         var config = require('/config/console.js').config();
         var backendServerURL = config.backendServerConfiguration.url;
-        var endpoint = backendServerURL + "/cookie";
+        var endpoint = backendServerURL + "/session";
         var sso = require("sso"); //TODO: get rid of this...
         var basicAuthToken = sso.client.b64encode(userName + ":" + password);
         var headers = {
