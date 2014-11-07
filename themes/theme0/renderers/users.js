@@ -1,3 +1,23 @@
+/*
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
 var render = function (theme, data, meta, require) {
 
     if(data.error.length == 0 ){
@@ -6,8 +26,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_title',
                     context:{
-                        page_title:'Apache Stratos Home',
-                        page_description:'Apache Stratos Home'
+                        page_title:'Apache Stratos - User Managment',
+                        page_description:'Apache Stratos - User Managment'
                     }
                 }
             ],
@@ -23,7 +43,8 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_sub_header',
                     context:{
-
+                        breadcrumbPathLevelOne:'users',
+                        breadcrumbPathLevelTwo:''
                     }
                 }
             ],
@@ -31,7 +52,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_left_menu',
                     context:{
-
+                        left_menu:data.left_menu
                     }
                 }
             ],
@@ -50,22 +71,7 @@ var render = function (theme, data, meta, require) {
                     context:{
                         content_menu:'links',
                         content_title:'User Management',
-                        content_body:{sections:[
-                            {
-                                link:'users/',
-                                title:'Users',
-                                icon:"fa-th-large",
-                                description:"Define partitions/partition groups to be used in autoscaling and deployment policies."
-                            },
-                            {
-                                link:'tenants/',
-                                title:'Tenant',
-                                icon:"fa-road",
-                                description:"Define specific policies for cartridge deployment."
-                            }
-                        ]
-
-                        }
+                        content_body:{sections:data.metro_menu}
 
                     }
                 }

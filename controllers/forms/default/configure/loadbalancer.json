@@ -1,12 +1,12 @@
 {
     "type":"lb",
+    "isPublic":false,
     "provider":"lb",
     "host":"stratos.org",
     "displayName":"load balancer",
     "description":"LB Cartridge",
     "version":"4",
     "defaultAutoscalingPolicy":"economyPolicy",
-    "multiTenant":"false",
     "portMapping":[
         {
             "protocol":"http",

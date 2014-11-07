@@ -1,5 +1,7 @@
 {
     "id": "economy",
+    "description":"autoscale policy description",
+    "isPublic":false,
     "loadThresholds": {
         "requestsInFlight": {
             "upperLimit": 30,
