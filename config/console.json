@@ -1,5 +1,5 @@
 {
     "backendServerConfiguration": {
-        "url": "%https.host%/stratos/admin"
+        "url": "%https.host%/api/v4.1"
     }
 }
