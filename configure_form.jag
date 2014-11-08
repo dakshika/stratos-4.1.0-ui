@@ -50,14 +50,14 @@ if (!elements) {
     }
 }
 
-try{
+try {
     var formData = require('controllers/forms/schema/configure/' + elements.formtype + '.json'),
             formDataRaw = require('controllers/forms/default/configure/' + elements.formtype + '.json'),
             formTitle = formData.title,
             buttonText = formData.name;
-}catch(e){
+} catch (e) {
     log.error(e.message);
-    error.push({"errorMessage": e.message}  );
+    error.push({"errorMessage": e.message});
 }
 
 
@@ -65,56 +65,73 @@ if (elements.action != 'new' && isEdit) {
     formTitle = 'Partition Details - ' + elements.action;
 }
 
-if (elements.formtype == 'partitions') {
-    list_data = util.RESTCalls.getPartitions();
-    if (list_data.partition && list_data.partition.length === 0) {
-        list_data = null;
-    } else {
-        formDataEdit = list_data.partition;
-        for (specNumber in list_data.partition) {
-            if (list_data.partition[specNumber].id == elements.action) {
-                formDataEdit = list_data.partition[specNumber];
+var formtype = elements.formtype;
+
+switch (formtype) {
+    case "partitions":
+        list_data = util.RESTCalls.getPartitions();
+        if (list_data.partition && list_data.partition.length === 0) {
+            list_data = null;
+        } else {
+            formDataEdit = list_data.partition;
+            for (specNumber in list_data.partition) {
+                if (list_data.partition[specNumber].id == elements.action) {
+                    formDataEdit = list_data.partition[specNumber];
+                }
+
             }
 
         }
+        break;
 
-    }
+    case "autoscalingpolicies":
+        list_data = util.RESTCalls.getPolicyAutoScale();
+        if (list_data.autoscalePolicy && list_data.autoscalePolicy.length === 0) {
+            list_data = null;
+        }
+        break;
 
-} else if (elements.formtype == 'autoscalingpolicies') {
-    list_data = util.RESTCalls.getPolicyAutoScale();
-    if (list_data.autoscalePolicy && list_data.autoscalePolicy.length === 0) {
-        list_data = null;
-    }
-} else if (elements.formtype == 'deployments') {
-    list_data = util.RESTCalls.getPolicyDeployment();
+    case "deployments":
+        list_data = util.RESTCalls.getPolicyDeployment();
+        break;
 
-} else if (elements.formtype == 'loadbalancer') {
-    list_data = util.RESTCalls.getLbCartridges();
-    if (list_data.cartridge && list_data.cartridge.length === 0) {
-        list_data = null;
-    }
-} else if (elements.formtype == 'cartridges') {
-    list_data = util.RESTCalls.getCartridges();
+    case "loadbalancer":
+        list_data = util.RESTCalls.getLbCartridges();
+        if (list_data.cartridge && list_data.cartridge.length === 0) {
+            list_data = null;
+        }
+        break;
 
-    if (list_data.cartridge && list_data.cartridge.length === 0) {
-        list_data = null;
-    } else if (list_data.hasOwnProperty('cartridge')) {
-        //remove LB from current object
-        for (var i = 0; i < list_data.cartridge.length; i++) {
-            if (list_data.cartridge[i].loadBalancer === true) {
-                list_data.cartridge.splice(i, 1);
-                i = i - 1;
+    case "cartridges":
+        list_data = util.RESTCalls.getCartridges();
+
+        if (list_data.cartridge && list_data.cartridge.length === 0) {
+            list_data = null;
+        } else if (list_data.hasOwnProperty('cartridge')) {
+            //remove LB from current object
+            for (var i = 0; i < list_data.cartridge.length; i++) {
+                if (list_data.cartridge[i].loadBalancer === true) {
+                    list_data.cartridge.splice(i, 1);
+                    i = i - 1;
+                }
             }
         }
-    }
-} else if (elements.formtype == 'multitenant') {
-    list_data = util.RESTCalls.getServices();
-    if (list_data.serviceDefinitionBean && list_data.serviceDefinitionBean.length === 0) {
-        list_data = null;
-    }
-} else if (elements.formtype == 'docker') {
-    list_data = util.RESTCalls.getKubernetesGroups();
-    log.info(list_data);
+        break;
+
+    case "multitenant":
+        list_data = util.RESTCalls.getServices();
+        if (list_data.serviceDefinitionBean && list_data.serviceDefinitionBean.length === 0) {
+            list_data = null;
+        }
+        break;
+
+    case "docker":
+        list_data = util.RESTCalls.getKubernetesGroups();
+        break;
+
+    default:
+        error.push({"errorMessage":"Incorrect resource path found"});
+
 }
 
 //check user has permission to access endpoints
