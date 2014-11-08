@@ -85,6 +85,17 @@
             {{/if}}
 
             <div class="row general-table row-overide">
+                {{#each content_body.sections.kubernetesGroup}}
+                    <div class="block col-md-4 grid-group-item border-right">
+                        <div class="toggle-menu-icon">
+                            <i class="fa fa-gears "></i>
+                        </div>
+                        <h2 class="truncate">{{groupId}} </h2>
+
+                        <div class="toggle-menu-description">{{description}}</div>
+
+                    </div>
+                {{/each}}
                 {{#each content_body.sections.serviceDefinitionBean}}
                     <div class="block col-md-4 grid-group-item border-right">
                         <div class="toggle-menu-icon">

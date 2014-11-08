@@ -112,6 +112,10 @@ RESTCalls = new function(){
         return this.sendReceive("GET","/policy/deployment",{});
     };
 
+    this.getKubernetesGroups = function(){
+        return this.sendReceive("GET","/kubernetes/group",{});
+    };
+
     this.getApplicableDeploymentPolicies = function(cartridgeType){
         return this.sendReceive("GET","/" + cartridgeType + "/policy/deployment/",{});
     };

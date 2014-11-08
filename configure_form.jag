@@ -113,7 +113,8 @@ if (elements.formtype == 'partitions') {
         list_data = null;
     }
 } else if (elements.formtype == 'docker') {
-
+    list_data = util.RESTCalls.getKubernetesGroups();
+    log.info(list_data);
 }
 
 //check user has permission to access endpoints
