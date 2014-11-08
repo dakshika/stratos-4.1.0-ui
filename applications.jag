@@ -22,7 +22,7 @@
 include('/controllers/login/validator.jag');
 include('/controllers/menu/menu_generator.jag');
 
-var log = new Log("apacheStratos.index");
+var log = new Log("apacheStratos.applications");
 var error = [];
 var caramel = require('caramel'),
         context = caramel.configs().context,
@@ -30,7 +30,12 @@ var caramel = require('caramel'),
         util = require('/controllers/rest/rest_calls.jag'),
         userPermissions = session.get('PERMISSIONS');
 
-var availableCartridges = util.RESTCalls.getCartridges();
+try{
+    var availableCartridges = util.RESTCalls.getCartridges();
+}catch(e){
+    log.warn(e);
+}
+
 
 if (availableCartridges == null || availableCartridges == undefined || availableCartridges == "") {
     availableCartridges = {};

@@ -75,7 +75,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial: 'index_sub_header',
                     context: {
-                        breadcrumbPathLevelOne: 'cartridges',
+                        breadcrumbPathLevelOne: 'applications',
                         breadcrumbPathLevelTwo: data.breadcrumbPathLevelTwo
                     }
                 }
@@ -102,7 +102,7 @@ var render = function (theme, data, meta, require) {
                     partial: 'applications',
                     context: {
                         content_menu: 'links',
-                        content_title: 'Subscribe to Cartridge',
+                        content_title: 'Deploy Applications',
                         content_body: {sections: cartridges_new}
 
                     }
