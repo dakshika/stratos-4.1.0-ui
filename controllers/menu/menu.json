@@ -62,15 +62,6 @@
                     "icon": "fa-sitemap",
                     "permissionPaths": ["/permission","/permission/admin"],
                     "description": "Define and manage multitenant services."
-                },
-                {
-                    "link": "configure/group/",
-                    "linkexternal":false,
-                    "context":"/configure",
-                    "title": "Service Groups",
-                    "icon": "fa-cubes",
-                    "permissionPaths": ["/permission","/permission/admin"],
-                    "description": "Define and manage multitenant services."
                 }
            /*     ,
                 {
