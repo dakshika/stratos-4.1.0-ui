@@ -99,7 +99,7 @@ var render = function (theme, data, meta, require) {
             content: [
 
                 {
-                    partial: 'cartridges',
+                    partial: 'applications',
                     context: {
                         content_menu: 'links',
                         content_title: 'Subscribe to Cartridge',

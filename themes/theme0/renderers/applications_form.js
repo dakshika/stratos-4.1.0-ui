@@ -66,7 +66,7 @@ var render = function (theme, data, meta, require) {
             ],
             content: [
                 {
-                    partial:'cartridges_form',
+                    partial:'applications_form',
                     context:{
                         formContext: data.breadcrumbPathLevelTwo,
                         form_action: data.form_action,

@@ -106,7 +106,7 @@
             ]
         },
         {
-            "link": "cartridges/",
+            "link": "applications/",
             "linkexternal": false,
             "context": "/",
             "title": "Applications",
