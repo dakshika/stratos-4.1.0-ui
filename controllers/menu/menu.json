@@ -115,7 +115,7 @@
             "description": "Subscribe to Application.",
             "sub-menu": [
                 {
-                    "link": "applications/appgroups/",
+                    "link": "applications/groups/",
                     "linkexternal": false,
                     "context": "/applications",
                     "title": "Application Groups",
