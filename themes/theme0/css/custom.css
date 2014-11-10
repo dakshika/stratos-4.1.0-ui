@@ -39,7 +39,7 @@ body{ background: url('../images/stratos_background.png')  no-repeat; background
     margin-top: 10em;
     left: -3000px;
 }
-.slidewindow.right { left: inherit; right: -3000px; }
+.slidewindow.right { left: inherit; right: -3000px; display: none;}
 .slidewindow:after { clear: both; display: block; }
 .slidewindow .row { margin:0; }
 
