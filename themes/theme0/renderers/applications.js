@@ -43,7 +43,7 @@ var render = function (theme, data, meta, require) {
                 {
                     partial:'index_sub_header',
                     context:{
-                        breadcrumbPathLevelOne:'appconfig',
+                        breadcrumbPathLevelOne:'applications',
                         breadcrumbPathLevelTwo:''
                     }
                 }
