@@ -110,9 +110,29 @@
             "linkexternal": false,
             "context": "/",
             "title": "Applications",
-            "icon": "fa-inbox",
+            "icon": "fa-archive",
             "permissionPaths": ["/permission", "/permission/admin/manage/view/cartridge"],
-            "description": "Subscribe to Application."
+            "description": "Subscribe to Application.",
+            "sub-menu": [
+                {
+                    "link": "applications/appgroups/",
+                    "linkexternal": false,
+                    "context": "/applications",
+                    "title": "Application Groups",
+                    "icon": "fa-briefcase",
+                    "permissionPaths": ["/permission", "/permission/admin"],
+                    "description": "Add application groups."
+                },
+                {
+                    "link": "applications/applications/",
+                    "linkexternal": false,
+                    "context": "/applications",
+                    "title": "Applications",
+                    "icon": "fa-archive",
+                    "permissionPaths": ["/permission", "/permission/admin"],
+                    "description": "Add applications"
+                }
+            ]
         },
         {
             "link": "mycartridges/",
