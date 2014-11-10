@@ -87,6 +87,14 @@ RESTCalls = new function(){
         return this.send("POST","/kubernetes/deploy/group",groupDefinition);
     };
 
+    this.deployGroupDefinition = function(groupDefinition){
+        return this.send("POST","/group/definition", groupDefinition);
+    };
+
+    this.deployApplicationDefinition = function(applicationDefinition){
+        return this.send("POST","/application/definition", applicationDefinition);
+    };
+
     this.subscribeToCartridge = function(cartridgeBeanInfo){
         return this.sendReceive("POST","/cartridge/subscribe", cartridgeBeanInfo);
     };
@@ -148,6 +156,10 @@ RESTCalls = new function(){
 
     this.getLbCartridges = function(){
         return this.sendReceive("GET","/cartridge/lb",{});
+    };
+
+    this.getApplications = function(){
+        return this.sendReceive("GET","/application",{});
     };
 
     this.getClusterInfo = function(clusterId){

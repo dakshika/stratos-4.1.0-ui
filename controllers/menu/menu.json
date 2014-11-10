@@ -120,7 +120,7 @@
                     "context": "/applications",
                     "title": "Application Groups",
                     "icon": "fa-briefcase",
-                    "permissionPaths": ["/permission", "/permission/admin"],
+                    "permissionPaths": ["/permission", "/permission/admin", "/permission/admin/manage/view/subscription"],
                     "description": "Add application groups."
                 },
                 {
@@ -129,20 +129,20 @@
                     "context": "/applications",
                     "title": "Applications",
                     "icon": "fa-archive",
-                    "permissionPaths": ["/permission", "/permission/admin"],
+                    "permissionPaths": ["/permission", "/permission/admin","/permission/admin/manage/view/subscription" ],
                     "description": "Add applications"
                 }
             ]
         },
-        {
-            "link": "mycartridges/",
-            "linkexternal": false,
-            "context": "/",
-            "title": "Instances",
-            "icon": "fa-inbox",
-            "permissionPaths": ["/permission", "/permission/admin/manage/view/subscription"],
-            "description": "Your Instances"
-        },
+//        {
+//            "link": "mycartridges/",
+//            "linkexternal": false,
+//            "context": "/",
+//            "title": "Instances",
+//            "icon": "fa-inbox",
+//            "permissionPaths": ["/permission", "/permission/admin/manage/view/subscription"],
+//            "description": "Your Instances"
+//        },
         {
             "link": "https://issues.apache.org/jira/",
             "linkexternal": true,

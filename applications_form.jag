@@ -58,6 +58,19 @@ try {
     error.push({"errorMessage": e.message});
 }
 
+var formtype = elements.formtype;
+
+switch (formtype) {
+    case "groups":
+        //TODO need to get group list endpoint
+        break;
+    case "applications":
+        list_data = util.RESTCalls.getApplications();
+        break;
+    default:
+        error.push({"errorMessage":"Incorrect resource path found"});
+}
+log.info(list_data)
 var caramelData = {
     breadcrumbPathLevelOne: breadcrumbPathLevelOne,
     breadcrumbPathLevelTwo: elements.formtype,
