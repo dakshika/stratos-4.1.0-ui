@@ -145,9 +145,18 @@ $(window).load(function(){
     // Sidebar Menu Toggle Function (For Low Res Screens)
     //********************************************//
     
-    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle-left").click(function(e) {
         e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+        //$("#wrapper").removeClass("toggled-right");
+        $("#wrapper").toggleClass("toggled-left");
+        $("#sidebar-wrapper-left").toggleClass("toggled");
+    });
+    
+    $("#menu-toggle-right").click(function(e) {
+        e.preventDefault();
+        //$("#wrapper").removeClass("toggled-left");
+        $("#wrapper").toggleClass("toggled-right");
+        $("#sidebar-wrapper-right").toggleClass("toggled");
     });
 
 });

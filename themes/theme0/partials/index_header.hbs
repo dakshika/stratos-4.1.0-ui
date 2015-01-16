@@ -3,31 +3,43 @@
     
         <!-- toggle navigation -->
         <div class="navbar-header main-header">
-            <i class="navbar-menutoggle fa fa-bars" href="#menu-toggle" id="menu-toggle"></i>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-            </button>
+            <i class="navbar-menutoggle fa fa-bars" href="#menu-toggle-left" id="menu-toggle-left"></i>
+            
             <a class="navbar-brand logo" href="{{url ""}}"><img src="{{url "/themes/theme0/images/stratos-logo.png"}}"></a>
+ 			
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="user-image" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><img src="{{url "/themes/theme0/images/avatar/"}}6497326.png" alt="example image" class="img-circle"></span></a>
+            <!-- <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> -->
+        	
+        	<ul class="dropdown-menu" role="menu">
+            	<li><a href="{{url ""}}/controllers/login/logout.jag">Logout</a></li>
+            </ul>   
         </div>
         
         <!-- default navigation -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		                <span class="user-image">
-		                  <img src="{{url "/themes/theme0/images/avatar/"}}6497326.png" alt="example image" class="img-circle">
-		                </span>
-                        {{#user}}{{/user}}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{url ""}}/controllers/login/logout.jag">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              		<span class="user-image">
+                			<img src="{{url "/themes/theme0/images/avatar/"}}6497326.png" alt="example image" class="img-circle">
+              		</span>
+                    {{#user}}{{/user}}
+                    <span class="caret"></span>
+                </a>
+                
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{url ""}}/controllers/login/logout.jag">Logout</a></li>
+                </ul>
+                
+            </li>
+        </ul>
         </div>
         
+        
     </div>
-    <div class="menubar"></div>
+    <!-- <div class="menubar">
+    	<i class="navbar-menutoggle fa fa-life-saver" href="#menu-toggle-right" id="menu-toggle-right"></i>
+        <i class="navbar-menutoggle fa fa-info-circle" href="#menu-toggle-right" id="menu-toggle-right"></i>
+    </div> -->
 </nav>

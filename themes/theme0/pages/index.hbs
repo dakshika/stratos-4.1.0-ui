@@ -31,25 +31,30 @@
 
 	<div id="wrapper">
 
-       <!-- Sidebar -->
-       <div id="sidebar-wrapper" class="sidebar">
+       <!-- Sidebar Left -->
+       <div id="sidebar-wrapper-left" class="sidebar left">
            {{include left_menu}}
        </div>
-       <!-- /#sidebar-wrapper -->
-
+       <!-- /#sidebar-wrapper-left -->
+		
+	   <!-- Sidebar Right -->
+       <div id="sidebar-wrapper-right" class="sidebar right">
+            {{include right_menu_help}}
+       </div>
+       <!-- /#sidebar-wrapper-right -->
+       
        <!-- Page Content -->
        <div id="page-content-wrapper">
            	{{include header}}
 			{{include sub_header}}
 			{{include left_menu}}
 			{{include right_menu_help}}
-			{{include right_menu_log}}
 			<div class="container-fluid">
 				{{include content}}
 			</div>
        </div>
        <!-- /#page-content-wrapper -->
-
+       
    	</div>
    	<!-- /#wrapper -->
 
